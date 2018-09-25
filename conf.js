@@ -10,7 +10,11 @@ exports.config = {
 
   multiCapabilities: [{
     browserName: 'firefox',
-    maxInstances: 1
+    maxInstances: 1,
+    'moz:firefoxOptions': {
+      'binary': '/opt/bin/firefox',
+      'args': ['--verbose', '--safe-mode']
+    }
   },
     {
       browserName: 'chrome',
