@@ -1,0 +1,24 @@
+{
+  "name": "protractorgoogletest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/murcraft/ProtractorGoogleTest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/murcraft/ProtractorGoogleTest/issues"
+  },
+  "homepage": "https://github.com/murcraft/ProtractorGoogleTest#readme",
+  "dependencies": {
+    "jasmine": "^3.2.0",
+    "jasmine-data-provider": "^2.2.0",
+    "protractor": "^5.4.1"
+  }
+}
