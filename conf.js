@@ -1,8 +1,6 @@
 exports.config = {
   directConnect: true,
 
-  // specs: ['spec/*Spec.js'],
-
   suites: {
     googlePage: 'spec/pageObjectSpec.js'
   },
