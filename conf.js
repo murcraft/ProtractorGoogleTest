@@ -7,6 +7,7 @@ exports.config = {
 
   framework: 'jasmine',
   splitTestsBetweenCapabilities: true,
+
   multiCapabilities: [{
     browserName: 'firefox',
     maxInstances: 1
@@ -28,6 +29,10 @@ exports.config = {
         }
       }
     }],
+
+  onPrepare: () => {
+    browser.waitForAngularEnabled(false)
+  },
 
   jasmineNodeOpts: {
     showColors: true,

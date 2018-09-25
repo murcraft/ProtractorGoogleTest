@@ -24,7 +24,8 @@ describe('Test searching on Google', function () {
     it('Search for keyword and verify title of results page', async function () {
       await searchPage.enterRequiredWord(data.request)
       resultsPage = await new ResultsPage()
-      let titleOfResultsPage = await resultsPage.getResultsTitle(data.request)
+      let titleOfResultsPage = await resultsPage.getResultsTitle()
+      await console.log(titleOfResultsPage)
       await expect(titleOfResultsPage.toLowerCase()).toContain(data.request, 'Title of results page')
     })
 
