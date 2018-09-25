@@ -11,10 +11,7 @@ exports.config = {
   splitTestsBetweenCapabilities: true,
   multiCapabilities: [{
     browserName: 'firefox',
-    maxInstances: 1,
-    'moz:firefoxOptions': {
-      args: ['--headless']
-    }
+    maxInstances: 1
   },
     {
       browserName: 'chrome',
@@ -22,7 +19,6 @@ exports.config = {
       maxInstances: 1,
       chromeOptions: {
         args: [
-          '--headless',
           '--disable-infobars',
           '--disable-extensions',
           'verbose',
