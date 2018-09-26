@@ -6,33 +6,13 @@ exports.config = {
   },
 
   framework: 'jasmine',
-  splitTestsBetweenCapabilities: true,
 
   multiCapabilities: [{
     browserName: 'firefox',
-    maxInstances: 1,
-    'moz:firefoxOptions': {
-      'binary': '/opt/bin/firefox',
-      'args': ['--verbose', '--safe-mode']
-    }
   },
-    {
-      browserName: 'chrome',
-      shardTestFiles: true,
-      maxInstances: 1,
-      chromeOptions: {
-        args: [
-          '--disable-infobars',
-          '--disable-extensions',
-          'verbose',
-        ],
-        prefs: {
-          'profile.password_manager_enabled': false,
-          'credentials_enable_service': false,
-          'password_manager_enabled': false
-        }
-      }
-    }],
+  {
+    browserName: 'chrome',
+  }],
 
   onPrepare: () => {
     browser.waitForAngularEnabled(false)
