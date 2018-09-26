@@ -20,5 +20,7 @@
     "jasmine-data-provider": "^2.2.0",
     "protractor": "^5.4.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "protractor-jasmine2-html-reporter": "0.0.7"
+  }
 }
