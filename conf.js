@@ -12,6 +12,18 @@ exports.config = {
   },
   {
     browserName: 'chrome',
+    shardTestFiles: true,
+    chromeOptions: {
+      args: [
+        '--disable-infobars',
+        '--disable-extensions',
+        'verbose'
+      ]},
+      prefs: {
+        'profile.password_manager_enabled': false,
+        'credentials_enable_service': false,
+        'password_manager_enabled': false
+      }
   }],
 
   onPrepare: () => {
