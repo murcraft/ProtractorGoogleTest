@@ -45,7 +45,7 @@ exports.config = {
     browser.manage().window().setSize(1024, 800)
     browser.waitForAngularEnabled(false)
 
-/*    jasmine.getEnv().addReporter(
+    jasmine.getEnv().addReporter(
       new Jasmine2HtmlReporter({
         savePath: 'reports/' + timeStamp,
         consolidate: true,
@@ -55,7 +55,7 @@ exports.config = {
         takeScreenshotsOnlyOnFailures: true,
         filePrefix: browser.getCapabilities() + '.html'
       })
-    )*/
+    )
   },
 
   jasmineNodeOpts: {
