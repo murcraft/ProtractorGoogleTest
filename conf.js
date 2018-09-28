@@ -6,10 +6,6 @@ let timeStamp = today.getMonth() + 1 + '-' + today.getDate() + '-' + today.getFu
 
 exports.config = {
   directConnect: true,
-  // seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
-
-  // seleniumServerJar: './node_modules/selenium-standalone-jar/bin/selenium-server-standalone-3.0.1.jar',
-
   suites: {
     googlePage: 'spec/pageObjectSpec.js'
   },
