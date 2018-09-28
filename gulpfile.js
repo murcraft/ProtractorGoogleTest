@@ -6,13 +6,12 @@ global.$ = {
   },
   gulp: require('gulp'),
   notify: require('gulp-notify'),
-  protractor: require('gulp-protractor').protractor,
-  runSequence: require('run-sequence')
+  protractor: require('gulp-protractor').protractor
 }
 
 $.path.task.forEach(function (taskPath) {
   require(taskPath)()
 })
 
-$.gulp.task('default', ['done'])
+$.gulp.task('default', ['startProtractor'])
 
