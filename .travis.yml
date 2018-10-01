@@ -6,5 +6,6 @@ install:
   - npm install
   - npm run webdriver-update
 
-script:
-  - npm run test
+before_script:
+- npm install -g gulp-cli
+script: gulp
