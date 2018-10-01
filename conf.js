@@ -1,3 +1,5 @@
+let Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter')
+
 exports.config = {
   directConnect: true,
   suites: {
@@ -33,11 +35,32 @@ exports.config = {
         'password_manager_enabled': false
       }
     }
-    ],
+  ],
 
   onPrepare: () => {
     browser.manage().window().setSize(1024, 800)
     browser.waitForAngularEnabled(false)
+
+    return new Promise(function (fulfill, reject) {
+      browser.getCapabilities().then(function (value) {
+        reportName = value.get('browserName') + '_' + Math.floor(Math.random() * 1E16)
+        jasmine.getEnv().addReporter(
+          new Jasmine2HtmlReporter({
+            savePath: __dirname + '/reports',
+            docTitle: 'Web UI Test Report',
+            screenshotsFolder: '/image',
+            takeScreenshotsOnlyOnFailures: true,
+            consolidate: true,
+            consolidateAll: true,
+            preserveDirectory: true,
+            fileName: 'my-report.html',
+            fileNamePrefix: reportName
+          })
+        )
+        fulfill()
+      })
+    })
+
   },
 
   jasmineNodeOpts: {
