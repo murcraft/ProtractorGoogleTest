@@ -1,9 +1,10 @@
+os: ""
 language: node_js
 node_js:
-  - "7"
+  - "8"
 install:
   - npm install
   - npm run webdriver-update
 
 script:
-  - npm run test gulp
+  - npm run test
