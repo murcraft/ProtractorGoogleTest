@@ -6,9 +6,7 @@ module.exports = function () {
       .src(['./spec/pageObjectSpec.js'])
       .pipe($.notify('Were found changes, Executing scripts'))
       .pipe($.protractor({
-        configFile: 'conf.js',
-        directConnect: true,
-        browserName: 'chrome'
+        configFile: 'conf.js'
       }))
       .on('error', function (e) {
         console.log(e)

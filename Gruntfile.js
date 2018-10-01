@@ -8,7 +8,6 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-protractor-runner')
 
-  grunt.registerTask('run-test', ['protractor:all'])
   grunt.registerTask('default', ['protractor'])
 }
 

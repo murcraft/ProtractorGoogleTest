@@ -1,9 +1,3 @@
-let Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter')
-
-let today = new Date()
-let timeStamp = today.getMonth() + 1 + '-' + today.getDate() + '-' + today.getFullYear() + '-' +
-  today.getHours() + 'h-' + today.getMinutes() + 'm-' + today.getSeconds() + 's'
-
 exports.config = {
   directConnect: true,
   suites: {
@@ -14,6 +8,8 @@ exports.config = {
 
   multiCapabilities: [{
     browserName: 'firefox',
+    shardTestFiles: true,
+    maxInstances: 1,
     'moz:firefoxOptions': {
       args: ['--headless']
     }
@@ -21,11 +17,12 @@ exports.config = {
     {
       browserName: 'chrome',
       shardTestFiles: true,
+      maxInstances: 1,
       chromeOptions: {
         args: [
-          '--headless',
           '--disable-infobars',
           '--disable-extensions',
+          '--ignore-ssl-errors=true',
           'verbose'
         ]
       },
@@ -40,18 +37,6 @@ exports.config = {
   onPrepare: () => {
     browser.manage().window().setSize(1024, 800)
     browser.waitForAngularEnabled(false)
-
-    jasmine.getEnv().addReporter(
-      new Jasmine2HtmlReporter({
-        savePath: 'reports/' + timeStamp,
-        consolidate: true,
-        consolidateAll: true,
-        takeScreenshot: true,
-        screenshotsFolder: 'screenshots',
-        takeScreenshotsOnlyOnFailures: true,
-        filePrefix: browser.getCapabilities() + '.html'
-      })
-    )
   },
 
   jasmineNodeOpts: {
