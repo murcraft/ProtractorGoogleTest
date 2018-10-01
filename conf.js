@@ -5,6 +5,7 @@ exports.config = {
   },
 
   framework: 'jasmine',
+  splitTestsBetweenCapabilities: true,
 
   multiCapabilities: [{
     browserName: 'firefox',
@@ -42,6 +43,6 @@ exports.config = {
   jasmineNodeOpts: {
     showColors: true,
     displaySpecDuration: true,
-    defaultTimeoutInterval: 30000
+    defaultTimeoutInterval: 50000
   }
 }
