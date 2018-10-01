@@ -4,7 +4,7 @@ node_js:
   - "8"
 install:
   - npm install
-  - npm run webdriver-update
+  - node_modules/protractor/bin/webdriver-manager update
 
 before_script:
 - npm install -g gulp-cli
