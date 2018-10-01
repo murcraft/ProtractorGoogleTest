@@ -3,7 +3,7 @@ node_js:
   - "7"
 install:
   - npm install
-  - npm webdriver-update
+  - npm run webdriver-update
 
 script:
-  - gulp
+  - npm run test gulp
