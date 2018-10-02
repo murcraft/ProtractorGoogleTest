@@ -15,9 +15,10 @@ before_install:
 
 install:
   - npm install
-  - node_modules/protractor/bin/webdriver-manager update
+
 
 before_script:
+- node_modules/protractor/bin/webdriver-manager update --standalone
 - npm install -g gulp-cli
 
 script: gulp

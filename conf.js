@@ -19,7 +19,7 @@ exports.config = {
     }
   },*/
     {
-      seleniumAddress: 'http://localhost:4444/wd/hub',
+      // seleniumAddress: 'http://localhost:4444/wd/hub',
       ignoreProtectedModeSettings: true,
       browserName: 'chrome',
       shardTestFiles: true,
