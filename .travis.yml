@@ -2,10 +2,22 @@ os: ""
 language: node_js
 node_js:
   - "8"
+
+addons:
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
+
+before_install:
+- sh -e /etc/init.d/xvfb start
+
 install:
   - npm install
   - node_modules/protractor/bin/webdriver-manager update
 
 before_script:
 - npm install -g gulp-cli
+
 script: gulp
