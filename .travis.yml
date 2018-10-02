@@ -12,10 +12,10 @@ addons:
 
 install:
   - npm install
-
+  - webdriver-manager update
+  - node_modules/protractor/bin/webdriver-manager update --standalone
 
 before_script:
-- node_modules/protractor/bin/webdriver-manager update --standalone
-- npm install -g gulp-cli
+  - npm install -g gulp-cli
 
 script: gulp
