@@ -9,15 +9,18 @@ exports.config = {
   framework: 'jasmine',
   splitTestsBetweenCapabilities: true,
 
-  multiCapabilities: [{
+  multiCapabilities: [/*{
+    seleniumAddress: 'http://localhost:5555/',
     browserName: 'firefox',
     shardTestFiles: true,
     maxInstances: 1,
     'moz:firefoxOptions': {
       args: ['--headless']
     }
-  },
+  },*/
     {
+      seleniumAddress: 'http://localhost:4444/wd/hub',
+      ignoreProtectedModeSettings: true,
       browserName: 'chrome',
       shardTestFiles: true,
       maxInstances: 1,
