@@ -16,5 +16,5 @@ $.path.task.forEach(function (taskPath) {
 $.gulp.task('webdriver-update', $.protractor.webdriver_update);
 $.gulp.task('webdriver-standalone', ['webdriver-update'], $.protractor.webdriver_standalone);
 
-$.gulp.task('default', ['startProtractor'])
+$.gulp.task('default', ['webdriver-standalone', 'startProtractor'])
 
