@@ -1,20 +1,51 @@
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3
+before_install:
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1024x800x16"
 language: node_js
 node_js:
-  - "8"
-
+  - 8
+sudo: required
+dist: trusty
+env:
+  - suite=_filters
+  - suite=searchSwitching
+  - suite=_analytics
+  - suite=_analyticsFiltering
+  - suite=_resultsFiltering
+  - suite=_listingsSearch
+  - suite=_login
+  - suite=_manageAgents
+  - suite=_map
+  - suite=_clients
+  - suite=_listings
+  - suite=_listingsSharing
+  - suite=_search
+  - suite=_settings
+  - suite=_tags
+  - suite=_manageListings
+  - suite=pdfsCORE
+  - suite=pdfsCorcoran
+  - suite=pdfsSothebys
+  - suite=pdfsStribling
+  - suite=pdfsOthers
+  - suite=_feedsRets
+  - suite=_feedsStreetEasy
+  - suite=_feedsLuxre
+  - suite=specialScenarios
+  - suite=_cleaning
+  #- suite=failing
 addons:
   apt:
     sources:
-    - google-chrome
+      - google-chrome
     packages:
-    - google-chrome-stable
-
-install:
-  - npm install
-  - webdriver-manager update
-  - node_modules/protractor/bin/webdriver-manager update
-
-before_script:
-  - npm install -g gulp-cli
-
-script: gulp
+      - google-chrome-stable
+notifications:
+  email:
+    recipients:
+      - ogulikpurse@gmail.com
+    on_success: always
+    on_failure: always

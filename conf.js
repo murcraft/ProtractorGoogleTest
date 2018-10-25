@@ -1,13 +1,22 @@
 let Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter')
 
 exports.config = {
-  directConnect: true,
+
+  allScriptsTimeout: 11000,
+  SELENIUM_PROMISE_MANAGER: false,
+  framework: 'jasmine2',
+  jasmineNodeOpts: {
+    showColors: true,
+    defaultTimeoutInterval: 240000
+  },
+
+  params: {
+    waitTimeout: 60000
+  },
+
   suites: {
     googlePage: 'spec/pageObjectSpec.js'
   },
-
-  framework: 'jasmine',
-  splitTestsBetweenCapabilities: true,
 
   multiCapabilities: [{
       ignoreProtectedModeSettings: true,
@@ -16,6 +25,8 @@ exports.config = {
       maxInstances: 1,
       chromeOptions: {
         args: [
+          'incognito',
+          'window-size=1024,800',
           '--disable-infobars',
           '--disable-extensions',
           '--ignore-ssl-errors=true',
@@ -23,16 +34,16 @@ exports.config = {
         ]
       },
       prefs: {
-        'profile.password_manager_enabled': false,
-        'credentials_enable_service': false,
-        'password_manager_enabled': false
+        download: {
+          prompt_for_download: false,
+          directory_upgrade: true,
+          default_directory: pathDownloads
+        }
       }
     }
   ],
 
   onPrepare: () => {
-    browser.manage().window().setSize(1024, 800)
-    browser.waitForAngularEnabled(false)
 
     return new Promise(function (fulfill, reject) {
       browser.getCapabilities().then(function (value) {
@@ -54,11 +65,5 @@ exports.config = {
       })
     })
 
-  },
-
-  jasmineNodeOpts: {
-    showColors: true,
-    displaySpecDuration: true,
-    defaultTimeoutInterval: 50000
   }
 }
