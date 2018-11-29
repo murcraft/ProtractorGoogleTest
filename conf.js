@@ -7,24 +7,25 @@ exports.config = {
   framework: 'jasmine2',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 240000
+    defaultTimeoutInterval: 240000,
   },
 
   params: {
-    waitTimeout: 60000
+    waitTimeout: 60000,
   },
 
   specs: [
-    'lib/spec/**/*.js'
+    'lib/spec/**/*.js',
   ],
 
   suites: {
-    googlePage: 'lib/spec/pageObjectSpec.js'
+    googlePage: 'lib/spec/pageObjectSpec.js',
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
 
-  multiCapabilities: [{
+  multiCapabilities: [
+    {
       ignoreProtectedModeSettings: true,
       browserName: 'chrome',
       shardTestFiles: true,
@@ -32,24 +33,26 @@ exports.config = {
       chromeOptions: {
         args: [
           'incognito',
-          'window-size=1024,800',
+          'window-size=1920,1080',
           '--disable-infobars',
           '--disable-extensions',
           '--ignore-ssl-errors=true',
-          'verbose'
-        ]
+          'verbose',
+        ],
       },
       prefs: {
         download: {
           prompt_for_download: false,
           directory_upgrade: true,
-        }
-      }
-    }
+        },
+      },
+      loggingPrefs: {
+        'browser': 'SEVERE',
+      },
+    },
   ],
 
   beforeLaunch: function () {
-    // global.Logger = require('./lib/helpers/logger')
   },
 
   onPrepare: async () => {
@@ -58,7 +61,7 @@ exports.config = {
     global.Logger = require('./lib/helpers/logger')
 
     jasmine.getEnv().addReporter(new AllureReporter({
-      resultDir: 'allure-results'
+      resultDir: 'allure-results',
     }))
 
     jasmine.getEnv().addReporter(new function () {
@@ -67,7 +70,8 @@ exports.config = {
         global.PASSED = 0
         global.FAILED = 0
         global.SKIPPED = 0
-        Logger.info(`!----------Tests started. Total tests: ${TOTAL}----------!`)
+        Logger.info(
+          `!----------Tests started. Total tests: ${TOTAL}----------!`)
       }
       this.suiteStarted = function (result) {
         Logger.info(`--------------------------------------------------`)
@@ -78,10 +82,6 @@ exports.config = {
         Logger.info(`Spec starts: ${result.description}`)
       }
       this.specDone = function (result) {
-        if (result.status === 'failed') {
-          FAILED++
-          Logger.failed(result)
-        }
         if (result.status === 'passed') {
           PASSED++
         }
@@ -114,5 +114,5 @@ exports.config = {
 
     await browser.get('')
 
-  }
+  },
 }
