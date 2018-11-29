@@ -7,7 +7,7 @@
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=2.43 --versions.standalone=3.4.0",
     "pretest": "npm run update-webdriver",
-    "test": "node conf.js"
+    "test": "npm run conf.js"
   },
   "repository": {
     "type": "git",
