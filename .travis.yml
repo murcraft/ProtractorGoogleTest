@@ -10,33 +10,7 @@ node_js:
 sudo: required
 dist: trusty
 env:
-  - suite=_filters
-  - suite=searchSwitching
-  - suite=_analytics
-  - suite=_analyticsFiltering
-  - suite=_resultsFiltering
-  - suite=_listingsSearch
-  - suite=_login
-  - suite=_manageAgents
-  - suite=_map
-  - suite=_clients
-  - suite=_listings
-  - suite=_listingsSharing
-  - suite=_search
-  - suite=_settings
-  - suite=_tags
-  - suite=_manageListings
-  - suite=pdfsCORE
-  - suite=pdfsCorcoran
-  - suite=pdfsSothebys
-  - suite=pdfsStribling
-  - suite=pdfsOthers
-  - suite=_feedsRets
-  - suite=_feedsStreetEasy
-  - suite=_feedsLuxre
-  - suite=specialScenarios
-  - suite=_cleaning
-  #- suite=failing
+  - suite=googlePage
 addons:
   apt:
     sources:

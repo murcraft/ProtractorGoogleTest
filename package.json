@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/murcraft/ProtractorGoogleTest#readme",
   "dependencies": {
+    "jasmine-allure-reporter": "^1.0.2",
     "jasmine-data-provider": "^2.2.0",
+    "log4js": "^3.0.6",
     "protractor": "^5.4.1"
   },
   "devDependencies": {
@@ -26,7 +28,6 @@
     "grunt-protractor-runner": "^5.0.0",
     "gulp": "^3.9.1",
     "gulp-notify": "^3.2.0",
-    "gulp-protractor": "^4.1.0",
-    "protractor-jasmine2-html-reporter": "0.0.7"
+    "gulp-protractor": "^4.1.0"
   }
 }
