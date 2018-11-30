@@ -7,7 +7,7 @@ before_install:
 language: node_js
 node_js:
   - 8
-sudo: required
+#sudo: required
 dist: trusty
 env:
   - suite=googlePage
