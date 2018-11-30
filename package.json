@@ -2,23 +2,12 @@
   "name": "protractorgoogletest",
   "version": "1.0.0",
   "description": "",
-  "main": "conf.js",
   "scripts": {
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=2.43 --versions.standalone=3.4.0",
     "pretest": "npm run update-webdriver",
     "test": "node ./node_modules/protractor/bin/protractor conf.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/murcraft/ProtractorGoogleTest.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/murcraft/ProtractorGoogleTest/issues"
-  },
-  "homepage": "https://github.com/murcraft/ProtractorGoogleTest#readme",
   "dependencies": {
     "jasmine-allure-reporter": "^1.0.2",
     "jasmine-data-provider": "^2.2.0",
