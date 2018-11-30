@@ -2,3 +2,4 @@
 node_modules
 debug.log
 allure-results/
+results/
