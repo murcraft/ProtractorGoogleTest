@@ -20,6 +20,6 @@
     "grunt-protractor-runner": "^5.0.0",
     "gulp": "^3.9.1",
     "gulp-notify": "^3.2.0",
-    "gulp-protractor": "^4.1.0"
+    "gulp-protractor": "^4.1.1"
   }
 }
