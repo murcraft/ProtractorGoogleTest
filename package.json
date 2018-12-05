@@ -9,6 +9,7 @@
     "test": "node ./node_modules/protractor/bin/protractor conf.js"
   },
   "dependencies": {
+    "dockular": "0.0.1",
     "jasmine-allure-reporter": "^1.0.2",
     "jasmine-data-provider": "^2.2.0",
     "log4js": "^3.0.6",
