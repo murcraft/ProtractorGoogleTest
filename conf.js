@@ -38,7 +38,6 @@ exports.config = {
           '--disable-extensions',
           '--ignore-ssl-errors=true',
           'verbose',
-          'no-sandbox',
           '--disable-web-security'
         ],
       },
