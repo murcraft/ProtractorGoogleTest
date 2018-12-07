@@ -6,7 +6,8 @@ stages:
   - test
 
 env:
-  - suite=googleTest
+  - suite=suite2
+  - suite=suite2
 
 jobs:
   include:
