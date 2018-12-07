@@ -6,7 +6,7 @@ stages:
   - test
 
 env:
-  - suite=suite2
+  - suite=suite1
   - suite=suite2
 
 jobs:
