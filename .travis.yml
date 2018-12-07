@@ -6,36 +6,38 @@ stages:
   - test
 
 env:
-- suite=googleTest
+  - suite=googleTest
 
-jobs: include:
-        - stage: build docker image
-          env: suite=null
-          script:
-          - docker login -u perch1234 -p rtyfgh456
-          - docker build -t e2e .
-          - docker images
-          - docker tag e2e perch1234/e2e
-          - docker push perch1234/e2e
-        - stage: test
-          script:
-          - mkdir allure-results
-          - chmod chmod -R a=rwx $(pwd)
-          - docker login -u perch1234 -p rtyfgh456
-          - docker run -i -d --rm --net=host --privileged \
-            -v /dev/shm:/dev/shm \
-            -v $(pwd)/allure-results:/tests/allure-results \
-            -e suite=$suite \
-            -e maxinstances=2 \
-            -e logLevel=$logLevel \
-            --name e2e perch1234/e2e:latest
-          - docker exec -it e2e bash -c 'xvfb-run -a node ./node_modules/protractor/bin/protractor conf.js'
-      addons:
+jobs:
+  include:
+  - stage: build docker image
+    env: suite=null
+    script:
+    - docker login -u perch1234 -p rtyfgh456
+    - docker build -t e2e .
+    - docker images
+    - docker tag e2e perch1234/e2e
+    - docker push perch1234/e2e
+  - stage: test
+    script:
+    - mkdir allure-results
+    - chmod chmod -R a=rwx $(pwd)
+    - docker login -u perch1234 -p rtyfgh456
+    - docker run -i -d --rm --net=host --privileged \
+      -v /dev/shm:/dev/shm \
+      -v $(pwd)/allure-results:/tests/allure-results \
+      -e suite=$suite \
+      -e maxinstances=2 \
+      -e logLevel=$logLevel \
+      --name e2e perch1234/e2e:latest
+    - docker exec -it e2e bash -c 'xvfb-run -a node ./node_modules/protractor/bin/protractor conf.js'
 
-        artifacts:
-            paths:
-              - ./allure-results
-              - ./e2e-tests/artifacts
+addons:
+
+  artifacts:
+      paths:
+        - ./allure-results
+        - ./e2e-tests/artifacts
 
 notifications:
   email:
