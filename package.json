@@ -6,7 +6,7 @@
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=2.43 --versions.standalone=3.4.0",
     "pretest": "npm run update-webdriver",
-    "test": "node ./node_modules/protractor/bin/protractor conf.js"
+    "test": "node conf-flake.js"
   },
   "dependencies": {
     "dockular": "0.0.1",
@@ -14,12 +14,14 @@
     "jasmine-data-provider": "^2.2.0",
     "log4js": "^3.0.6",
     "protractor": "^5.4.1",
+    "protractor-flake": "^3.3.0",
+    "protractor-stop-describe-on-failure": "^1.0.3",
     "slack-node": "^0.1.8"
   },
   "devDependencies": {
     "grunt": "^1.0.3",
     "grunt-protractor-runner": "^5.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-notify": "^3.2.0",
     "gulp-protractor": "^4.1.1"
   }

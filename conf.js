@@ -19,18 +19,17 @@ exports.config = {
   ],
 
   suites: {
+    all: 'lib/spec/**/*.js',
     suite1: 'lib/spec/suit1/pageObjectSpec.js',
     suite2: 'lib/spec/suit1/pageObjectSpec.js',
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
 
-  multiCapabilities: [
-    {
-      ignoreProtectedModeSettings: true,
+  capabilities: {
       browserName: 'chrome',
-      shardTestFiles: true,
-      maxInstances: 1,
+      shardTestFiles: process.env.maxinstances > 1,
+      maxInstances: process.env.maxinstances,
       chromeOptions: {
         args: [
           'incognito',
@@ -52,7 +51,6 @@ exports.config = {
         'browser': 'SEVERE',
       },
     },
-  ],
 
   beforeLaunch: function () {
   },
