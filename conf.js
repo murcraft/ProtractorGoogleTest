@@ -27,30 +27,30 @@ exports.config = {
   baseUrl: process.env.env = 'http://www.google.by',
 
   capabilities: {
-      browserName: 'chrome',
-      shardTestFiles: process.env.maxinstances > 1,
-      maxInstances: process.env.maxinstances,
-      chromeOptions: {
-        args: [
-          'incognito',
-          'window-size=1920,1080',
-          '--disable-infobars',
-          '--disable-extensions',
-          '--ignore-ssl-errors=true',
-          'verbose',
-          '--disable-web-security'
-        ],
-      },
-      prefs: {
-        download: {
-          prompt_for_download: false,
-          directory_upgrade: true,
-        },
-      },
-      loggingPrefs: {
-        'browser': 'SEVERE',
+    browserName: 'chrome',
+    shardTestFiles: process.env.maxinstances > 1,
+    maxInstances: process.env.maxinstances,
+    chromeOptions: {
+      args: [
+        'incognito',
+        'window-size=1920,1080',
+        '--disable-infobars',
+        '--disable-extensions',
+        '--ignore-ssl-errors=true',
+        'verbose',
+        '--disable-web-security'
+      ],
+    },
+    prefs: {
+      download: {
+        prompt_for_download: false,
+        directory_upgrade: true,
       },
     },
+    loggingPrefs: {
+      'browser': 'SEVERE',
+    },
+  },
 
   beforeLaunch: function () {
   },
