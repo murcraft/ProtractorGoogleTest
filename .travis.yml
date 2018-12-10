@@ -1,9 +1,6 @@
 sudo: required
 dist: trusty
 
-services:
-  - docker
-
 stages:
   - build docker image
   - test
@@ -41,9 +38,10 @@ addons:
   artifacts:
       paths:
         - ./allure-results
-        - ./e2e-tests/artifacts
-
+        - ./lib/artifacts
+      target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
 notifications:
+  slack: slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
   email:
     recipients:
       - ogulikpurse@gmail.com

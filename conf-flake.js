@@ -25,11 +25,11 @@ let logLevelCmd = getParamValue('logLevel')
 process.env.logLevel = logLevelCmd !== undefined ? logLevelCmd : process.env.logLevel
 process.env.logLevel = process.env.logLevel !== 'undefined' ? process.env.logLevel : 'info'
 console.log(`logLevel - ${process.env.logLevel}`)
-//
-// let isPostToSlackCmd = getParamValue('isPostToSlack')
-// process.env.isPostToSlack = isPostToSlackCmd !== undefined ? isPostToSlackCmd : process.env.isPostToSlack
-// process.env.isPostToSlack = process.env.isPostToSlack !== 'undefined' ? process.env.isPostToSlack : 'false'
-// console.log(`isPostToSlack - ${process.env.isPostToSlack}`)
+
+let isPostToSlackCmd = getParamValue('isPostToSlack')
+process.env.isPostToSlack = isPostToSlackCmd !== undefined ? isPostToSlackCmd : process.env.isPostToSlack
+process.env.isPostToSlack = process.env.isPostToSlack !== 'undefined' ? process.env.isPostToSlack : 'false'
+console.log(`isPostToSlack - ${process.env.isPostToSlack}`)
 
 let isCleanAllureCmd = getParamValue('isCleanAllure')
 process.env.isCleanAllure = isCleanAllureCmd !== undefined ? isCleanAllureCmd : process.env.isCleanAllure
