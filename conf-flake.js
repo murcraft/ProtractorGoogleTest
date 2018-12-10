@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+'use strict'
 
 let protractorFlake = require('protractor-flake')
 let customParser = require('./parser')
