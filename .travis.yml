@@ -27,15 +27,16 @@ jobs:
   - stage: test
     script:
     - mkdir allure-results
+    - ls
     - chmod chmod -R a=rwx $(pwd)
-    - docker login -u perch1234 -p rtyfgh456
+    - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
     - docker run -i -d --rm --net=host --privileged \
       -v /dev/shm:/dev/shm \
       -v $(pwd)/allure-results:/tests/allure-results \
       -e suite=$suite \
       -e maxinstances=2 \
       -e logLevel=$logLevel \
-      --name e2e perch1234/e2e:latest
+      --name e2e DOCKER_USERNAME/e2e:latest
     - docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js'
 
 addons:
@@ -43,7 +44,7 @@ addons:
       paths:
         - ./allure-results
 notifications:
-  #slack: slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
+  slack: slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
   email:
     recipients:
       - ogulikpurse@gmail.com
