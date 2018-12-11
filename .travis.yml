@@ -19,11 +19,11 @@ jobs:
   - stage: build docker image
     env: suite=null
     script:
-    - docker login -u perch1234 -p rtyfgh456
-    - docker build -t e2e .
+    - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+    - docker build -t travis-ci-build-e2e .
     - docker images
-    - docker tag e2e perch1234/e2e
-    - docker push perch1234/e2e
+    - docker tag travis-ci-build-e2e $DOCKER_USERNAME/travis-ci-build-e2e
+    - docker push $DOCKER_USERNAME/travis-ci-build-e2e
   - stage: test
     script:
     - mkdir allure-results
