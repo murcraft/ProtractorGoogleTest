@@ -43,7 +43,7 @@ addons:
       paths:
         - ./allure-results
 notifications:
-  slack: slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
+  #slack: slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
   email:
     recipients:
       - ogulikpurse@gmail.com
