@@ -1,19 +1,18 @@
 sudo: required
 dist: trusty
 
+stages:
+  - build docker image
+  - test
+
 branches:
   only:
   - master
   - dock
 
-stages:
-  - build docker image
-  - test
-
 env:
   - suite=suite1
   - suite=suite2
-
 jobs:
   include:
   - stage: build docker image
@@ -33,11 +32,10 @@ jobs:
       -v /dev/shm:/dev/shm \
       -v $(pwd)/allure-results:/tests/allure-results \
       -e suite=$suite \
-      -e maxinstances=2 \
+      -e maxinstances=$maxinstances \
       -e logLevel=$logLevel \
       --name e2e perch1234/e2e:latest
     - docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js'
-
 addons:
 
   artifacts:

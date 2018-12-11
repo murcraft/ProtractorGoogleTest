@@ -1,4 +1,4 @@
-FROM perch1234/e2e-base-1:latest
+FROM perch1234/e2e-base:latest
 
 ENV WORKDIR=/tests
 ENV PATH=${WORKDIR}/node_modules/.bin:$PATH
