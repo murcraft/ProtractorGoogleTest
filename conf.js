@@ -1,4 +1,5 @@
 const AllureReporter = require('jasmine-allure-reporter')
+const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
 
 exports.config = {
 
@@ -99,6 +100,8 @@ exports.config = {
       }
     })
 
+    jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
+
     jasmine.getEnv().afterEach(async function () {
       await Logger.LogConsoleErrors()
       try {
@@ -115,4 +118,8 @@ exports.config = {
     await browser.get('')
 
   },
+
+  afterLaunch: async function () {
+    await new Promise(resolve => setTimeout(resolve, 5000))
+  }
 }
