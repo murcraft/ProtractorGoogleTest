@@ -1,14 +1,14 @@
-FROM node:11.4.0-slim
+FROM node:10.14.2-slim
 
-ENV CHROME_PACKAGE="google-chrome-stable_67.0.3396.99-1_amd64.deb"
-ENV CHROME_DRIVER=2.40
+ENV CHROME_PACKAGE="google-chrome-stable_71.0.3578.98-1_amd64.deb"
+ENV CHROME_DRIVER=2.45
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 RUN mkdir -p /usr/share/man/man1
 RUN echo "deb http://http.debian.net/debian stretch-backports main" > /etc/apt/sources.list.d/stretch-backports.list && \
     apt-get update && \
     apt-get install -y -t stretch-backports openjdk-8-jre-headless xvfb git graphicsmagick ghostscript && \
-    wget -q http://mirror.vitalinux.educa.aragon.es/google/pool/main/g/google-chrome-stable/${CHROME_PACKAGE} && \
+    wget -q http://mirror.auckland.ac.nz/software/chrome-deb/pool/main/g/google-chrome-stable/${CHROME_PACKAGE} && \
     dpkg --unpack ${CHROME_PACKAGE} && \
     apt-get install -f -y && \
     apt-get clean && \

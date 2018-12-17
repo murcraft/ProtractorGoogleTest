@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=2.43 --versions.standalone=3.4.0",
+    "pretest": "npm run update-webdriver",
     "test": "node conf-flake.js"
   },
   "dependencies": {

@@ -1,4 +1,5 @@
-FROM perch1234/e2e-chrome-builder:latest
+FROM perch1234/base-image-10.14.2:latest
+#perch1234/e2e-chrome-builder:latest
 
 ENV WORKDIR=/tests
 ENV PATH=${WORKDIR}/node_modules/.bin:$PATH
