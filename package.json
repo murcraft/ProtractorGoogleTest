@@ -4,16 +4,17 @@
   "description": "",
   "scripts": {
     "preupdate-webdriver": "npm install",
-    "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=2.43 --versions.standalone=3.4.0",
+    "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=2.45 --versions.standalone=3.4.0",
     "pretest": "npm run update-webdriver",
     "test": "node conf-flake.js"
   },
   "dependencies": {
+    "aws-sdk": "^2.382.0",
     "dockular": "0.0.1",
     "jasmine-allure-reporter": "^1.0.2",
     "jasmine-data-provider": "^2.2.0",
     "log4js": "^3.0.6",
-    "protractor": "^5.4.1",
+    "protractor": "^5.4.2",
     "protractor-flake": "^3.3.0",
     "protractor-stop-describe-on-failure": "^1.0.3",
     "slack-node": "^0.1.8"

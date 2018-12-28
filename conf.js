@@ -13,6 +13,16 @@ exports.config = {
 
   params: {
     waitTimeout: 60000,
+
+    page: {
+      startPage: `https://mail.google.com/`,
+    },
+
+    s3: {
+      bucket: `helen-backet`,
+      accessKeyId: `AKIAJFZOKOZIY3BTYBGA`,
+      secretAccessKey: `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`
+    }
   },
 
   specs: [
