@@ -1,45 +1,27 @@
-sudo: required
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3
+before_install:
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1024x800x16"
+language: node_js
+node_js:
+  - 8
 dist: trusty
-
-stages:
-  - build docker image
-  - test
-
 env:
   - suite=suite1
   - suite=suite2
-
-jobs:
-  include:
-  - stage: build docker image
-    env: suite=null
-    script:
-    - docker login -u perch1234 -p rtyfgh456
-    - docker build -t e2e .
-    - docker images
-    - docker tag e2e perch1234/e2e
-    - docker push perch1234/e2e
-  - stage: test
-    script:
-    - mkdir allure-results
-    - chmod chmod -R a=rwx $(pwd)
-    - docker login -u perch1234 -p rtyfgh456
-    - docker run -i -d --rm --net=host --privileged \
-      -v /dev/shm:/dev/shm \
-      -v $(pwd)/allure-results:/tests/allure-results \
-      -e suite=$suite \
-      -e maxinstances=2 \
-      -e logLevel=$logLevel \
-      --name e2e perch1234/e2e:latest
-    - docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js'
-
 addons:
-
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
   artifacts:
-      paths:
-        - ./allure-results
-        - ./lib/artifacts
-      target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
+    paths:
+      - ./allure-results
+      - ./lib/artifacts
+    target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
 notifications:
   slack: slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
   email:
