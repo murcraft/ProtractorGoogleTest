@@ -8,10 +8,12 @@ language: node_js
 node_js:
   - 8
 dist: trusty
-matrix:
-  allow_failures:
+build:
+ matrix:
+   include:
     - env: suite=suite1
-    - env: suite=suite2  
+   allow_failures:
+     - node_js: 8
 addons:
   apt:
     sources:
