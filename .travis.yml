@@ -3,7 +3,7 @@ before_script:
   - "sh /etc/init.d/xvfb start"
   - sleep 3
 before_install:
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16 --exit-zero"
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16"
 language: node_js
 node_js:
   - 8
@@ -11,7 +11,7 @@ dist: trusty
 env:
   - suite=suite1
   - suite=suite2
-script:
+after failure:
   - "sh exit 0"
 addons:
   apt:
