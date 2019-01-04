@@ -6,7 +6,7 @@
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=2.45 --versions.standalone=3.14.0",
     "pretest": "npm run update-webdriver",
-    "test": "node conf-flake.js || exit 0"
+    "test": "node conf-flake.js"
   },
   "dependencies": {
     "dockular": "0.0.1",
