@@ -9,10 +9,8 @@ node_js:
   - 10
 dist: trusty
 script:
-  - npm install
-  - webdriver-manager update --gecko=false --versions.chrome=2.45 --versions.standalone=3.14.0
-  - npm run update-webdriver
-  - node conf-flake.js || exit 0
+  - npm test
+  - if [$? != 0]; then exit 0
 env:
   - suite=suite1
   - suite=suite2
