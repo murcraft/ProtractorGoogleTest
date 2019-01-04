@@ -9,6 +9,8 @@ node_js:
   - 8
 dist: trusty
 env: suite=suite1
+after script:
+  - "sh exit 0"
 addons:
   apt:
     sources:
