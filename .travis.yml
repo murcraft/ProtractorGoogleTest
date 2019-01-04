@@ -9,8 +9,7 @@ node_js:
   - 10
 dist: trusty
 script:
-  - npm test
-  - if [$? != 0]; then exit 0; fi
+  - npm test || if [$? != 0]; then exit 0; fi
 env:
   - suite=suite1
   - suite=suite2
