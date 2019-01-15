@@ -6,7 +6,7 @@
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=2.45 --versions.standalone=3.4.0",
     "pretest": "npm run update-webdriver",
-    "test": "node ./node_modules/protractor/bin/protractor conf.js"
+    "test": "node conf-flake.js"//node ./node_modules/protractor/bin/protractor conf.js"
   },
   "dependencies": {
     "dockular": "0.0.1",

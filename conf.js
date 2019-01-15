@@ -21,9 +21,7 @@ exports.config = {
   ],
 
   suites: {
-    // all: 'lib/spec/**/*.js',
     suite1: 'lib/spec/suite1/test.js',
-    // suite2: 'lib/spec/suite2/pageObjectSpec.js'
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
