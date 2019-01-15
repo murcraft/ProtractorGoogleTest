@@ -52,6 +52,7 @@ protractorArgs.push(suiteArg)
 console.log(protractorArgs)
 
 protractorFlake({
+  protractorPath: './node_modules/protractor/bin/protractor',
   maxAttempts: process.env.maxAttempts,
   parser: 'standard',
   nodeBin: 'node',
