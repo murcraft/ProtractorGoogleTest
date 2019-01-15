@@ -12,16 +12,16 @@ exports.config = {
 
   params: {
     waitTimeout: 60000,
-    webhookUri: 'https://hooks.slack.com/services/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',
-    slackChannel: '#slacktest'
   },
 
   specs: [
-    'lib/spec/suite1//*.js',
+    'lib/spec/**/*.js',
   ],
 
   suites: {
-    suite1: 'lib/spec/suite1/test.js',
+    all: 'lib/spec/**/*.js',
+    suite1: 'lib/spec/suite1/pageObjectSpec.js',
+    suite2: 'lib/spec/suite2/pageObjectSpec.js',
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
@@ -33,8 +33,6 @@ exports.config = {
     chromeOptions: {
       args: [
         'incognito',
-        'headless',
-        'disable-gpu',
         'window-size=1920,1080',
         '--disable-infobars',
         '--disable-extensions',
@@ -116,6 +114,5 @@ exports.config = {
 
     await browser.get('')
 
-  }
-
+  },
 }
