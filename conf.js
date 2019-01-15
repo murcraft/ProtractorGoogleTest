@@ -12,6 +12,8 @@ exports.config = {
 
   params: {
     waitTimeout: 60000,
+    webhookUri: 'https://hooks.slack.com/services/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',
+    slackChannel: '#slacktest'
   },
 
   specs: [
@@ -22,6 +24,7 @@ exports.config = {
     all: 'lib/spec/**/*.js',
     suite1: 'lib/spec/suite1/pageObjectSpec.js',
     suite2: 'lib/spec/suite2/pageObjectSpec.js',
+    sendFiles: 'lib/spec/suite2/sendFiles.js'
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
@@ -115,4 +118,11 @@ exports.config = {
     await browser.get('')
 
   },
+
+  afterLaunch: async function () {
+    if (process.env.suite === 'sendFiles') {
+      await require('./lib/helpers/logger').PostToSlackApi(`*:arrow_down: Link to '${process.env.suite}' PDFs: https://s3.amazonaws.com/perchwell-artifacts/${process.env.TRAVIS_BUILD_NUMBER}/${process.env.TRAVIS_JOB_NUMBER}`)
+    }
+    await new Promise(resolve => setTimeout(resolve, 5000))
+  }
 }
