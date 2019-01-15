@@ -17,12 +17,12 @@ exports.config = {
   },
 
   specs: [
-    'lib/spec/**/*.js',
+    'lib/spec/suite1//*.js',
   ],
 
   suites: {
-    all: 'lib/spec/**/*.js',
-    suite1: 'lib/spec/suite1/pageObjectSpec.js',
+    // all: 'lib/spec/**/*.js',
+    suite1: 'lib/spec/suite1/test.js',
     // suite2: 'lib/spec/suite2/pageObjectSpec.js'
   },
 
