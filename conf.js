@@ -117,12 +117,6 @@ exports.config = {
 
     await browser.get('')
 
-  },
-
-  afterLaunch: async function () {
-    if (process.env.suite === 'sendFiles') {
-      await require('./lib/helpers/logger').PostToSlackApi(`*:arrow_down: Link to '${process.env.suite}' PDFs: https://s3.amazonaws.com/perchwell-artifacts/${process.env.TRAVIS_BUILD_NUMBER}/${process.env.TRAVIS_JOB_NUMBER}`)
-    }
-    await new Promise(resolve => setTimeout(resolve, 5000))
   }
+
 }
