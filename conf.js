@@ -35,6 +35,8 @@ exports.config = {
     chromeOptions: {
       args: [
         'incognito',
+        'headless',
+        'disable-gpu',
         'window-size=1920,1080',
         '--disable-infobars',
         '--disable-extensions',
