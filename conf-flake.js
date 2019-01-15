@@ -48,16 +48,12 @@ protractorArgs.push('conf.js')
 let suiteArg = `--suite=${process.env.suite}`
 
 protractorArgs.push(suiteArg)
-protractorArgs.push('--capabilities.chromeOptions.args=incognito')
-protractorArgs.push('--capabilities.chromeOptions.args=window-size=1920,1080')
-protractorArgs.push('--capabilities.chromeOptions.args=headless')
-protractorArgs.push('--capabilities.chromeOptions.args=disable-gpu')
 
 console.log(protractorArgs)
 
 protractorFlake({
   maxAttempts: process.env.maxAttempts,
-  parser: customParser,
+  parser: 'standard',
   nodeBin: 'node',
   color: 'magenta',
   protractorArgs: protractorArgs
