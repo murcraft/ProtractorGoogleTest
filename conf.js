@@ -1,4 +1,5 @@
 const AllureReporter = require('jasmine-allure-reporter')
+bufferFrom = require('buffer-from')
 
 exports.config = {
 
@@ -104,7 +105,7 @@ exports.config = {
       try {
         await browser.takeScreenshot().then(function (png) {
           allure.createAttachment('Screenshot', function () {
-            return new Buffer(png, 'base64')
+            return Buffer.from(png, 'base64')
           }, 'image/png')()
         })
       } catch (e) {

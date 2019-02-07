@@ -1,10 +1,10 @@
 FROM node:9.10.1-slim
 
-ENV CHROME_PACKAGE="google-chrome-stable_67.0.3396.99-1_amd64.deb"
-ENV CHROME_DRIVER=2.40
+ENV CHROME_PACKAGE="http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_72.0.3626.96-1_amd64.deb"
+ENV CHROME_DRIVER=2.46
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
-RUN echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list && \
+RUN echo "deb http://http.debian.net/debian stretch-backports main" > /etc/apt/sources.list.d/stretch-backports.list && \
     apt-get update && \
     apt-get install -y -t jessie-backports  openjdk-8-jre-headless ca-certificates-java xvfb bzip2 vim git wget libdbus-glib-1-2 \
     gconf2-common gconf-service libappindicator1 libdbusmenu-gtk4 libgconf-2-4 libgtk2.0-0 libgtk2.0-bin libgtk2.0-common libindicator7 \
