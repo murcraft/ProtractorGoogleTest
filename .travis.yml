@@ -32,7 +32,7 @@ jobs:
     script:
     - mkdir allure-results
     - ls
-    - chmod chmod -R a=rwx $(pwd)
+    - chmod -R a=rwx $(pwd)
     - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
     - docker run -i -d --rm --net=host --privileged \
       -v /dev/shm:/dev/shm \
