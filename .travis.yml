@@ -1,6 +1,7 @@
 dist: trusty
 language: node_js
-#node_js: 10.14.2
+node_js:
+  - "10.14.2"
 servises:
   - docker
 
