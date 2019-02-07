@@ -1,6 +1,8 @@
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
 
+bufferFrom = require('buffer-from')
+
 exports.config = {
 
   allScriptsTimeout: 11000,
@@ -15,7 +17,7 @@ exports.config = {
     waitTimeout: 60000,
 
     page: {
-      startPage: `https://mail.google.com/`,
+      startPage: `https://google.com/`,
     },
 
     s3: {
@@ -31,8 +33,8 @@ exports.config = {
 
   suites: {
     all: 'lib/spec/**/*.js',
-    suite1: 'lib/spec/suit1/pageObjectSpec.js',
-    suite2: 'lib/spec/suit1/pageObjectSpec.js',
+    suite1: 'lib/spec/suite1/pageObjectSpec.js',
+    suite2: 'lib/spec/suite2/pageObjectSpec.js',
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
@@ -117,7 +119,7 @@ exports.config = {
       try {
         await browser.takeScreenshot().then(function (png) {
           allure.createAttachment('Screenshot', function () {
-            return new Buffer(png, 'base64')
+            return Buffer.from(png, 'base64')
           }, 'image/png')()
         })
       } catch (e) {
@@ -133,3 +135,4 @@ exports.config = {
     await new Promise(resolve => setTimeout(resolve, 5000))
   }
 }
+

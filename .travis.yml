@@ -1,6 +1,8 @@
 dist: trusty
 language: node_js
 #node_js: 10.14.2
+servises:
+  - docker
 
 stages:
   - build docker image
@@ -8,7 +10,7 @@ stages:
 
 branches:
  only:
-  - master
+#  - master
   - dock
 
 env:

@@ -1,4 +1,4 @@
-FROM perch1234/base-image-10.14.2:latest
+FROM perch1234/e2e-chrome-base:latest
 #perch1234/e2e-chrome-builder:latest
 
 ENV WORKDIR=/tests
