@@ -40,6 +40,7 @@ addons:
   artifacts:
       paths:
         - ./allure-results
+      target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
 notifications:
   slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
   email:
