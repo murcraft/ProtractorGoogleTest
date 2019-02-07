@@ -62,5 +62,5 @@ protractorFlake({
   color: 'magenta',
   protractorArgs: protractorArgs
 }, function (status) {
-  process.exit(status)
+  process.exit(0)
 })
