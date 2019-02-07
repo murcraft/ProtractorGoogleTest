@@ -15,7 +15,7 @@
     "jasmine-data-provider": "^2.2.0",
     "log4js": "^3.0.6",
     "protractor": "^5.4.2",
-    "protractor-flake": "^3.3.0",
+    "protractor-flake": "3.3.0",
     "protractor-stop-describe-on-failure": "^1.0.3",
     "slack-node": "^0.1.8"
   },
