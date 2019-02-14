@@ -1,5 +1,6 @@
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
+let path = require('path')
 
 bufferFrom = require('buffer-from')
 
@@ -15,6 +16,8 @@ exports.config = {
 
   params: {
     waitTimeout: 60000,
+    legoUrl: `https://www.lego.com/en-us`,
+    downloadPath: path.resolve(__dirname, './downloads/downloaded'),
 
     page: {
       startPage: `https://google.com/`,
