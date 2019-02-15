@@ -1,8 +1,11 @@
+let path = require('path')
+let fs = require('fs')
+
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
-let path = require('path')
+const keyVars = require('./keyVariables.js')
 
-bufferFrom = require('buffer-from')
+let downloads = keyVars.downloadPath
 
 exports.config = {
 
@@ -17,16 +20,10 @@ exports.config = {
   params: {
     waitTimeout: 60000,
     legoUrl: `https://www.lego.com/en-us`,
-    downloadPath: path.resolve(__dirname, './downloads/downloaded'),
+    downloadPath: downloads,
 
     page: {
       startPage: `https://google.com/`,
-    },
-
-    s3: {
-      bucket: `helen-backet`,
-      accessKeyId: `AKIAJFZOKOZIY3BTYBGA`,
-      secretAccessKey: `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`
     }
   },
 
@@ -50,17 +47,18 @@ exports.config = {
       args: [
         'incognito',
         'window-size=1920,1080',
-        '--disable-infobars',
-        '--disable-extensions',
-        '--ignore-ssl-errors=true',
-        'verbose',
-        '--disable-web-security'
+        // '--disable-infobars',
+        // '--disable-extensions',
+        // '--ignore-ssl-errors=true',
+        // 'verbose',
+        // '--disable-web-security'
       ],
     },
     prefs: {
       download: {
         prompt_for_download: false,
         directory_upgrade: true,
+        default_directory: downloads
       },
     },
     loggingPrefs: {
@@ -69,6 +67,25 @@ exports.config = {
   },
 
   beforeLaunch: function () {
+    let logger = require('./lib/helpers/logger')
+
+    if (process.env.isCleanAllure === 'true') {
+      let allurePath = 'allure-results'
+      if (fs.existsSync(allurePath)) {
+        fs.readdirSync(allurePath).forEach((file) => {
+          let currentPath = path.resolve(allurePath, file)
+          fs.unlinkSync(currentPath)
+        })
+      }
+    }
+    if (fs.existsSync(downloads)) {
+      logger.debug(`Clearing 'Downloads'`)
+      fs.readdirSync(downloads).forEach((file) => {
+        let curPath = path.resolve(downloads, file)
+        fs.unlinkSync(curPath)
+        logger.debug(`Deleted file: ${curPath}`)
+      })
+    }
   },
 
   onPrepare: async () => {

@@ -9,7 +9,7 @@
     "test": "node conf-flake.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.382.0",
+    "aws-sdk": "^2.403.0",
     "dockular": "0.0.1",
     "jasmine-allure-reporter": "^1.0.2",
     "jasmine-data-provider": "^2.2.0",
