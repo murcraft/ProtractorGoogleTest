@@ -20,6 +20,9 @@ module.exports = {
   slackChannel: '#slacktest',
   slackUsername: 'ogulikpuse',
 
+  useEmail: process.env.userEmail,
+  userPass: process.env.userPass,
+
   awsPath: `https://s3-us-west-2.amazonaws.com/helen.kuz-bucket/`,
   awsDownloadsPath: `${process.env.TRAVIS_BUILD_NUMBER}/${process.env.TRAVIS_JOB_NUMBER}/results/pdfs`
 
