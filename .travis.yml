@@ -12,18 +12,8 @@ script:
 - npm test || if [$? != 0]; then exit 0; fi
 
 env:
-- suite=suite3
-- suite=suite4
-- suite=suite5
-- suite=suite6
-- suite=suite7
-- suite=suite8
-- suite=suite9
-- suite=suite10
-- suite=suite11
-- suite=suite12
-- suite=suite13
-- suite=suite14
+- suite=suite1
+- suite=suite2
 
 addons:
   apt:
