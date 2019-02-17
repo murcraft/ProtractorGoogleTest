@@ -21,11 +21,14 @@ exports.config = {
     waitTimeout: 60000,
     legoUrl: `https://www.lego.com/en-us`,
     downloadPath: downloads,
-    userCreds: {email: `a.prakapovich@itechart-group.com`, pass: `l234kl23n4klnsklrnslr@`},//{email: keyVars.useEmail, pass: keyVars.userPass},
+    userCreds: {
+      email: `a.prakapovich@itechart-group.com`,
+      pass: `l234kl23n4klnsklrnslr@`,
+    },//{email: keyVars.useEmail, pass: keyVars.userPass},
 
     page: {
       startPage: `https://google.com/`,
-    }
+    },
   },
 
   specs: [
@@ -37,6 +40,17 @@ exports.config = {
     suite1: 'lib/spec/suite1/pageObjectSpec.js',
     suite2: 'lib/spec/suite2/pageObjectSpec.js',
     suite3: 'lib/spec/suite3/*.js',
+    suite4: 'lib/spec/suite4/*.js',
+    suite5: 'lib/spec/suite5/*.js',
+    suite6: 'lib/spec/suite6/*.js',
+    suite7: 'lib/spec/suite7/*.js',
+    suite8: 'lib/spec/suite8/*.js',
+    suite9: 'lib/spec/suite9/*.js',
+    suite10: 'lib/spec/suite10/*.js',
+    suite11: 'lib/spec/suite11/*.js',
+    suite12: 'lib/spec/suite12/*.js',
+    suite13: 'lib/spec/suite13/*.js',
+    suite14: 'lib/spec/suite14/*.js',
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
@@ -60,7 +74,7 @@ exports.config = {
       download: {
         prompt_for_download: false,
         directory_upgrade: true,
-        default_directory: downloads
+        default_directory: downloads,
       },
     },
     loggingPrefs: {
@@ -138,7 +152,12 @@ exports.config = {
       }
     })
 
-    if (process.env.suite !== 'suite3') {
+    if ((process.env.suite !== 'suite3') && (process.env.suite !== 'suite4') &&
+      (process.env.suite !== 'suite5') && (process.env.suite !== 'suite6') &&
+      (process.env.suite !== 'suite7') && (process.env.suite !== 'suite8') &&
+      (process.env.suite !== 'suite9') && (process.env.suite !== 'suite10') &&
+      (process.env.suite !== 'suite11') && (process.env.suite !== 'suite12') &&
+      (process.env.suite !== 'suite13') && (process.env.suite !== 'suite14')) {
       jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
     }
 
@@ -161,6 +180,6 @@ exports.config = {
 
   afterLaunch: async function () {
     await new Promise(resolve => setTimeout(resolve, 5000))
-  }
+  },
 }
 
