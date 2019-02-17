@@ -1,17 +1,19 @@
-FROM node:9.10.1-slim
+FROM node:10.14.2-slim
 
-ENV CHROME_PACKAGE="http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_72.0.3626.96-1_amd64.deb"
+ENV CHROME_PACKAGE="google-chrome-stable_72.0.3626.96-1_amd64.deb"
 ENV CHROME_DRIVER=2.46
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
+ENV DEB_VERSION="stretch"
 
-RUN echo "deb http://http.debian.net/debian stretch-backports main" > /etc/apt/sources.list.d/stretch-backports.list && \
+RUN mkdir -p /usr/share/man/man1
+RUN echo "deb http://http.debian.net/debian ${DEB_VERSION}-backports main" > /etc/apt/sources.list.d/${DEB_VERSION}-backports.list && \
     apt-get update && \
-    apt-get install -y -t jessie-backports  openjdk-8-jre-headless ca-certificates-java xvfb bzip2 vim git wget libdbus-glib-1-2 \
-    gconf2-common gconf-service libappindicator1 libdbusmenu-gtk4 libgconf-2-4 libgtk2.0-0 libgtk2.0-bin libgtk2.0-common libindicator7 \
-    graphicsmagick ghostscript&& \
-    wget -q http://mirror.vitalinux.educa.aragon.es/google/pool/main/g/google-chrome-stable/${CHROME_PACKAGE} && \
+    apt-get install -y -t ${DEB_VERSION}-backports openjdk-8-jre-headless xvfb git graphicsmagick ghostscript && \
+    wget -q http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/${CHROME_PACKAGE} && \
     dpkg --unpack ${CHROME_PACKAGE} && \
     apt-get install -f -y && \
     apt-get clean && \
     rm ${CHROME_PACKAGE} && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /usr/share/man/* && \
     rm -rf /tmp/*

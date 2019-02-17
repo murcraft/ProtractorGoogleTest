@@ -1,0 +1,10 @@
+registry:
+   restart: always
+   image: registry:2
+   ports:
+     - 443:5000
+   environment:
+     REGISTRY_HTTP_TLS_LETSENCRYPT_CACHEFILE: /cache.letsencrypt
+     REGISTRY_HTTP_TLS_LETSENCRYPT_EMAIL: ogulikpurse@gmail.com
+   volumes:
+     - /path/data:/var/lib/registry /* section wil be used like storage for your repository */

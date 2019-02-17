@@ -1,18 +1,31 @@
+let path = require('path')
+let fs = require('fs')
+
 const AllureReporter = require('jasmine-allure-reporter')
-bufferFrom = require('buffer-from')
+const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
+const keyVars = require('./keyVariables.js')
+
+let downloads = keyVars.downloadPath
 
 exports.config = {
 
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 110000000,
   SELENIUM_PROMISE_MANAGER: false,
   framework: 'jasmine2',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 240000,
+    defaultTimeoutInterval: 240000000,
   },
 
   params: {
     waitTimeout: 60000,
+    legoUrl: `https://www.lego.com/en-us`,
+    downloadPath: downloads,
+    userCreds: {email: `a.prakapovich@itechart-group.com`, pass: `l234kl23n4klnsklrnslr@`},//{email: keyVars.useEmail, pass: keyVars.userPass},
+
+    page: {
+      startPage: `https://google.com/`,
+    }
   },
 
   specs: [
@@ -23,6 +36,7 @@ exports.config = {
     all: 'lib/spec/**/*.js',
     suite1: 'lib/spec/suite1/pageObjectSpec.js',
     suite2: 'lib/spec/suite2/pageObjectSpec.js',
+    suite3: 'lib/spec/suite3/*.js',
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
@@ -35,17 +49,18 @@ exports.config = {
       args: [
         'incognito',
         'window-size=1920,1080',
-        '--disable-infobars',
-        '--disable-extensions',
-        '--ignore-ssl-errors=true',
-        'verbose',
-        '--disable-web-security'
+        // '--disable-infobars',
+        // '--disable-extensions',
+        // '--ignore-ssl-errors=true',
+        // 'verbose',
+        // '--disable-web-security'
       ],
     },
     prefs: {
       download: {
         prompt_for_download: false,
         directory_upgrade: true,
+        default_directory: downloads
       },
     },
     loggingPrefs: {
@@ -54,12 +69,31 @@ exports.config = {
   },
 
   beforeLaunch: function () {
+    let logger = require('./lib/helpers/loggerHelper')
+
+    if (process.env.isCleanAllure === 'true') {
+      let allurePath = 'allure-results'
+      if (fs.existsSync(allurePath)) {
+        fs.readdirSync(allurePath).forEach((file) => {
+          let currentPath = path.resolve(allurePath, file)
+          fs.unlinkSync(currentPath)
+        })
+      }
+    }
+    if (fs.existsSync(downloads)) {
+      logger.debug(`Clearing 'Downloads'`)
+      fs.readdirSync(downloads).forEach((file) => {
+        let curPath = path.resolve(downloads, file)
+        fs.unlinkSync(curPath)
+        logger.debug(`Deleted file: ${curPath}`)
+      })
+    }
   },
 
   onPrepare: async () => {
     browser.waitForAngularEnabled(false)
     global.EC = protractor.ExpectedConditions
-    global.Logger = require('./lib/helpers/logger')
+    global.Logger = require('./lib/helpers/loggerHelper')
 
     jasmine.getEnv().addReporter(new AllureReporter({
       resultDir: 'allure-results',
@@ -71,18 +105,22 @@ exports.config = {
         global.PASSED = 0
         global.FAILED = 0
         global.SKIPPED = 0
-        Logger.info(
-          `!----------Tests started. Total tests: ${TOTAL}----------!`)
+        Logger.info(`>>>>>>>>>>Tests started. Total tests: ${TOTAL}<<<<<<<<<<`)
       }
       this.suiteStarted = function (result) {
-        Logger.info(`--------------------------------------------------`)
-        Logger.info(`Suite starts: ${result.fullName}`)
-        Logger.info(`--------------------------------------------------`)
+        Logger.info(`**************************************************`)
+        Logger.info(`Suite started: ${result.fullName}`)
+        Logger.info(`**************************************************`)
+        global.SuiteDescribe = result.fullName
       }
       this.specStarted = function (result) {
-        Logger.info(`Spec starts: ${result.description}`)
+        Logger.info(`Spec started: ${result.description}`)
       }
       this.specDone = function (result) {
+        if (result.status === 'failed') {
+          FAILED++
+          Logger.failed(result)
+        }
         if (result.status === 'passed') {
           PASSED++
         }
@@ -100,6 +138,10 @@ exports.config = {
       }
     })
 
+    if (process.env.suite !== 'suite3') {
+      jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
+    }
+
     jasmine.getEnv().afterEach(async function () {
       await Logger.LogConsoleErrors()
       try {
@@ -116,4 +158,9 @@ exports.config = {
     await browser.get('')
 
   },
+
+  afterLaunch: async function () {
+    await new Promise(resolve => setTimeout(resolve, 5000))
+  }
 }
+
