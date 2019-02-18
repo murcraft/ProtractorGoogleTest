@@ -20,7 +20,7 @@ module.exports = {
   slackChannel: '#slacktest',
   slackUsername: 'ogulikpuse',
 
-  useEmail: process.env.userEmail,
+  userEmail: process.env.userEmail,
   userPass: process.env.userPass,
 
   awsPath: `https://s3-us-west-2.amazonaws.com/helen.kuz-bucket/`,

@@ -22,9 +22,9 @@ exports.config = {
     legoUrl: `https://www.lego.com/en-us`,
     downloadPath: downloads,
     userCreds: {
-      email: `a.prakapovich@itechart-group.com`,
-      pass: `l234kl23n4klnsklrnslr@`,
-    },//{email: keyVars.useEmail, pass: keyVars.userPass},
+      email: keyVars.userEmail,
+      pass: keyVars.userPass
+    },
 
     page: {
       startPage: `https://google.com/`,
