@@ -141,7 +141,7 @@ exports.config = {
       }
     })
 
-    if ((process.env.suite !== 'suiteUpTo20000') && (process.env.suite !== 'suiteUpTo40000') && (process.env.suite !== 'suiteUpTo60000')) {
+    if ((process.env.suite !== '_suiteUpTo20000') && (process.env.suite !== '_suiteUpTo40000') && (process.env.suite !== '_suiteUpTo60000')) {
       jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
     }
 
