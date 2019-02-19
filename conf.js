@@ -9,12 +9,12 @@ let downloads = keyVars.downloadPath
 
 exports.config = {
 
-  allScriptsTimeout: 110000000,
+  allScriptsTimeout: 11000,
   SELENIUM_PROMISE_MANAGER: false,
   framework: 'jasmine2',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 240000000,
+    defaultTimeoutInterval: 240000,
   },
 
   params: {
@@ -39,18 +39,10 @@ exports.config = {
     all: 'lib/spec/**/*.js',
     suite1: 'lib/spec/suite1/pageObjectSpec.js',
     suite2: 'lib/spec/suite2/pageObjectSpec.js',
-    suite3: 'lib/spec/suite3/*.js',
-    suite4: 'lib/spec/suite4/*.js',
-    suite5: 'lib/spec/suite5/*.js',
-    suite6: 'lib/spec/suite6/*.js',
-    suite7: 'lib/spec/suite7/*.js',
-    suite8: 'lib/spec/suite8/*.js',
-    suite9: 'lib/spec/suite9/*.js',
-    suite10: 'lib/spec/suite10/*.js',
-    suite11: 'lib/spec/suite11/*.js',
-    suite12: 'lib/spec/suite12/*.js',
-    suite13: 'lib/spec/suite13/*.js',
-    suite14: 'lib/spec/suite14/*.js',
+
+    _suiteUpTo20000: 'lib/spec/suiteUpTo20000/*.js',
+    _suiteUpTo40000: 'lib/spec/suiteUpTo40000/*.js',
+    _suiteUpTo60000: 'lib/spec/suiteUpTo60000/*.js',
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
@@ -152,12 +144,7 @@ exports.config = {
       }
     })
 
-    if ((process.env.suite !== 'suite3') && (process.env.suite !== 'suite4') &&
-      (process.env.suite !== 'suite5') && (process.env.suite !== 'suite6') &&
-      (process.env.suite !== 'suite7') && (process.env.suite !== 'suite8') &&
-      (process.env.suite !== 'suite9') && (process.env.suite !== 'suite10') &&
-      (process.env.suite !== 'suite11') && (process.env.suite !== 'suite12') &&
-      (process.env.suite !== 'suite13') && (process.env.suite !== 'suite14')) {
+    if ((process.env.suite !== 'suiteUpTo20000') && (process.env.suite !== 'suiteUpTo40000') && (process.env.suite !== 'suiteUpTo60000')) {
       jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
     }
 
