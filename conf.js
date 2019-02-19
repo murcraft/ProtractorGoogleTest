@@ -21,10 +21,7 @@ exports.config = {
     waitTimeout: 60000,
     legoUrl: `https://www.lego.com/en-us`,
     downloadPath: downloads,
-    userCreds: {
-      email: keyVars.userEmail,
-      pass: keyVars.userPass
-    },
+    userCreds: { email: keyVars.userEmail, pass: keyVars.userPass},
 
     page: {
       startPage: `https://google.com/`,
