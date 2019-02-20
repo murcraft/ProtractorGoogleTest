@@ -42,10 +42,14 @@ process.env.maxinstances = process.env.maxinstances !== 'undefined' ? process.en
 console.log(`maxinstances - ${process.env.maxinstances}`)
 
 let protractorArgs = []
-process.env.maxAttempts = 2
+process.env.maxAttempts = 1
 
-if ((process.env.suite !== '_suiteUpTo20000') || (process.env.suite !== '_suiteUpTo40000') || (process.env.suite !== '_suiteUpTo60000')) {
+if ((process.env.suite === '_suiteUpTo20000') ) {
     process.env.maxAttempts = 1
+}
+
+if ((process.env.suite === '_suiteUpTo20000') ) {
+  process.env.maxinstances = 6
 }
 
 protractorArgs.push('conf.js')

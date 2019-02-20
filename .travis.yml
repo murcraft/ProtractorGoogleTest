@@ -14,8 +14,6 @@ script:
 
 env:
 - suite=_suiteUpTo20000
-- suite=_suiteUpTo40000
-#- suite=_suiteUpTo60000
 
 addons:
   apt:

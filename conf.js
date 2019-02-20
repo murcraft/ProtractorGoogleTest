@@ -38,8 +38,8 @@ exports.config = {
     suite2: 'lib/spec/suite2/pageObjectSpec.js',
 
     _suiteUpTo20000: 'lib/spec/suiteUpTo20000/*.js',
-    _suiteUpTo40000: 'lib/spec/suiteUpTo40000/*.js',
-    _suiteUpTo60000: 'lib/spec/suiteUpTo60000/*.js',
+
+
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
@@ -146,7 +146,7 @@ exports.config = {
       }
     })
 
-    if ((process.env.suite !== '_suiteUpTo20000') && (process.env.suite !== '_suiteUpTo40000') && (process.env.suite !== '_suiteUpTo60000')) {
+    if (process.env.suite !== '_suiteUpTo20000') {
       jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
     }
 
