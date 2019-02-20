@@ -91,6 +91,11 @@ exports.config = {
         logger.debug(`Deleted file: ${curPath}`)
       })
     }
+
+    function ping () {
+      logger.debug(`Waiting tests output...`)
+    }
+    setInterval(ping, 300000)
   },
 
   onPrepare: async () => {
