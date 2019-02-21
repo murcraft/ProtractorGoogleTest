@@ -23,7 +23,7 @@ module.exports = {
   useEmail: process.env.userEmail,
   userPass: process.env.userPass,
 
-  awsPath: `https://us-west-2.amazonaws.com/helen.kuz-bucket/`,
+  awsPath: `https://us-east-2.amazonaws.com/helen-bucket-test1991/`,
   awsDownloadsPath: `${process.env.TRAVIS_BUILD_NUMBER}/${process.env.TRAVIS_JOB_NUMBER}/results/pdfs`
 
 }
