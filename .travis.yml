@@ -24,6 +24,7 @@ addons:
     - graphicsmagick
     - ghostscript
   artifacts:
+    s3_region: "us-west-2"
     paths:
     - ./allure-results
     - ./artifacts
