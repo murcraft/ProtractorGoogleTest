@@ -4,4 +4,4 @@ debug.log
 allure-results/
 results/
 package-lock.json
-artifacts/
+artifacts/**/
