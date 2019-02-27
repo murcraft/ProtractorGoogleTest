@@ -37,8 +37,11 @@ exports.config = {
     suite1: 'lib/spec/suite1/pageObjectSpec.js',
     suite2: 'lib/spec/suite2/pageObjectSpec.js',
 
+    suiteUpTo10000: 'lib/spec/suiteUpTo10000/*.js',
     suiteUpTo20000: 'lib/spec/suiteUpTo20000/*.js',
+    suiteUpTo30000: 'lib/spec/suiteUpTo30000/*.js',
     suiteUpTo40000: 'lib/spec/suiteUpTo40000/*.js',
+    suiteUpTo50000: 'lib/spec/suiteUpTo40000/*.js',
     suiteUpToLast: 'lib/spec/suiteUpToLast/*.js',
   },
 
@@ -146,7 +149,8 @@ exports.config = {
       }
     })
 
-    if ((process.env.suite !== 'suiteUpTo20000') && (process.env.suite !== 'suiteUpTo40000') && (process.env.suite !== 'suiteUpToLast')) {
+    if ((process.env.suite !== 'suiteUpTo10000') &&(process.env.suite !== 'suiteUpTo20000') && (process.env.suite !== 'suiteUpTo30000') && (process.env.suite !== 'suiteUpTo40000')
+    && (process.env.suite !== 'suiteUpTo50000') && (process.env.suite !== 'suiteUpToLast')) {
       jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
     }
 
