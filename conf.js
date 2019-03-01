@@ -37,7 +37,7 @@ exports.config = {
     suite1: 'lib/spec/suite1/pageObjectSpec.js',
     suite2: 'lib/spec/suite2/pageObjectSpec.js',
 
-    suiteUpTo10000: 'lib/spec/suiteUpTo20000/*.js',
+    suiteUpTo20000: 'lib/spec/suiteUpTo20000/*.js',
     suiteUpTo40000: 'lib/spec/suiteUpTo40000/*.js',
     suiteUpToLast: 'lib/spec/suiteUpToLast/*.js',
   },
