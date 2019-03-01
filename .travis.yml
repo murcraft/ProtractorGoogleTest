@@ -13,11 +13,8 @@ script:
 - while [ -e /proc/$! ]; do echo -n "."  && sleep 60; done
 
 env:
-- suite=_suiteUpTo10000
 - suite=_suiteUpTo20000
-- suite=_suiteUpTo30000
 - suite=_suiteUpTo40000
-- suite=_suiteUpTo50000
 - suite=_suiteUpToLast
 
 addons:
