@@ -12,7 +12,7 @@ module.exports = {
   isCleanAllure: process.env.isCleanAllure,
 
   awsBucket: `helen.kuz-bucket`,
-  awsRegion: `us-east-2`,
+  awsRegion: `us-west-2`,
   awsAccessKey: process.env.ARTIFACTS_KEY,
   awsSecretKey: process.env.ARTIFACTS_SECRET,
 
@@ -23,6 +23,6 @@ module.exports = {
   userEmail: process.env.userEmail,
   userPass: process.env.userPass,
 
-  awsPath: `https://s3-us-east-2.amazonaws.com/helen.kuz-bucket`,
+  awsPath: `https://helen.kuz-bucket.s3-us-west-2.amazonaws.com`,
   awsDownloadsPath: `${process.env.TRAVIS_BUILD_NUMBER}/${process.env.TRAVIS_JOB_NUMBER}/results/reports`
 }
