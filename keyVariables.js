@@ -5,14 +5,15 @@ module.exports = {
   downloadPath: path.resolve(__dirname, './artifacts/temporary'),
   storePath: path.resolve(__dirname, './artifacts/storeFiles'),
   writeDir: path.resolve(__dirname, './artifacts/storeFiles'),
+  readPath: path.resolve(__dirname, './artifacts/buildings'),
   currPath: path.resolve(__dirname, './'),
 
   logLevel: process.env.logLevel,
   isPostToSlack: process.env.isPostToSlack,
   isCleanAllure: process.env.isCleanAllure,
 
-  awsBucket: `helen.kuz-bucket`,
-  awsRegion: `us-west-2`,
+  awsBucket: 'helen.kuz-bucket',
+  awsRegion: 'us-west-2',
   awsAccessKey: process.env.ARTIFACTS_KEY,
   awsSecretKey: process.env.ARTIFACTS_SECRET,
 
