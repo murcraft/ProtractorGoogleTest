@@ -1,9 +1,10 @@
-let path = require('path')
-let fs = require('fs')
+const path = require('path')
+const fs = require('fs')
 
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
-const keyVars = require('./keyVariables.js')
+
+let keyVars = require('./keyVariables.js')
 
 let downloads = keyVars.downloadPath
 
@@ -20,8 +21,7 @@ exports.config = {
   params: {
     waitTimeout: 60000,
     legoUrl: `https://www.lego.com/en-us`,
-    downloadPath: downloads,
-    userCreds: { email: keyVars.userEmail, pass: keyVars.userPass},
+    userCreds: {email: keyVars.userEmail, pass: keyVars.userPass},
 
     page: {
       startPage: `https://google.com/`,
@@ -42,7 +42,7 @@ exports.config = {
     suiteUpToLast: 'lib/spec/suiteUpToLast/*.js',
   },
 
-  baseUrl: process.env.env = 'http://www.google.by',
+  baseUrl: 'http://www.google.by',
 
   capabilities: {
     browserName: 'chrome',
@@ -52,6 +52,8 @@ exports.config = {
       args: [
         'incognito',
         'window-size=1920,1080',
+        // '--no-sandbox',
+        // '--test-type=browser'
         // '--disable-infobars',
         // '--disable-extensions',
         // '--ignore-ssl-errors=true',
