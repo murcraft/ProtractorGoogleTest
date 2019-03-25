@@ -44,10 +44,6 @@ console.log(`maxinstances - ${process.env.maxinstances}`)
 let protractorArgs = []
 process.env.maxAttempts = 2
 
-if (process.env.suite === 'suite3') {
-  process.env.maxAttempts = 1
-}
-
 protractorArgs.push('conf.js')
 let suiteArg = `--suite=${process.env.suite}`
 

@@ -21,11 +21,10 @@ exports.config = {
     waitTimeout: 60000,
     legoUrl: `https://www.lego.com/en-us`,
     downloadPath: downloads,
-    userCreds: {email: `a.prakapovich@itechart-group.com`, pass: `l234kl23n4klnsklrnslr@`},//{email: keyVars.useEmail, pass: keyVars.userPass},
 
     page: {
       startPage: `https://google.com/`,
-    }
+    },
   },
 
   specs: [
@@ -36,7 +35,6 @@ exports.config = {
     all: 'lib/spec/**/*.js',
     suite1: 'lib/spec/suite1/pageObjectSpec.js',
     suite2: 'lib/spec/suite2/pageObjectSpec.js',
-    suite3: 'lib/spec/suite3/*.js',
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
@@ -60,7 +58,7 @@ exports.config = {
       download: {
         prompt_for_download: false,
         directory_upgrade: true,
-        default_directory: downloads
+        default_directory: downloads,
       },
     },
     loggingPrefs: {
@@ -161,6 +159,6 @@ exports.config = {
 
   afterLaunch: async function () {
     await new Promise(resolve => setTimeout(resolve, 5000))
-  }
+  },
 }
 
