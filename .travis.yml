@@ -8,9 +8,6 @@ dist: trusty
 #stages:
 #  - build docker image
 #  - test
-env:
- - suite=suite1
- - suite=suite2
 
 jobs:
   include:
@@ -23,6 +20,10 @@ jobs:
     - docker tag e2e-chrome $DOCKER_USERNAME/e2e-chrome
     - docker push $DOCKER_USERNAME/e2e-chrome
   - stage: tests
+    env:
+        matrix:
+          - suite=suite1
+          - suite=suite2
     script:
     - mkdir allure-results
     - ls
