@@ -1,6 +1,6 @@
 FROM node:10.14.2-slim
 
-ENV CHROME_PACKAGE="google-chrome-stable_72.0.3626.96-1_amd64.deb"
+ENV CHROME_PACKAGE="google-chrome-stable_73.0.3683.86-1_amd64.deb"
 ENV CHROME_DRIVER=2.46
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 ENV DEB_VERSION="stretch"
@@ -9,7 +9,7 @@ RUN mkdir -p /usr/share/man/man1
 RUN echo "deb http://http.debian.net/debian ${DEB_VERSION}-backports main" > /etc/apt/sources.list.d/${DEB_VERSION}-backports.list && \
     apt-get update && \
     apt-get install -y -t ${DEB_VERSION}-backports openjdk-8-jre-headless xvfb git graphicsmagick ghostscript && \
-    wget -q http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/${CHROME_PACKAGE} && \
+    wget -q https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/${CHROME_PACKAGE} && \
     dpkg --unpack ${CHROME_PACKAGE} && \
     apt-get install -f -y && \
     apt-get clean && \
