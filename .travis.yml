@@ -20,7 +20,7 @@ jobs:
     - docker tag e2e-chrome $DOCKER_USERNAME/e2e-chrome
     - docker push $DOCKER_USERNAME/e2e-chrome
   - stage: tests
-    env:
+    - env:
         matrix:
           - suite=suite1
           - suite=suite2
