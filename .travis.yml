@@ -8,6 +8,9 @@ dist: trusty
 #stages:
 #  - build docker image
 #  - test
+env:
+ - suite=suite1
+ - suite=suite2
 
 jobs:
   include:
@@ -20,9 +23,6 @@ jobs:
     - docker tag e2e-chrome $DOCKER_USERNAME/e2e-chrome
     - docker push $DOCKER_USERNAME/e2e-chrome
   - stage: tests
-    env:
-      - suite=suite1
-      - suite=suite2
     script:
     - mkdir allure-results
     - ls
@@ -30,15 +30,15 @@ jobs:
     - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
     - docker run -i -d --rm --net=host --privileged -v /dev/shm:/dev/shm -v $(pwd)/allure-results:/tests/allure-results -v $(pwd)/e2e/artifacts:/tests/e2e/artifacts -e suite=$suite -e maxinstances=$maxinstances -e logLevel=$logLevel --name e2e $DOCKER_USERNAME/e2e-chrome:latest
     - docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js || if [$? != 0]; then exit 0; fi'
-addons:
-  artifacts:
-      paths:
-        - ./allure-results
-      target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
-notifications:
-  slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
-  email:
-    recipients:
-      - ogulikpurse@gmail.com
-    on_success: always
-    on_failure: always
+#addons:
+#  artifacts:
+#      paths:
+#        - ./allure-results
+ #     target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
+#notifications:
+#  slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
+#  email:
+#    recipients:
+#      - ogulikpurse@gmail.com
+#    on_success: always
+#    on_failure: always
