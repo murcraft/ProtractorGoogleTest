@@ -1,16 +1,16 @@
 dist: trusty
-#language: node_js
-#node_js:
-#  - "10.14.2"
-#servises:
-#  - docker
+language: node_js
+node_js:
+  - "10.14.2"
+servises:
+  - docker
 
 stages:
   - build docker image
   - test
-env:
-  - suite=suite1
-  - suite=suite2
+#env:
+#  - suite=suite1
+#  - suite=suite2
 
 jobs:
   include:
