@@ -9,15 +9,6 @@ stages:
   - build docker image
   - test
 
-branches:
- only:
-#  - master
-  - dock
-
-env:
-  - suite=suite1
-  - suite=suite2
-
 jobs:
   include:
   - stage: build docker image
@@ -29,7 +20,9 @@ jobs:
     - docker tag e2e-chrome $DOCKER_USERNAME/e2e-chrome
     - docker push $DOCKER_USERNAME/e2e-chrome
   - stage: test
-    env: $suite
+    env:
+    - suite=suite1
+    - suite=suite2
     script:
     - mkdir allure-results
     - ls
