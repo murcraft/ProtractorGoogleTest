@@ -21,8 +21,9 @@ jobs:
     - docker push $DOCKER_USERNAME/e2e-chrome
   - stage: tests
     env:
-    - suite=suite1
-    - suite=suite2
+      matrix:
+      - suite=suite1
+      - suite=suite2
     script:
     - mkdir allure-results
     - ls
