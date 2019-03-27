@@ -2,16 +2,17 @@ dist: trusty
 #language: node_js
 #node_js:
 #  - "10.14.2"
-#servises:
-#  - docker
+servises:
+  - docker
 
 stages:
   - build docker image
-  - tests
+  - test
 
 env:
-  - suite=suite1
-  - suite=suite2
+  matrix:
+    - suite=suite1
+    - suite=suite2
 
 jobs:
   include:
@@ -23,7 +24,7 @@ jobs:
     - docker images
     - docker tag e2e-chrome $DOCKER_USERNAME/e2e-chrome
     - docker push $DOCKER_USERNAME/e2e-chrome
-  - stage: tests
+  - stage: test
     script:
     - mkdir allure-results
     - ls
