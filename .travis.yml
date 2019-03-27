@@ -7,11 +7,11 @@ dist: trusty
 
 stages:
   - build docker image
-  - test
+  - tests
 
-#env:
-#  - suite=suite1
-#  - suite=suite2
+env:
+  - suite=suite1
+  - suite=suite2
 
 jobs:
   include:
@@ -24,10 +24,7 @@ jobs:
     - docker tag e2e-chrome $DOCKER_USERNAME/e2e-chrome
     - docker push $DOCKER_USERNAME/e2e-chrome
   - stage: tests
-  - env:
-      - suite=suite1
-      - suite=suite2
-  - script:
+    script:
     - mkdir allure-results
     - ls
     - chmod -R a=rwx $(pwd)
