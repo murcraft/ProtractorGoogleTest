@@ -3,8 +3,8 @@ dist: trusty
 #node_js:
 #  - "10.14.2"
 stages:
-  - build docker image
   - test
+  - docker-test
 
 env:
   - suite=suite1
@@ -12,7 +12,7 @@ env:
 
 jobs:
   include:
-  - stage: build docker image
+  - stage: test
     env: suite=null
     script:
     - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
@@ -20,8 +20,8 @@ jobs:
     - docker images
     - docker tag e2e-chrome $DOCKER_USERNAME/e2e-chrome
     - docker push $DOCKER_USERNAME/e2e-chrome
-  - stage: test
-  - script:
+  - stage: docker-test
+    script:
       - mkdir allure-results
       - ls
       - chmod -R a=rwx $(pwd)
