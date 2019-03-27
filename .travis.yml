@@ -27,7 +27,7 @@ jobs:
     env:
       - suite=suite1
       - suite=suite2
-    script:
+  - script:
     - mkdir allure-results
     - ls
     - chmod -R a=rwx $(pwd)
