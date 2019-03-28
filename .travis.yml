@@ -1,7 +1,5 @@
 dist: trusty
-#language: node_js
-#node_js:
-#  - "10.14.2"
+
 services:
   - docker
 
@@ -32,15 +30,15 @@ jobs:
     - docker tag e2e-chrome $DOCKER_USERNAME/e2e-chrome
     - docker push $DOCKER_USERNAME/e2e-chrome
 
-#addons:
-#  artifacts:
-#      paths:
-#        - ./allure-results
- #     target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
-#notifications:
-#  slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
-#  email:
-#    recipients:
-#      - ogulikpurse@gmail.com
-#    on_success: always
-#    on_failure: always
+addons:
+  artifacts:
+      paths:
+        - ./allure-results
+      target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
+notifications:
+  slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
+  email:
+    recipients:
+      - ogulikpurse@gmail.com
+    on_success: always
+    on_failure: always
