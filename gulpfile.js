@@ -6,14 +6,15 @@ global.$ = {
   },
   gulp: require('gulp'),
   notify: require('gulp-notify'),
-  protractor: require('gulp-protractor').protractor
+  protractor: require('gulp-protractor').protractor,
+  webdriver_update: require("gulp-protractor").webdriver_update,
 }
 
-$.path.task.forEach(function (taskPath) {
+$.path.task.forEach((taskPath) => {
   require(taskPath)()
 })
 
 $.gulp.task('webdriver-update', $.protractor.webdriver_update);
 
-$.gulp.task('default', ['webdriver-update', 'startProtractor'])
+$.gulp.task('run-protractor', 'startProtractor')
 

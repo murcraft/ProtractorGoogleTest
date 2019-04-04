@@ -15,6 +15,9 @@ env:
 - suite=suite1
 - suite=suite2
 
+matrix:
+  -
+
 addons:
   apt:
     sources:

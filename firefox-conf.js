@@ -39,34 +39,23 @@ exports.config = {
 
   baseUrl: process.env.env = 'http://www.google.by',
 
+
   capabilities:
     {
-      browserName: 'chrome',
+      browserName: 'firefox',
       shardTestFiles: process.env.maxinstances > 1,
       maxInstances: process.env.maxinstances,
-      // seleniumServerJar: './node_modules/protractor/node_modules/webdriver-manager/selenium/<jar file>',
-      chromeOptions: {
-        args: [
-          'incognito',
-          'window-size=1920,1080',
-          // '--disable-infobars',
-          // '--disable-extensions',
-          // '--ignore-ssl-errors=true',
-          // 'verbose',
-          // '--disable-web-security'
-        ],
+      marionette: true,
+      acceptSslCerts: true,
+      // firefox_profile: profile
+      firefoxOptions: {
+        args: ['--safe-mode', '-profile', '/path/to/profile']
       },
       prefs: {
-        download: {
-          prompt_for_download: false,
-          directory_upgrade: true,
-          default_directory: downloads,
-        },
-      },
-      loggingPrefs: {
-        browser: 'SEVERE',
-      },
+        profile: 'helperApps.neverAsk''
+      }
     },
+
 
 
 
@@ -94,6 +83,8 @@ exports.config = {
   },
 
   onPrepare: async () => {
+    browser.manage().window().maximize();
+    browser.manage().timeouts().implicitlyWait(5000);
     browser.waitForAngularEnabled(false)
     global.EC = protractor.ExpectedConditions
     global.Logger = require('./lib/helpers/loggerHelper')

@@ -41,27 +41,30 @@ process.env.maxinstances = maxinstancesCmd !== undefined ? maxinstancesCmd : pro
 process.env.maxinstances = process.env.maxinstances !== 'undefined' ? process.env.maxinstances : 1
 console.log(`maxinstances - ${process.env.maxinstances}`)
 
+let browserParamCmd = getParamValue('browserParam')
+process.env.browserParam = browserParamCmd !== undefined ? browserParamCmd : process.env.browserParam
+process.env.browserParam = process.env.browserParam !== 'undefined' ? process.env.browserParam : 'chrome'
+console.log(`browserParam - ${process.env.browserParam}`)
+
 let protractorArgs = []
 process.env.maxAttempts = 2
-
-if ((process.env.suite !== 'suite3') || (process.env.suite !== 'suite4') &&
-  (process.env.suite !== 'suite5') || (process.env.suite !== 'suite6') &&
-  (process.env.suite !== 'suite7') || (process.env.suite !== 'suite8') &&
-  (process.env.suite !== 'suite9') || (process.env.suite !== 'suite10') &&
-  (process.env.suite !== 'suite11') || (process.env.suite !== 'suite12') &&
-  (process.env.suite !== 'suite13') || (process.env.suite !== 'suite14')) {
-    process.env.maxAttempts = 1
-}
-
-
-protractorArgs.push('conf.js')
 let suiteArg = `--suite=${process.env.suite}`
 
+if (process.env.browserParam === 'firefox') {
+  protractorArgs.push('firefox-conf.js')
+  protractorArgs.push('--capabilities.moz:firefoxOptions.args=incognito')
+  protractorArgs.push('--capabilities.moz:firefoxOptions.args=window-size=1920,1080')
+  protractorArgs.push('--capabilities.moz:firefoxOptions.args=headless')
+  protractorArgs.push('--capabilities.moz:firefoxOptions.args=disable-gpu')
+} else {
+  protractorArgs.push('conf.js')
+  protractorArgs.push('--capabilities.chromeOptions.args=incognito')
+  protractorArgs.push('--capabilities.chromeOptions.args=window-size=1920,1080')
+  protractorArgs.push('--capabilities.chromeOptions.args=headless')
+  protractorArgs.push('--capabilities.chromeOptions.args=disable-gpu')
+}
+
 protractorArgs.push(suiteArg)
-protractorArgs.push('--capabilities.chromeOptions.args=incognito')
-protractorArgs.push('--capabilities.chromeOptions.args=window-size=1920,1080')
-protractorArgs.push('--capabilities.chromeOptions.args=headless')
-protractorArgs.push('--capabilities.chromeOptions.args=disable-gpu')
 
 console.log(protractorArgs)
 

@@ -1,9 +1,9 @@
 'use strict'
 
-module.exports = function () {
-  $.gulp.task('startProtractor', function () {
+module.exports = () => {
+  $.gulp.task('startProtractor', () => {
     $.gulp
-      .src(['./spec/pageObjectSpec.js'])
+      .src(['../spec/suite1/pageObjectSpec.js'])
       .pipe($.notify('Were found changes, Executing scripts'))
       .pipe($.protractor({
         configFile: 'conf.js'
@@ -13,5 +13,4 @@ module.exports = function () {
       })
 
   })
-
 }
