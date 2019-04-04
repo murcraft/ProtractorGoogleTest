@@ -22,9 +22,9 @@ env:
 matrix:
   include:
     - os: linux
-      browserParam='chrome'
+      browserParam: "chrome"
     - os: osx
-      browserParam='chrome'
+      browserParam: "chrome"
 
 
 script:
