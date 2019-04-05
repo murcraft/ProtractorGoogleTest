@@ -1,11 +1,19 @@
 let path = require('path')
 let fs = require('fs')
+const FirefoxProfile = require('firefox-profile')
 
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
 const keyVars = require('./keyVariables.js')
 
 let downloads = keyVars.downloadPath
+
+let myProfile = new FirefoxProfile()
+myProfile.setPreference('browser.download.folderList', 2)
+myProfile.setPreference('browser.download.dir', downloads)
+myProfile.setPreference('browser.helperApps.alwaysAsk.force', false)
+myProfile.setPreference('browser.download.downloadDir', downloads)
+myProfile.setPreference('browser.download.defaultFolder', downloads)
 
 exports.config = {
 
@@ -38,21 +46,23 @@ exports.config = {
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
-
-
+  geckoDriver: './node_modules/protractor/node_modules/webdriver-manager/selenium/geckodriver',
   capabilities:
     {
       browserName: 'firefox',
+      // binary: './lib/drivers',
       shardTestFiles: process.env.maxinstances > 1,
       maxInstances: process.env.maxinstances,
       marionette: true,
       acceptSslCerts: true,
-      // firefox_profile: profile
-      firefoxOptions: {
-        args: ['--safe-mode', '-profile', '/path/to/profile']
-      },
-      prefs: {
-        profile: 'helperApps.neverAsk''
+      alwaysMatch: {
+        firefoxOptions: {
+          args: ['-headless'],
+          profile: myProfile,
+          log: {
+            level: 'trace'
+          }
+        }
       }
     },
 

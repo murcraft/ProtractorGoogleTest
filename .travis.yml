@@ -25,13 +25,15 @@ matrix:
       browserParam: "chrome"
     - os: osx
       browserParam: "chrome"
-
+    - os: linux
+      browserParam: "firefox"
 
 script:
 - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
     brew npm test;
   else
-    npm test || if [$? != 0]; then exit 0; fi
+    npm test; fi
+#|| if [$? != 0]; then exit 0; fi
 
 addons:
   apt:
@@ -41,6 +43,16 @@ addons:
     - google-chrome-stable
     - graphicsmagick
     - ghostscript
+  homebrew:
+    sources:
+        - google-chrome
+        packages:
+        - google-chrome-stable
+        - graphicsmagick
+        - ghostscript
+addons:
+  firefox: "66.0"
+
   artifacts:
     paths:
     - ./allure-results
