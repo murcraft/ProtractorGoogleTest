@@ -26,8 +26,8 @@ env:
   - suite=suite2
 
 matrix:
-    - $browserParam=firefox
-    - $browserParam=chrome
+    - env: $browserParam=firefox
+    - env: $browserParam=chrome
 
 script:
 #- if [ $TRAVIS_OS_NAME = osx ]; then brew npm test; else npm test; fi
