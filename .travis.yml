@@ -3,27 +3,32 @@ node_js:
   - 10
 dist: trusty
 
+# install AVbin
 before_install:
-- if [ "${TRAVIS_OS_NAME}" == "linux" ]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16 else sudo Xvfb :99 -ac -screen 0 1024x768x8
-
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
+      curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg;
+      sudo installer -pkg AVbin10.pkg -target /;
+    else
+      /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1400x900x24 -ac +extension GLX +render -noreset;
+      dbus-launch pulseaudio --start;
+    fi;
 before_script:
 - "export DISPLAY=:99.0"
 - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
 - sleep 3
 
 env:
-  - suite=suite1 browserName="chrome"
-  - suite=suite1 browserName="firefox"
-  - suite=suite2 browserName="chrome"
-  - suite=suite2 browserName="firefox"
+  - suite=suite1
+  - suite=suite2
 
 matrix:
   include:
   - os: linux
+    env: browserName="chrome"
   - os: osx
-  exclude:
-  - os: osx
-  env: browserName="firefox"
+    env: browserName="chrome"
+  - os: linux
+    env: browserName="firefox"
 
 script:
 - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew npm test; else npm test; fi
