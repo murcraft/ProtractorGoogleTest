@@ -45,11 +45,11 @@ addons:
     - ghostscript
   homebrew:
     sources:
-        - google-chrome
-        packages:
-        - google-chrome-stable
-        - graphicsmagick
-        - ghostscript
+    - google-chrome
+    packages:
+    - google-chrome-stable
+    - graphicsmagick
+    - ghostscript
 addons:
   firefox: "66.0"
 
