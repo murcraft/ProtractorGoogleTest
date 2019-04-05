@@ -1,10 +1,4 @@
 language: node_js
-node_js:
-  - 10
-os:
-  - os: linux
-    dist: trusty
-  - osx
 
 # install AVbin
 before_install:
@@ -24,29 +18,30 @@ before_script:
 #  - "sh -e /etc/init.d/xvfb start"
   - sleep 3
 
-env:
-  - suite=suite1 browser=chrome
-  - suite=suite2 browser=chrome
-  - suite=suite1 browser=firefox
-  - suite=suite2 browser=firefox
-  - suite=suite1 browser=safari
-  - suite=suite2 browser=safari
-
 matrix:
-  exclude:
+  include:
   - os: osx
-    env: suite=suite1 browser=chrome
+    node_js: 10
+    env: suite=suite1 browser=safari
   - os: osx
-    env: suite=suite2 browser=chrome
-  - os: osx
+    node_js: 10
+    env: suite=suite2 browser=safari
+  - os: linux
+    dist: trusty
+    node_js: 10
     env: suite=suite1 browser=firefox
-  - os: osx
+  - os: linux
+    dist: trusty
+    node_js: 10
     env: suite=suite2 browser=firefox
   - os: linux
-    env: suite=suite1 browser=safari
+    dist: trusty
+    node_js: 10
+    env: suite=suite1 browser=chrome
   - os: linux
-    env: suite=suite2 browser=safari
-
+    dist: trusty
+    node_js: 10
+    env: suite=suite2 browser=chrome
 
 script:
  - if [ $TRAVIS_OS_NAME = osx ]; then brew npm test; else npm test; fi
