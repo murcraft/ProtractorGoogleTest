@@ -56,7 +56,7 @@ addons:
     sources:
     - google-chrome
     packages:
-   - google-chrome-stable
+    - google-chrome-stable
     - graphicsmagick
     - ghostscript
 
