@@ -41,27 +41,33 @@ process.env.maxinstances = maxinstancesCmd !== undefined ? maxinstancesCmd : pro
 process.env.maxinstances = process.env.maxinstances !== 'undefined' ? process.env.maxinstances : 1
 console.log(`maxinstances - ${process.env.maxinstances}`)
 
+let browserParamCmd = getParamValue('browser')
+process.env.browser = browserParamCmd !== undefined ? browserParamCmd : process.env.browser
+process.env.browser = process.env.browser !== 'undefined' ? process.env.browser : 'chrome'
+console.log(`browser - ${process.env.browser}`)
+
 let protractorArgs = []
 process.env.maxAttempts = 2
+let suiteArg = `--suite=${process.env.suite}`
 
-if ((process.env.suite !== 'suite3') || (process.env.suite !== 'suite4') &&
-  (process.env.suite !== 'suite5') || (process.env.suite !== 'suite6') &&
-  (process.env.suite !== 'suite7') || (process.env.suite !== 'suite8') &&
-  (process.env.suite !== 'suite9') || (process.env.suite !== 'suite10') &&
-  (process.env.suite !== 'suite11') || (process.env.suite !== 'suite12') &&
-  (process.env.suite !== 'suite13') || (process.env.suite !== 'suite14')) {
-    process.env.maxAttempts = 1
+if (process.env.browser === 'firefox') {
+  protractorArgs.push('firefox-conf.js')
+  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=incognito')
+  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=window-size=1920,1080')
+  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=headless')
+  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=disable-gpu')
+} else if (process.env.browser === 'safari') {
+  protractorArgs.push('safari-conf.js')
+} else {
+  protractorArgs.push('conf.js')
+  protractorArgs.push('--capabilities.chromeOptions.args=incognito')
+  protractorArgs.push('--capabilities.chromeOptions.args=window-size=1920,1080')
+  protractorArgs.push('--capabilities.chromeOptions.args=headless')
+  protractorArgs.push('--capabilities.chromeOptions.args=disable-gpu')
 }
 
 
-protractorArgs.push('conf.js')
-let suiteArg = `--suite=${process.env.suite}`
-
 protractorArgs.push(suiteArg)
-protractorArgs.push('--capabilities.chromeOptions.args=incognito')
-protractorArgs.push('--capabilities.chromeOptions.args=window-size=1920,1080')
-protractorArgs.push('--capabilities.chromeOptions.args=headless')
-protractorArgs.push('--capabilities.chromeOptions.args=disable-gpu')
 
 console.log(protractorArgs)
 

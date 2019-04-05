@@ -4,27 +4,25 @@
   "description": "",
   "scripts": {
     "preupdate-webdriver": "npm install",
-    "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=2.45 --versions.standalone=3.4.0",
+    "update-webdriver": "webdriver-manager update --versions.standalone=3.4.0",
     "pretest": "npm run update-webdriver",
     "test": "node conf-flake.js"
   },
-  "dependencies": {
-    "aws-sdk": "^2.403.0",
-    "dockular": "0.0.1",
+  "devDependencies": {
+    "aws-sdk": "^2.436.0",
+    "firefox-profile": "^1.2.0",
+    "grunt": "^1.0.4",
+    "grunt-protractor-runner": "^5.0.0",
+    "gulp": "^4.0.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-protractor": "^4.1.1",
     "jasmine-allure-reporter": "^1.0.2",
     "jasmine-data-provider": "^2.2.0",
     "log4js": "^3.0.6",
     "protractor": "^5.4.2",
     "protractor-flake": "3.3.0",
     "protractor-stop-describe-on-failure": "^1.0.3",
+    "request-promise": "^4.2.2",
     "slack-node": "^0.1.8"
-  },
-  "devDependencies": {
-    "grunt": "^1.0.3",
-    "grunt-protractor-runner": "^5.0.0",
-    "gulp": "^4.0.0",
-    "gulp-notify": "^3.2.0",
-    "gulp-protractor": "^4.1.1",
-    "request-promise": "^4.2.2"
   }
 }
