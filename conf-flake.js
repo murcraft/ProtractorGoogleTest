@@ -52,10 +52,10 @@ let suiteArg = `--suite=${process.env.suite}`
 
 if (process.env.browserParam === 'firefox') {
   protractorArgs.push('firefox-conf.js')
-  protractorArgs.push('--capabilities.moz:firefoxOptions.args=incognito')
-  protractorArgs.push('--capabilities.moz:firefoxOptions.args=window-size=1920,1080')
-  protractorArgs.push('--capabilities.moz:firefoxOptions.args=headless')
-  protractorArgs.push('--capabilities.moz:firefoxOptions.args=disable-gpu')
+  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=incognito')
+  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=window-size=1920,1080')
+  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=headless')
+  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=disable-gpu')
 } else {
   protractorArgs.push('conf.js')
   protractorArgs.push('--capabilities.chromeOptions.args=incognito')

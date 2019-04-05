@@ -44,7 +44,7 @@ exports.config = {
       browserName: 'chrome',
       shardTestFiles: process.env.maxinstances > 1,
       maxInstances: process.env.maxinstances,
-      chromeDriver: './drivers/chromedriver_2.45.exe',
+
       chromeOptions: {
         args: [
           'incognito',
