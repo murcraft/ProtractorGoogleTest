@@ -41,21 +41,23 @@ process.env.maxinstances = maxinstancesCmd !== undefined ? maxinstancesCmd : pro
 process.env.maxinstances = process.env.maxinstances !== 'undefined' ? process.env.maxinstances : 1
 console.log(`maxinstances - ${process.env.maxinstances}`)
 
-let browserParamCmd = getParamValue('browserParam')
-process.env.browserParam = browserParamCmd !== undefined ? browserParamCmd : process.env.browserParam
-process.env.browserParam = process.env.browserParam !== 'undefined' ? process.env.browserParam : 'chrome'
-console.log(`browserParam - ${process.env.browserParam}`)
+let browserParamCmd = getParamValue('browser')
+process.env.browser = browserParamCmd !== undefined ? browserParamCmd : process.env.browser
+process.env.browser = process.env.browser !== 'undefined' ? process.env.browser : 'chrome'
+console.log(`browser - ${process.env.browser}`)
 
 let protractorArgs = []
 process.env.maxAttempts = 2
 let suiteArg = `--suite=${process.env.suite}`
 
-if (process.env.browserParam === 'firefox') {
+if (process.env.browser === 'firefox') {
   protractorArgs.push('firefox-conf.js')
   protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=incognito')
   protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=window-size=1920,1080')
   protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=headless')
   protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=disable-gpu')
+} else if (process.env.browser === 'safari') {
+  protractorArgs.push('safari-conf.js')
 } else {
   protractorArgs.push('conf.js')
   protractorArgs.push('--capabilities.chromeOptions.args=incognito')
@@ -63,6 +65,7 @@ if (process.env.browserParam === 'firefox') {
   protractorArgs.push('--capabilities.chromeOptions.args=headless')
   protractorArgs.push('--capabilities.chromeOptions.args=disable-gpu')
 }
+
 
 protractorArgs.push(suiteArg)
 

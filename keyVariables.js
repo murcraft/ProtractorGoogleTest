@@ -1,7 +1,7 @@
 let path = require('path')
 
 module.exports = {
-  browserParam: process.env.browserParam,
+  browserParam: process.env.browser,
 
   downloadPath: path.resolve(__dirname, './artifacts/temporary'),
   storePath: path.resolve(__dirname, './artifacts/storeFiles'),
