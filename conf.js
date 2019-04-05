@@ -44,7 +44,7 @@ exports.config = {
       browserName: 'chrome',
       shardTestFiles: process.env.maxinstances > 1,
       maxInstances: process.env.maxinstances,
-      // seleniumServerJar: './node_modules/protractor/node_modules/webdriver-manager/selenium/<jar file>',
+      chromeDriver: './drivers/chromedriver_2.45.exe',
       chromeOptions: {
         args: [
           'incognito',

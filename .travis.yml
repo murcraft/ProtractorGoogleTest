@@ -32,7 +32,7 @@ matrix:
         sudo installer -pkg AVbin10.pkg -target /;
       before_script:
       - "export DISPLAY=:99.0"
-      - sudo Xvfb :99 -ac -screen 0 1024x768x8;
+      - "sudo Xvfb :99 -ac -screen 0 1024x768x8"
       script:
       - brew npm i
       - brew ./node_modules/protractor/bin/webdriver-manager update

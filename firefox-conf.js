@@ -46,7 +46,7 @@ exports.config = {
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
-  geckoDriver: './node_modules/protractor/node_modules/webdriver-manager/selenium/geckodriver',
+  geckoDriver: './drivers/geckodriver-v0.24.0.exe',
   capabilities:
     {
       browserName: 'firefox',
