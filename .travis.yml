@@ -5,7 +5,7 @@ dist: trusty
 
 # install AVbin
 before_install:
-  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
+  - if [ $TRAVIS_OS_NAME = osx ]; then
       curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg;
       sudo installer -pkg AVbin10.pkg -target /;
     else
@@ -13,25 +13,27 @@ before_install:
       dbus-launch pulseaudio --start;
     fi;
 before_script:
-- "export DISPLAY=:99.0"
-- if [ "${TRAVIS_OS_NAME}" == "osx" ]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
-- sleep 3
+  - "export DISPLAY=:99.0"
+  - if [ $TRAVIS_OS_NAME = osx ]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
+  - sleep 3
 
 env:
-  - suite=suite1
-  - suite=suite2
+  - suite=suite1 browserName=chrome
+  - suite=suite2 browserName=chrome
+  - suite=suite1 browserName=firefox
+  - suite=suite2 browserName=firefox
 
 matrix:
   include:
   - os: linux
-    env: browserName="chrome"
   - os: osx
-    env: browserName="chrome"
   - os: linux
-    env: browserName="firefox"
+  exclude:
+  - os: osx
+  env: browserName=firefox
 
 script:
-- if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew npm test; else npm test; fi
+- if [ $TRAVIS_OS_NAME = osx ]; then brew npm test; else npm test; fi
 
 addons:
   apt:
