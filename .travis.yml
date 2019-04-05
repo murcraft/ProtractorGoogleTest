@@ -22,10 +22,12 @@ before_script:
   - sleep 3
 
 env:
-  - suite=suite1 browserParam=chrome
-  - suite=suite2 browserParam=chrome
-  - suite=suite1 browserParam=firefox
-  - suite=suite2 browserParam=firefox
+  - suite=suite1
+  - suite=suite2
+
+matrix:
+    - $browserParam=firefox
+    - $browserParam=chrome
 
 script:
 #- if [ $TRAVIS_OS_NAME = osx ]; then brew npm test; else npm test; fi

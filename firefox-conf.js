@@ -41,18 +41,19 @@ exports.config = {
 
   suites: {
     all: 'lib/spec/**/*.js',
-    suite1: 'lib/spec/suite1/pageObjectSpec.js',
-    suite2: 'lib/spec/suite2/downloadInstructions.js',
+    suite1: 'lib/spec/suite1/*.js',
+    suite2: 'lib/spec/suite2/*.js',
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
-
+  // directConnect: true,
   capabilities:
     {
       browserName: 'firefox',
-      // binary: './lib/drivers',
       shardTestFiles: process.env.maxinstances > 1,
       maxInstances: process.env.maxinstances,
+      // binary: './lib/drivers/geckodriver-v0.24.0.exe',
+
       marionette: true,
       acceptSslCerts: true,
       alwaysMatch: {
