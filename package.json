@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "preupdate-webdriver": "npm install",
-    "update-webdriver": "webdriver-manager update --versions.standalone=3.4.0",
+    "update-webdriver": "webdriver-manager update --versions.standalone=3.4.0 --ignore_ssl",
     "pretest": "npm run update-webdriver",
     "test": "node conf-flake.js"
   },

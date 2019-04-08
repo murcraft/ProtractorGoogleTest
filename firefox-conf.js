@@ -46,14 +46,12 @@ exports.config = {
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
-  // directConnect: true,
+
   capabilities:
     {
       browserName: 'firefox',
       shardTestFiles: process.env.maxinstances > 1,
       maxInstances: process.env.maxinstances,
-      // binary: './lib/drivers/geckodriver-v0.24.0.exe',
-
       marionette: true,
       acceptSslCerts: true,
       alwaysMatch: {
@@ -66,10 +64,6 @@ exports.config = {
         }
       }
     },
-
-
-
-
 
   beforeLaunch: function () {
     let logger = require('./lib/helpers/loggerHelper')
