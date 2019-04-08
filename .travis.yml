@@ -1,5 +1,7 @@
 language: node_js
-node_js: 10
+node_js:
+  - node
+  - 10
 dist: trusty
 
 os:
@@ -9,21 +11,30 @@ os:
 # install AVbin
 before_install:
   - |
-    if [[ $TRAVIS_OS_NAME == "osx" ]]; then
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
      brew update;
      curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg;
      sudo installer -pkg AVbin10.pkg -target /;
     fi
   - |
-    if [[ $TRAVIS_OS_NAME == "linux" ]]; then
-     "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16"
+    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      /sbin/start-stop-daemon \
+      --start \
+      --quiet \
+      --pidfile /tmp/custom_xvfb_99.pid \
+      --make-pidfile \
+      --background \
+      --exec /usr/bin/Xvfb \
+      -- :99 -screen 0 1920x1080x16"
+    else
+      :
     fi
 
 before_script:
-  - "export DISPLAY=:99.0"
-  - if [[/ $TRAVIS_OS_NAME == "osx" ]]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
-#  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
+#  - if [[/ $TRAVIS_OS_NAME == "osx" ]]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
 
 env:
   - suite=suite1 browser="firefox"
