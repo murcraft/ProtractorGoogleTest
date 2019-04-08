@@ -37,12 +37,12 @@ before_script:
 
 env:
   global:
-    - browser="firefox"
+    - browser="chrome"
   matrix:
   - suite=suite1 browser="firefox"
   - suite=suite2 browser="firefox"
-  - suite=suite1 browser="chrome"
-  - suite=suite2 browser="chrome"
+  - suite=suite1
+  - suite=suite2
 #  - suite=suite1 browser="safari"
 #  - suite=suite2 browser="safari"
 
