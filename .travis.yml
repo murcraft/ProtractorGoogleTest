@@ -4,54 +4,52 @@ dist: trusty
 
 os:
   - linux
-#  - osx
+  - osx
 
 # install AVbin
 before_install:
-#  - if [ $TRAVIS_OS_NAME = osx ]; then
-#     curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg;
-#      sudo installer -pkg AVbin10.pkg -target /;
-#    else
-#     "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16"
-#    fi;
-#  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16"
+  - |
+    if [ $TRAVIS_OS_NAME == "osx" ]; then
+     brew update;
+     curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg;
+     sudo installer -pkg AVbin10.pkg -target /;
+    else
+     "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16"
+    fi;
 
 before_script:
   - "export DISPLAY=:99.0"
-#  - if [ $TRAVIS_OS_NAME = "osx" ]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
-  - "sh -e /etc/init.d/xvfb start"
+  - if [ $TRAVIS_OS_NAME == "osx" ]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
+#  - "sh -e /etc/init.d/xvfb start"
   - sleep 3
 
 env:
   - suite=suite1 browser="firefox"
+  - suite=suite2 browser="firefox"
   - suite=suite1 browser="chrome"
-#  - suite=suite1 browser=safari
-#  - suite=suite2 browser=safari
-#matrix:
-#  - env: browser=firefox
-# - suite=suite1
-# - suite=suite2
-#  - suite=suite1 browser=chrome
-#  - suite=suite2 browser=chrome
+  - suite=suite2 browser="chrome"
+  - suite=suite1 browser="safari"
+  - suite=suite2 browser="safari"
 
-#matrix:
-#  exclude:
-#  - os: linux
-#   env: suite=suite1 browser=safari
-#  - os: linux
-#    env: suite=suite2 browser=safari
-#  - os: osx
-#    env: suite=suite1 browser=firefox
-#  - os: osx
-#    env: suite=suite2 browser=firefox
-#  - os: osx
-#    env: suite=suite1 browser=chrome
-#  - os: osx
-#    env: suite=suite2 browser=chrome
+matrix:
+  exclude:
+  - os: linux
+    env: suite=suite1 browser="safari"
+  - os: linux
+    env: suite=suite2 browser="safari"
+  - os: osx
+    env: suite=suite1 browser="firefox"
+  - os: osx
+    env: suite=suite2 browser="firefox"
+  - os: osx
+    env: suite=suite1 browser="chrome"
+  - os: osx
+    env: suite=suite2 browser="chrome"
 
 script:
- - if [[ $browser == "firefox" ]]; then npm run test-gecko; else npm run test-chrome; fi
+ - if [[ $browser == "firefox" ]]; then npm run test-gecko || if [$? != 0]; then exit 0; fi
+ - if [[ $browser == "chrome" ]]; then npm run test-chrome || if [$? != 0]; then exit 0; fi
+ - if [[ $browser == "safari" ]]; then npm run test-chrome || if [$? != 0]; then exit 0; fi
 
 addons:
   firefox: latest
