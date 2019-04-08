@@ -9,17 +9,19 @@ os:
 # install AVbin
 before_install:
   - |
-    if [ $TRAVIS_OS_NAME == "osx" ]; then
+    if [[ $TRAVIS_OS_NAME == "osx" ]]; then
      brew update;
      curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg;
      sudo installer -pkg AVbin10.pkg -target /;
-    else
+    fi
+  - |
+    if [[ $TRAVIS_OS_NAME == "linux" ]]; then
      "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16"
-    fi;
+    fi
 
 before_script:
   - "export DISPLAY=:99.0"
-  - if [ $TRAVIS_OS_NAME == "osx" ]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
+  - if [[/ $TRAVIS_OS_NAME == "osx" ]]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
 #  - "sh -e /etc/init.d/xvfb start"
   - sleep 3
 
