@@ -51,8 +51,7 @@ env:
 #    env: suite=suite2 browser=chrome
 
 script:
- - |
-   if [[ $browser == "firefox" ]]; then npm run test-gecko; else npm run test-chrome; fi
+ - if [[ $browser == "firefox" ]]; then npm run test-gecko; else npm run test-chrome; fi
 
 addons:
   firefox: latest
