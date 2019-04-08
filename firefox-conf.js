@@ -94,8 +94,7 @@ exports.config = {
   },
 
   onPrepare: async () => {
-    browser.manage().window().maximize();
-    browser.manage().timeouts().implicitlyWait(5000);
+    browser.manage().window().maximize()
     browser.waitForAngularEnabled(false)
     global.EC = protractor.ExpectedConditions
     global.Logger = require('./lib/helpers/loggerHelper')
@@ -153,7 +152,6 @@ exports.config = {
     }
 
     jasmine.getEnv().afterEach(async function () {
-      await Logger.LogConsoleErrors()
       try {
         await browser.takeScreenshot().then(function (png) {
           allure.createAttachment('Screenshot', function () {

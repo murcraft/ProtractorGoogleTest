@@ -33,13 +33,8 @@ exports.config = {
 
   suites: {
     all: 'lib/spec/**/*.js',
-<<<<<<< HEAD
     suite1: 'lib/spec/suite1/*.js',
     suite2: 'lib/spec/suite2/*.js',
-=======
-    suite1: 'lib/spec/suite1/pageObjectSpec.js',
-    suite2: 'lib/spec/suite2/downloadInstruction.js',
->>>>>>> 11ba110ba1f1c912d2521821e38045c812c69c65
   },
 
   baseUrl: process.env.env = 'http://www.google.by',
