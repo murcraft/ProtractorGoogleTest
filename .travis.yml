@@ -21,8 +21,16 @@ before_install:
 before_script:
   - "export DISPLAY=:99.0"
   - if [[ $TRAVIS_OS_NAME = "osx" ]]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then "sh -e /etc/init.d/xvfb start"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
   - sleep 3
+
+env:
+  - suite=suite1 browser=safari
+  - suite=suite1 browser=firefox
+  - suite=suite1 browser=chrome
+  - suite=suite2 browser=safari
+  - suite=suite2 browser=firefox
+  - suite=suite2 browser=chrome
 
 matrix:
   exclude:
