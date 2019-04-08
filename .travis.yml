@@ -24,15 +24,16 @@ before_script:
   - sleep 3
 
 env:
-  global:
-  - browser=firefox
+  - suite=suite1 browser="firefox"
+  - suite=suite1 browser="chrome"
 #  - suite=suite1 browser=safari
 #  - suite=suite2 browser=safari
-  matrix:
-  - suite=suite1 browser=firefox
-  - suite=suite2 browser=firefox
-  - suite=suite1 browser=chrome
-  - suite=suite2 browser=chrome
+#matrix:
+#  - env: browser=firefox
+# - suite=suite1
+# - suite=suite2
+#  - suite=suite1 browser=chrome
+#  - suite=suite2 browser=chrome
 
 #matrix:
 #  exclude:
@@ -51,7 +52,7 @@ env:
 
 script:
  - |
-   if [["${browser}" == "firefox" ]]; then npm run test-gecko; else npm run test-chrome; fi
+   if [[ $browser == "firefox" ]]; then npm run test-gecko; else npm run test-chrome; fi
 
 addons:
   firefox: latest
