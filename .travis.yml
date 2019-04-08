@@ -15,13 +15,12 @@ before_install:
 #     /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1400x900x24 -ac +extension GLX +render -noreset;
 #       dbus-launch pulseaudio --start;
 #    fi;
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sh /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16; fi
 
 before_script:
   - "export DISPLAY=:99.0"
-  - if [[ $TRAVIS_OS_NAME = "osx" ]]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
+  - if [ $TRAVIS_OS_NAME = "osx" ]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
   - sleep 3
 
 env:
