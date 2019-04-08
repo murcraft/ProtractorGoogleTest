@@ -47,7 +47,7 @@ matrix:
     env: suite=suite2 browser=chrome
 
 script:
- - if [ $TRAVIS_OS_NAME = osx ]; then brew npm test; else npm test; fi
+ - npm test
 
 addons:
   firefox: latest
