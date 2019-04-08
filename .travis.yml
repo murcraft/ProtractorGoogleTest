@@ -1,4 +1,11 @@
 language: node_js
+node_js: 10
+
+os:
+  - linux
+    dist: trusty
+  - osx
+    osx_image: xcode10.0
 
 # install AVbin
 before_install:
@@ -9,44 +16,39 @@ before_install:
 #     /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1400x900x24 -ac +extension GLX +render -noreset;
 #       dbus-launch pulseaudio --start;
 #    fi;
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; else sh /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then "sh /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16"
 
 before_script:
   - "export DISPLAY=:99.0"
-  - if [ $TRAVIS_OS_NAME = osx ]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
-#  - "sh -e /etc/init.d/xvfb start"
+  - if [[ $TRAVIS_OS_NAME = "osx" ]]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then "sh -e /etc/init.d/xvfb start"; fi
   - sleep 3
 
 matrix:
   include:
   - os: osx
-    node_js: 10
     env: suite=suite1 browser=safari
   - os: osx
-    node_js: 10
     env: suite=suite2 browser=safari
   - os: linux
     dist: trusty
-    node_js: 10
     env: suite=suite1 browser=firefox
   - os: linux
     dist: trusty
-    node_js: 10
     env: suite=suite2 browser=firefox
   - os: linux
     dist: trusty
-    node_js: 10
     env: suite=suite1 browser=chrome
   - os: linux
     dist: trusty
-    node_js: 10
     env: suite=suite2 browser=chrome
 
 script:
  - if [ $TRAVIS_OS_NAME = osx ]; then brew npm test; else npm test; fi
 
 addons:
-  firefox: "66.0"
+  firefox: latest
   apt:
     sources:
     - google-chrome
