@@ -62,9 +62,9 @@ env:
 #    env: suite=suite2 browser="chrome"
 
 script:
- - if [[ $browser == "firefox" ]]; then npm run test-gecko; fi
+ - if [[ $browser == "firefox" ]]; then npm run test-gecko && if [$? != 0]; then exit 0; fi
  - if [[ $browser == "chrome" ]]; then npm run test-chrome; fi
- - exit 0
+ - if [[$? != 0]]; then exit 0; fi
 #; && if [$? != 0]; then exit 0; fi
 # - if [[ $browser == "safari" ]]; then npm run test-chrome && if [$? != 0]; then exit 0; fi
 
