@@ -44,7 +44,6 @@ exports.config = {
       browserName: 'safari',
       shardTestFiles: process.env.maxinstances > 1,
       maxInstances: process.env.maxinstances,
-      // binary: './lib/drivers/geckodriver-v0.24.0.exe',
       logName: 'Safari',
     },
 

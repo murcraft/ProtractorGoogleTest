@@ -4,7 +4,7 @@ dist: trusty
 
 os:
   - linux
-  - osx
+#  - osx
 
 # install AVbin
 before_install:
@@ -15,36 +15,37 @@ before_install:
 #     /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1400x900x24 -ac +extension GLX +render -noreset;
 #       dbus-launch pulseaudio --start;
 #    fi;
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sh /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16; fi
+#  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
+  - sh /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16
 
 before_script:
   - "export DISPLAY=:99.0"
-  - if [ $TRAVIS_OS_NAME = "osx" ]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
+#  - if [ $TRAVIS_OS_NAME = "osx" ]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
+  - sh -e /etc/init.d/xvfb start
   - sleep 3
 
 env:
-  - suite=suite1 browser=safari
+#  - suite=suite1 browser=safari
   - suite=suite1 browser=firefox
   - suite=suite1 browser=chrome
-  - suite=suite2 browser=safari
+#  - suite=suite2 browser=safari
   - suite=suite2 browser=firefox
   - suite=suite2 browser=chrome
 
-matrix:
-  exclude:
-  - os: linux
-    env: suite=suite1 browser=safari
-  - os: linux
-    env: suite=suite2 browser=safari
-  - os: osx
-    env: suite=suite1 browser=firefox
-  - os: osx
-    env: suite=suite2 browser=firefox
-  - os: osx
-    env: suite=suite1 browser=chrome
-  - os: osx
-    env: suite=suite2 browser=chrome
+#matrix:
+#  exclude:
+#  - os: linux
+#   env: suite=suite1 browser=safari
+#  - os: linux
+#    env: suite=suite2 browser=safari
+#  - os: osx
+#    env: suite=suite1 browser=firefox
+#  - os: osx
+#    env: suite=suite2 browser=firefox
+#  - os: osx
+#    env: suite=suite1 browser=chrome
+#  - os: osx
+#    env: suite=suite2 browser=chrome
 
 script:
  - npm test
