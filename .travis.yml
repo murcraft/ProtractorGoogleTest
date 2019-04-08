@@ -66,7 +66,7 @@ script:
 # - if [[ $browser == "safari" ]]; then npm run test-chrome && if [$? != 0]; then exit 0; fi
 
 addons:
-  firefox: latest
+  firefox: "66"
   apt:
     sources:
     - google-chrome
