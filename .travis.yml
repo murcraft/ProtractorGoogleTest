@@ -24,8 +24,11 @@ before_script:
   - sleep 3
 
 env:
+  global:
+  - browser=firefox
 #  - suite=suite1 browser=safari
 #  - suite=suite2 browser=safari
+  matrix:
   - suite=suite1 browser=firefox
   - suite=suite2 browser=firefox
   - suite=suite1 browser=chrome
