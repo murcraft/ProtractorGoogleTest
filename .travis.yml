@@ -1,11 +1,9 @@
 language: node_js
 node_js:
-  - node
   - 10
 dist: trusty
 
-os:
-  - linux
+os: linux
 #  - osx
 
 # install AVbin
@@ -61,9 +59,11 @@ env:
 #    env: suite=suite2 browser="chrome"
 
 script:
- - if [[ $browser == "firefox" ]]; then npm run test-gecko || if [$? != 0]; then exit 0; fi
- - if [[ $browser == "chrome" ]]; then npm run test-chrome || if [$? != 0]; then exit 0; fi
- - if [[ $browser == "safari" ]]; then npm run test-chrome || if [$? != 0]; then exit 0; fi
+ - if [[ $browser == "firefox" ]]; then npm run test-gecko
+ - if [[ $browser == "chrome" ]]; then npm run test-chrome
+ - exit 0
+#; && if [$? != 0]; then exit 0; fi
+# - if [[ $browser == "safari" ]]; then npm run test-chrome && if [$? != 0]; then exit 0; fi
 
 addons:
   firefox: latest
