@@ -4,8 +4,10 @@
   "description": "",
   "scripts": {
     "preupdate-webdriver": "npm install",
-    "update-webdriver": "webdriver-manager update --versions.standalone=3.4.0 --versions.chrome=2.45",
+    "update-webdriver": "webdriver-manager update",
+    "postupdate-webdriver": "webdriver-manager update --versions.standalone=3.4.0",
     "pretest": "npm run update-webdriver",
+    "posttest": "npm run postupdate-webdriver",
     "test": "node conf-flake.js"
   },
   "devDependencies": {
