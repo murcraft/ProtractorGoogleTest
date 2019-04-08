@@ -1,11 +1,10 @@
 language: node_js
 node_js: 10
+dist: trusty
 
 os:
   - linux
-    dist: trusty
   - osx
-    osx_image: xcode10.0
 
 # install AVbin
 before_install:
@@ -26,22 +25,18 @@ before_script:
   - sleep 3
 
 matrix:
-  include:
-  - os: osx
+  exclude:
+  - os: linux
     env: suite=suite1 browser=safari
-  - os: osx
+  - os: linux
     env: suite=suite2 browser=safari
-  - os: linux
-    dist: trusty
+  - os: osx
     env: suite=suite1 browser=firefox
-  - os: linux
-    dist: trusty
+  - os: osx
     env: suite=suite2 browser=firefox
-  - os: linux
-    dist: trusty
+  - os: osx
     env: suite=suite1 browser=chrome
-  - os: linux
-    dist: trusty
+  - os: osx
     env: suite=suite2 browser=chrome
 
 script:
