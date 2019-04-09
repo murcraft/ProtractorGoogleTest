@@ -50,8 +50,6 @@ exports.config = {
 
   baseUrl: process.env.env = 'http://www.google.by',
 
-
-  geckoDriver: './lib/drivers/geckodriver-v0.24.0' + (process.platform.indexOf('win') === 0 ? '.exe' : ''),
   capabilities:
     {
       browserName: 'firefox',
