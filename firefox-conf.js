@@ -1,22 +1,11 @@
 let path = require('path')
 let fs = require('fs')
 
-const FirefoxProfile = require('firefox-profile')
-
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
 const keyVars = require('./keyVariables.js')
 
 let downloads = keyVars.downloadPath
-
-let myProfile = new FirefoxProfile()
-myProfile.setPreference('browser.download.folderList', 2)
-myProfile.setPreference('browser.download.manager.showWhenStarting', false)
-myProfile.setPreference('browser.download.dir', downloads)
-myProfile.setPreference('browser.helperApps.alwaysAsk.force', false)
-myProfile.setPreference('browser.download.downloadDir', downloads)
-myProfile.setPreference('browser.download.defaultFolder', downloads)
-myProfile.setPreference('browser.helperApps.neverAsk.saveToDisk', 'text/csv')
 
 exports.config = {
 
