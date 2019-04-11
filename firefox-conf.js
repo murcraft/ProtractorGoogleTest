@@ -97,7 +97,7 @@ exports.config = {
       }
     }
     if (fs.existsSync(downloads)) {
-      logger.debug(`Clearing 'Downloads'`)
+      logger.debug(`Clearing 'Downloads ${downloads}`)
       fs.readdirSync(downloads).forEach((file) => {
         let curPath = path.resolve(downloads, file)
         fs.unlinkSync(curPath)
