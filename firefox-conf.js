@@ -58,7 +58,6 @@ exports.config = {
       browserName: 'firefox',
       shardTestFiles: process.env.maxinstances > 1,
       maxInstances: process.env.maxinstances,
-      marionette: true,
       acceptSslCerts: true,
 
       'moz:firefoxOptions': {
@@ -81,6 +80,8 @@ exports.config = {
           "browser.download.panel.removeFinishedDownloads": true,
           "browser.download.useToolkitUI": false,
           "browser.helperApps.neverAsk.saveToDisk": "application/pdf",
+          "pdfjs.disabled": true,
+          "plugin.disable_full_page_plugin_for_types": "application/pdf"
         },
       },
     },
