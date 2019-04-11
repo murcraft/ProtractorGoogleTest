@@ -46,10 +46,13 @@ exports.config = {
     all: 'lib/spec/**/*.js',
     suite1: 'lib/spec/suite1/*.js',
     suite2: 'lib/spec/suite2/*.js',
+    pdf: 'lib/spec/pdf/*.js',
   },
 
-  baseUrl: process.env.env = 'http://www.google.by',
+  baseUrl: process.env.env === 'DEV' ? 'https://dev.perchwell.com/' : 'https://staging.perchwell.com/',
+  // baseUrl: process.env.env = 'http://www.google.by',
 
+  // firefoxPath: './lib/drivers/geckodriver-v0.24.0',
   capabilities:
     {
       browserName: 'firefox',
@@ -57,15 +60,28 @@ exports.config = {
       maxInstances: process.env.maxinstances,
       marionette: true,
       acceptSslCerts: true,
-      alwaysMatch: {
-        firefoxOptions: {
-          args: ['-headless'],
-          profile: myProfile,
-          log: {
-            level: 'trace'
-          }
-        }
-      }
+      // binary: './lib/drivers/geckodriver-v0.24.0',
+      'moz:firefoxOptions': {
+        // args: [
+        //   'window-size=1920,1080',
+        // ],
+        prefs: {
+          "browser.download.folderList": 2,
+          "browser.download.dir": downloads,
+          "services.sync.prefs.sync.browser.download.useDownloadDir": true,
+          "browser.download.useDownloadDir": true,
+          "browser.download.manager.alertOnEXEOpen": false,
+          "browser.download.manager.closeWhenDone": true,
+          "browser.download.manager.focusWhenStarting": false,
+          "browser.download.manager.showWhenStarting": false,
+          "browser.helperApps.alwaysAsk.force": false,
+          "browser.download.manager.showAlertOnComplete": false,
+          "browser.download.manager.useWindow": false,
+          "browser.download.panel.removeFinishedDownloads": true,
+          "browser.download.useToolkitUI": false,
+          "browser.helperApps.neverAsk.saveToDisk": "application/pdf",
+        },
+      },
     },
 
   beforeLaunch: function () {

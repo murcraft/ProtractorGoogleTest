@@ -52,10 +52,10 @@ let suiteArg = `--suite=${process.env.suite}`
 
 if (process.env.browser === 'firefox') {
   protractorArgs.push('firefox-conf.js')
-  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=incognito')
-  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=window-size=1920,1080')
-  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=headless')
-  protractorArgs.push('--capabilities.alwaysMatch.firefoxOptions.args=disable-gpu')
+  // protractorArgs.push('--capabilities.moz:firefoxOptions.args=--incognito')
+  // protractorArgs.push('--capabilities.moz:firefoxOptions.args=window-size=1920,1080')
+  // protractorArgs.push('--capabilities.firefoxOptions.args=headless')
+  // protractorArgs.push('--capabilities.firefoxOptions.args=disable-gpu')
 } else if (process.env.browser === 'safari') {
   protractorArgs.push('safari-conf.js')
 } else {
@@ -78,5 +78,5 @@ protractorFlake({
   color: 'magenta',
   protractorArgs: protractorArgs
 }, function (status) {
-  process.exit(0)
+  process.exit(status)
 })

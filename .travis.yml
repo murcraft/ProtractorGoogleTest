@@ -40,9 +40,11 @@ env:
     - browser="chrome"
   matrix:
   - suite=suite1 browser="firefox"
-  - suite=suite2 browser="firefox"
+  - suite=pdf browser="firefox"
+#  - suite=suite2 browser="firefox"
   - suite=suite1
-  - suite=suite2
+  - suite=pdf
+#  - suite=suite2
 #  - suite=suite1 browser="safari"
 #  - suite=suite2 browser="safari"
 
@@ -64,7 +66,7 @@ env:
 script:
  - if [[ $browser == "firefox" ]]; then npm run test-gecko; fi
  - if [[ $browser == "chrome" ]]; then npm run test-chrome; fi
- - if [[$? != 0]]; then exit 0; fi
+
 #; && if [$? != 0]; then exit 0; fi
 # - if [[ $browser == "safari" ]]; then npm run test-chrome && if [$? != 0]; then exit 0; fi
 
