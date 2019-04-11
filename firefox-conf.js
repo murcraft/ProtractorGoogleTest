@@ -20,6 +20,8 @@ myProfile.setPreference('browser.helperApps.neverAsk.saveToDisk', 'text/csv')
 
 exports.config = {
 
+  seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
+
   allScriptsTimeout: 110000000,
   SELENIUM_PROMISE_MANAGER: false,
   framework: 'jasmine2',
@@ -50,9 +52,7 @@ exports.config = {
   },
 
   baseUrl: process.env.env === 'DEV' ? 'https://dev.perchwell.com/' : 'https://staging.perchwell.com/',
-  // baseUrl: process.env.env = 'http://www.google.by',
 
-  // firefoxPath: './lib/drivers/geckodriver-v0.24.0',
   capabilities:
     {
       browserName: 'firefox',
@@ -60,7 +60,7 @@ exports.config = {
       maxInstances: process.env.maxinstances,
       marionette: true,
       acceptSslCerts: true,
-      // binary: './lib/drivers/geckodriver-v0.24.0',
+
       'moz:firefoxOptions': {
         // args: [
         //   'window-size=1920,1080',
@@ -68,6 +68,7 @@ exports.config = {
         prefs: {
           "browser.download.folderList": 2,
           "browser.download.dir": downloads,
+          "pref.downloads.disable_button.edit_actions": true,
           "services.sync.prefs.sync.browser.download.useDownloadDir": true,
           "browser.download.useDownloadDir": true,
           "browser.download.manager.alertOnEXEOpen": false,

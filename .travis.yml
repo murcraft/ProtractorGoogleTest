@@ -15,19 +15,19 @@ before_install:
 #     curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg;
 #     sudo installer -pkg AVbin10.pkg -target /;
 #    fi
-  - |
-    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      /sbin/start-stop-daemon \
-      --start \
-      --quiet \
-      --pidfile /tmp/custom_xvfb_99.pid \
-      --make-pidfile \
-      --background \
-      --exec /usr/bin/Xvfb \
-      -- :99 -screen 0 1920x1080x16"
-    else
-      :
-    fi
+#  - |
+#    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+#      /sbin/start-stop-daemon \
+#      --start \
+#      --quiet \
+#      --pidfile /tmp/custom_xvfb_99.pid \
+#      --make-pidfile \
+#      --background \
+#      --exec /usr/bin/Xvfb \
+#      -- :99 -screen 0 1920x1080x16"
+#    else
+#      :
+#    fi
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
@@ -52,6 +52,7 @@ env:
 #  exclude:
 #  - os: linux
 #    env: suite=suite1 browser="safari"
+
 #  - os: linux
 #    env: suite=suite2 browser="safari"
 #  - os: osx
