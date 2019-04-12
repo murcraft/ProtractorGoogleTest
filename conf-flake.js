@@ -49,13 +49,17 @@ console.log(`browser - ${process.env.browser}`)
 let protractorArgs = []
 process.env.maxAttempts = 2
 let suiteArg = `--suite=${process.env.suite}`
+protractorArgs.push(suiteArg)
 
 if (process.env.browser === 'firefox') {
   protractorArgs.push('firefox-conf.js')
-} else if (process.env.browser === 'safari') {
+}
+if (process.env.browser === 'safari') {
   protractorArgs.push('safari-conf.js')
-} else {
+}
+if (process.env.browser === 'chrome') {
   protractorArgs.push('conf.js')
+}
 
 if(process.env.suite !== 'pdf') {
   if (process.env.browser === 'firefox') {
@@ -71,9 +75,6 @@ if(process.env.suite !== 'pdf') {
     protractorArgs.push('--capabilities.chromeOptions.args=disable-gpu')
   }
 }
-
-
-protractorArgs.push(suiteArg)
 
 console.log(protractorArgs)
 
