@@ -1,11 +1,6 @@
 language: node_js
 node_js:
   - 10
-dist: trusty
-
-os:
-  - linux
-  - osx_image: xcode9.1
 
 # install AVbin
 before_install:
@@ -23,7 +18,7 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
-#  - if [[/ $TRAVIS_OS_NAME == "osx" ]]; then sudo Xvfb :99 -ac -screen 0 1024x768x8; else sh -e /etc/init.d/xvfb start; fi
+#  - if [[/ $TRAVIS_OS_NAME == "osx" ]]; then sudo Xvfb :99 -ac -screen 0 1920x1080x16; else sh -e /etc/init.d/xvfb start; fi
 
 env:
   global:
@@ -38,7 +33,13 @@ env:
 #  - suite=suite1 browser="safari"
 #  - suite=suite2 browser="safari"
 
-#matrix:
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode9.1
+      env:
+        - suite=suite1 browser="safari"
+        - suite=suite2 browser="safari"
 #  exclude:
 #  - os: linux
 #    env: suite=suite1 browser="safari"
