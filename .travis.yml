@@ -3,8 +3,9 @@ node_js:
   - 10
 dist: trusty
 
-os: linux
-#  - osx
+os:
+  - linux
+  - osx_image: xcode9.1
 
 # install AVbin
 before_install:
@@ -15,19 +16,8 @@ before_install:
 #     curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg;
 #     sudo installer -pkg AVbin10.pkg -target /;
 #    fi
-#  - |
-#    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-#      /sbin/start-stop-daemon \
-#      --start \
-#      --quiet \
-#      --pidfile /tmp/custom_xvfb_99.pid \
-#      --make-pidfile \
-#      --background \
-#      --exec /usr/bin/Xvfb \
-#      -- :99 -screen 0 1920x1080x16"
-#    else
-#      :
-#    fi
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16; fi
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
@@ -39,11 +29,11 @@ env:
   global:
     - browser="chrome"
   matrix:
-  - suite=suite1 browser="firefox"
-  - suite=pdf browser="firefox"
+  - suite=suite1 browser="safari"
+#  - suite=pdf browser="safari"
 #  - suite=suite2 browser="firefox"
-  - suite=suite1
-  - suite=pdf
+#  - suite=suite1
+#  - suite=pdf
 #  - suite=suite2
 #  - suite=suite1 browser="safari"
 #  - suite=suite2 browser="safari"
@@ -67,6 +57,8 @@ env:
 script:
  - if [[ $browser == "firefox" ]]; then npm run test-gecko; fi
  - if [[ $browser == "chrome" ]]; then npm run test-chrome; fi
+ - if [[ $browser == "safari" ]]; then sudo safaridriver --enable; fi
+ - if [[ $browser == "safari" ]]; then npm run test-safari; fi
  - npm test || if [$? != 0]; then exit 0; fi
 # - if [[ $browser == "safari" ]]; then npm run test-chrome && if [$? != 0]; then exit 0; fi
 

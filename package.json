@@ -10,6 +10,7 @@
     "start-webdriver": "webdriver-manager start --detach --quiet",
     "test-chrome": "npm run update-chrome",
     "test-gecko": "npm run update-gecko && npm run start-webdriver",
+    "test-safari": "npm run update-webdriver",
     "test": "node conf-flake.js"
   },
   "devDependencies": {

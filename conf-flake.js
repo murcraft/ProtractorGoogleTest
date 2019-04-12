@@ -55,7 +55,7 @@ if (process.env.browser === 'firefox') {
   protractorArgs.push('firefox-conf.js')
 }
 if (process.env.browser === 'safari') {
-  protractorArgs.push('safari-conf.js')
+  protractorArgs.push('safari.conf.js')
 }
 if (process.env.browser === 'chrome') {
   protractorArgs.push('conf.js')
