@@ -4,56 +4,55 @@ node_js:
 
 # install AVbin
 before_install:
-#  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16"
-#  - |
-#    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-#     brew update;
-#     curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg;
-#     sudo installer -pkg AVbin10.pkg -target /;
-#    fi
-  - |
-    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo installer -pkg AVbin10.pkg -target /; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16; fi
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
-#  - if [[/ $TRAVIS_OS_NAME == "osx" ]]; then sudo Xvfb :99 -ac -screen 0 1920x1080x16; else sh -e /etc/init.d/xvfb start; fi
-
-env:
-  global:
-    - browser="chrome"
-  matrix:
-  - suite=suite1 browser="safari"
-#  - suite=pdf browser="safari"
-#  - suite=suite2 browser="firefox"
-#  - suite=suite1
-#  - suite=pdf
-#  - suite=suite2
-#  - suite=suite1 browser="safari"
-#  - suite=suite2 browser="safari"
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo Xvfb :99 -ac -screen 0 1920x1080x16; else sh -e /etc/init.d/xvfb start; fi
 
 matrix:
   include:
     - os: osx
       osx_image: xcode9.1
+      addons:
+        homebrew:
+          packages:
+          - graphicsmagick
+          - ghostscript
       env:
-        - suite=suite1 browser="safari"
-        - suite=suite2 browser="safari"
-#  exclude:
-#  - os: linux
-#    env: suite=suite1 browser="safari"
+      - suite=suite1 browser="safari"
+      - suite=suite2 browser="safari"
+      - suite=pdf browser="safari"
 
-#  - os: linux
-#    env: suite=suite2 browser="safari"
-#  - os: osx
-#    env: suite=suite1 browser="firefox"
-#  - os: osx
-#    env: suite=suite2 browser="firefox"
-#  - os: osx
-#    env: suite=suite1 browser="chrome"
-#  - os: osx
-#    env: suite=suite2 browser="chrome"
+    - os: linux
+      dist: trusty
+      addons:
+        firefox: latest
+        apt:
+          packages:
+          - graphicsmagick
+          - ghostscript
+      env:
+      - suite=suite1 browser="firefox"
+      - suite=suite2 browser="firefox"
+      - suite=pdf browser="firefox"
+    - os: linux
+      chrome: stable
+      addons:
+        firefox: latest
+        apt:
+          packages:
+          - graphicsmagick
+          - ghostscript
+      env:
+      - suite=suite1 browser="chrome"
+      - suite=suite2 browser="chrome"
+      - suite=pdf browser="chrome"
 
 script:
  - if [[ $browser == "firefox" ]]; then npm run test-gecko; fi
@@ -61,26 +60,8 @@ script:
  - if [[ $browser == "safari" ]]; then sudo safaridriver --enable; fi
  - if [[ $browser == "safari" ]]; then npm run test-safari; fi
  - npm test || if [$? != 0]; then exit 0; fi
-# - if [[ $browser == "safari" ]]; then npm run test-chrome && if [$? != 0]; then exit 0; fi
 
 addons:
-  firefox: latest
-  chrome: stable
-  apt:
-    sources:
-    - google-chrome
-    packages:
-#    - google-chrome-stable
-    - graphicsmagick
-    - ghostscript
-#  homebrew:
-#    sources:
-#    - google-chrome
-#    packages:
-#    - google-chrome-stable
-#    - graphicsmagick
-#    - ghostscript
-
   artifacts:
     s3_region: "us-west-2"
     paths:
