@@ -20,7 +20,6 @@ exports.config = {
   params: {
     waitTimeout: 60000,
     legoUrl: `https://www.lego.com/en-us`,
-    downloadPath: downloads,
 
     page: {
       startPage: `https://google.com/`,
@@ -70,9 +69,6 @@ exports.config = {
         browser: 'SEVERE',
       },
     },
-
-
-
 
   beforeLaunch: function () {
     let logger = require('./lib/helpers/loggerHelper')

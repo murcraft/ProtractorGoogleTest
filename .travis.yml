@@ -66,9 +66,8 @@ env:
 
 script:
  - if [[ $browser == "firefox" ]]; then npm run test-gecko; fi
- - if [[ $browser == "firefox" ]]; then node conf-flake.js; fi
  - if [[ $browser == "chrome" ]]; then npm run test-chrome; fi
- - if [$? != 0]; then exit 0; fi
+ - npm test || if [$? != 0]; then exit 0; fi
 # - if [[ $browser == "safari" ]]; then npm run test-chrome && if [$? != 0]; then exit 0; fi
 
 addons:

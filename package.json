@@ -5,15 +5,12 @@
   "scripts": {
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update --gecko=false --versions.standalone=3.14.0",
-    "start-webdriver": "webdriver-manager start --detach --quiet",
     "update-chrome": "webdriver-manager update --gecko=false --versions.chrome=2.45 --versions.standalone=3.4.0",
     "update-gecko": "webdriver-manager update --chrome=false",
-    "pretest-webdriver": "npm run update-webdriver && npm run start-webdriver",
-    "pretest-chrome": "npm run update-chrome",
-    "pretest-gecko": "npm run update-gecko",
-    "test-chrome": "npm run pretest-chrome && node conf-flake.js",
+    "start-webdriver": "webdriver-manager start --detach --quiet",
+    "test-chrome": "npm run update-chrome",
     "test-gecko": "npm run update-gecko && npm run start-webdriver",
-    "test": "npm run preupdate-webdriver && npm run pretest-webdriver && node conf-flake.js"
+    "test": "node conf-flake.js"
   },
   "devDependencies": {
     "aws-sdk": "^2.436.0",

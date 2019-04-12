@@ -22,7 +22,6 @@ exports.config = {
   params: {
     waitTimeout: 60000,
     legoUrl: `https://www.lego.com/en-us`,
-    downloadPath: downloads,
 
     page: {
       startPage: `https://google.com/`,
@@ -50,9 +49,11 @@ exports.config = {
       acceptSslCerts: true,
 
       'moz:firefoxOptions': {
-        // args: [
-        //   'window-size=1920,1080',
-        // ],
+        args: [
+          '--width=1920',
+          '--height=1920',
+          '-private'
+        ],
         prefs: {
           'browser.download.folderList': 2,
           'browser.download.dir': downloads,
