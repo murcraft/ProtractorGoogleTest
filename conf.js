@@ -51,8 +51,8 @@ exports.config = {
         args: [
           'incognito',
           'window-size=1920,1080',
-          // '--disable-infobars',
-          // '--disable-extensions',
+          '--disable-infobars',
+          '--disable-extensions',
           // '--ignore-ssl-errors=true',
           // 'verbose',
           // '--disable-web-security'
