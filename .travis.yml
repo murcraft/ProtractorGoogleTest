@@ -29,19 +29,19 @@ env:
  - suite=pdf browser="chrome"
 
 matrix:
-  include:
+  exclude:
     - os: osx
-      env: suite=suite1 browser="safari"
-    - os: osx
-      env: suite=suite2 browser="safari"
-    - os: osx
-      env: suite=pdf browser="safari"
-    - os: linux
       env: suite=suite1 browser="firefox"
-    - os: linux
+    - os: osx
       env: suite=suite2 browser="firefox"
-    - os: linux
+    - os: osx
       env: suite=pdf browser="firefox"
+    - os: osx
+      env: suite=suite1 browser="chrome"
+    - os: osx
+      env: suite=suite2 browser="chrome"
+    - os: osx
+      env: suite=pdf browser="chrome"
     - os: linux
       env: suite=suite1 browser="safari"
     - os: linux

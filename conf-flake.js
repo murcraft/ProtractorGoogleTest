@@ -66,9 +66,11 @@ if(process.env.suite !== 'pdf') {
     protractorArgs.push('--capabilities.moz:firefoxOptions.args=-private')
     protractorArgs.push('--capabilities.moz:firefoxOptions.args=--width=1920')
     protractorArgs.push('--capabilities.moz:firefoxOptions.args=--height=1080')
-    protractorArgs.push('--capabilities.firefoxOptions.args=headless')
-  } else if (process.env.browser === 'safari') {
-  } else {
+    protractorArgs.push('--capabilities.moz:firefoxOptions.args=--headless')
+  }
+    if (process.env.browser === 'safari') {
+  }
+  if (process.env.browser === 'chrome') {
     protractorArgs.push('--capabilities.chromeOptions.args=incognito')
     protractorArgs.push('--capabilities.chromeOptions.args=window-size=1920,1080')
     protractorArgs.push('--capabilities.chromeOptions.args=headless')
