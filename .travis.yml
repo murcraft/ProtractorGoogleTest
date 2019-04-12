@@ -73,20 +73,21 @@ script:
 
 addons:
   firefox: latest
+  chrome: stable
   apt:
     sources:
     - google-chrome
     packages:
-    - google-chrome-stable
+#    - google-chrome-stable
     - graphicsmagick
     - ghostscript
-  homebrew:
-    sources:
-    - google-chrome
-    packages:
-    - google-chrome-stable
-    - graphicsmagick
-    - ghostscript
+#  homebrew:
+#    sources:
+#    - google-chrome
+#    packages:
+#    - google-chrome-stable
+#    - graphicsmagick
+#    - ghostscript
 
   artifacts:
     s3_region: "us-west-2"
