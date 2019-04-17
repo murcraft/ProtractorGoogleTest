@@ -5,11 +5,11 @@
   "scripts": {
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update --gecko=false --versions.standalone=3.14.0",
-    "update-chrome": "webdriver-manager update --gecko=false --versions.chrome=2.45 --versions.standalone=3.4.0",
+    "update-chrome": "webdriver-manager update --gecko=false --versions.chrome=2.46 --versions.standalone=3.4.0",
     "update-gecko": "webdriver-manager update --chrome=false",
     "start-webdriver": "webdriver-manager start --detach --quiet",
     "test-chrome": "npm run update-chrome",
-    "test-gecko": "npm run update-gecko && npm run start-webdriver",
+    "tes-gecko": "npm run update-gecko && npm run start-webdriver",
     "test-safari": "npm run update-webdriver",
     "test": "node conf-flake.js"
   },

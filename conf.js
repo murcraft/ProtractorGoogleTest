@@ -5,9 +5,11 @@ const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
 const keyVars = require('./keyVariables.js')
 
+const capabilitiesMap = require('./capabilitiesMap.js')
+const browserName = process.env.browser
 let downloads = keyVars.downloadPath
 
-exports.config = {
+let config = {
 
   allScriptsTimeout: 110000000,
   SELENIUM_PROMISE_MANAGER: false,
@@ -41,34 +43,34 @@ exports.config = {
 
   // baseUrl: process.env.env = 'http://www.google.by',
 
-  capabilities:
-    {
-      browserName: 'chrome',
-      shardTestFiles: process.env.maxinstances > 1,
-      maxInstances: process.env.maxinstances,
-
-      chromeOptions: {
-        args: [
-          'incognito',
-          'window-size=1920,1080',
-          '--disable-infobars',
-          '--disable-extensions',
-          // '--ignore-ssl-errors=true',
-          // 'verbose',
-          // '--disable-web-security'
-        ],
-      },
-      prefs: {
-        download: {
-          prompt_for_download: false,
-          directory_upgrade: true,
-          default_directory: downloads,
-        },
-      },
-      loggingPrefs: {
-        browser: 'SEVERE',
-      },
-    },
+  // capabilities:
+  //   {
+  //     browserName: 'chrome',
+  //     shardTestFiles: process.env.maxinstances > 1,
+  //     maxInstances: process.env.maxinstances,
+  //
+  //     chromeOptions: {
+  //       args: [
+  //         'incognito',
+  //         'window-size=1920,1080',
+  //         '--disable-infobars',
+  //         '--disable-extensions',
+  //         // '--ignore-ssl-errors=true',
+  //         // 'verbose',
+  //         // '--disable-web-security'
+  //       ],
+  //     },
+  //     prefs: {
+  //       download: {
+  //         prompt_for_download: false,
+  //         directory_upgrade: true,
+  //         default_directory: downloads,
+  //       },
+  //     },
+  //     loggingPrefs: {
+  //       browser: 'SEVERE',
+  //     },
+  //   },
 
   beforeLaunch: function () {
     let logger = require('./lib/helpers/loggerHelper')
@@ -129,6 +131,7 @@ exports.config = {
         if (result.status === 'disabled' || result.status === 'pending') {
           SKIPPED++
         }
+
       }
       this.jasmineDone = function () {
         Logger.info(`**************************************************`)
@@ -150,7 +153,9 @@ exports.config = {
     }
 
     jasmine.getEnv().afterEach(async function () {
-      await Logger.LogConsoleErrors()
+      if (browserName !== 'firefox') {
+        await Logger.LogConsoleErrors()
+      }
       try {
         await browser.takeScreenshot().then(function (png) {
           allure.createAttachment('Screenshot', function () {
@@ -170,4 +175,14 @@ exports.config = {
     await new Promise(resolve => setTimeout(resolve, 5000))
   },
 }
+
+config.capabilities = capabilitiesMap[browserName]
+if (browserName === 'firefox') {
+  config.seleniumAddress = 'http://127.0.0.1:4444/wd/hub'
+  config.localSeleniumStandaloneOpts = {
+    jvmArgs: ['-Dwebdriver.gecko.driver=./lib/drivers/geckodriver-v0.24.0.exe']
+  }
+
+}
+exports.config = config
 

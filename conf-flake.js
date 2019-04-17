@@ -47,19 +47,20 @@ process.env.browser = process.env.browser !== 'undefined' ? process.env.browser 
 console.log(`browser - ${process.env.browser}`)
 
 let protractorArgs = []
-process.env.maxAttempts = 2
-let suiteArg = `--suite=${process.env.suite}`
-protractorArgs.push(suiteArg)
-
 if (process.env.browser === 'firefox') {
   protractorArgs.push('firefox-conf.js')
 }
 if (process.env.browser === 'safari') {
   protractorArgs.push('safari.conf.js')
+  process.env.maxinstances = 1
 }
 if (process.env.browser === 'chrome') {
-  protractorArgs.push('conf.js')
+  protractorArgs.push('conf1.js')
 }
+
+process.env.maxAttempts = 2
+let suiteArg = `--suite=${process.env.suite}`
+protractorArgs.push(suiteArg)
 
 if(process.env.suite !== 'pdf') {
   if (process.env.browser === 'firefox') {
@@ -68,7 +69,7 @@ if(process.env.suite !== 'pdf') {
     protractorArgs.push('--capabilities.moz:firefoxOptions.args=--height=1080')
     protractorArgs.push('--capabilities.moz:firefoxOptions.args=--headless')
   }
-    if (process.env.browser === 'safari') {
+  if (process.env.browser === 'safari') {
   }
   if (process.env.browser === 'chrome') {
     protractorArgs.push('--capabilities.chromeOptions.args=incognito')

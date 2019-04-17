@@ -1,9 +1,6 @@
 language: node_js
 node_js:
   - 10
-os:
-  - linux
-  - osx
 
 # install AVbin
 before_install:
@@ -29,30 +26,31 @@ env:
  - suite=pdf browser="chrome"
 
 matrix:
-  exclude:
+  include:
     - os: osx
-      env: suite=suite1 browser="firefox"
+      env: suite=suite1 browser="safari"
     - os: osx
-      env: suite=suite2 browser="firefox"
+      env: suite=suite2 browser="safari"
     - os: osx
-      env: suite=pdf browser="firefox"
-    - os: osx
+      env: suite=pdf browser="safari"
+    - os: linux
       env: suite=suite1 browser="chrome"
-    - os: osx
+    - os: linux
       env: suite=suite2 browser="chrome"
-    - os: osx
+    - os: linux
       env: suite=pdf browser="chrome"
     - os: linux
-      env: suite=suite1 browser="safari"
+      env: suite=suite1 browser="firefox"
     - os: linux
-      env: suite=suite2 browser="safari"
+      env: suite=suite2 browser="firefox"
     - os: linux
-      env: suite=pdf browser="safari"
+      env: suite=pdf browser="firefox"
 
 script:
  - if [[ $browser == "firefox" ]]; then npm run test-gecko; fi
  - if [[ $browser == "chrome" ]]; then npm run test-chrome; fi
  - if [[ $browser == "safari" ]]; then sudo safaridriver --enable; fi
+ - if [[ $browser == "safari" ]]; then sudo /Users/travis/build/ProtractorGoogleTest/setSafariPath.scpt; fi
  - if [[ $browser == "safari" ]]; then npm run test-safari; fi
  - npm test || if [$? != 0]; then exit 0; fi
 

@@ -20,7 +20,6 @@ exports.config = {
   params: {
     waitTimeout: 60000,
     legoUrl: `https://www.lego.com/en-us`,
-    downloadPath: downloads,
 
     page: {
       startPage: `https://google.com/`,
@@ -31,25 +30,45 @@ exports.config = {
     'lib/spec/**/*.js',
   ],
 
+  baseUrl: process.env.env === 'DEV' ? 'https://dev.perchwell.com/' : 'https://staging.perchwell.com/',
+
   suites: {
     all: 'lib/spec/**/*.js',
     suite1: 'lib/spec/suite1/*.js',
     suite2: 'lib/spec/suite2/*.js',
+    pdf: 'lib/spec/pdf/*.js',
   },
 
-  baseUrl: process.env.env = 'http://www.google.by',
-  // directConnect: true,
+  // baseUrl: process.env.env = 'http://www.google.by',
+
   capabilities:
     {
-      browserName: 'safari',
+      browserName: 'chrome',
       shardTestFiles: process.env.maxinstances > 1,
       maxInstances: process.env.maxinstances,
-      logName: 'Safari',
+
+      chromeOptions: {
+        args: [
+          'incognito',
+          'window-size=1920,1080',
+          '--disable-infobars',
+          '--disable-extensions',
+          // '--ignore-ssl-errors=true',
+          // 'verbose',
+          // '--disable-web-security'
+        ],
+      },
+      prefs: {
+        download: {
+          prompt_for_download: false,
+          directory_upgrade: true,
+          default_directory: downloads,
+        },
+      },
+      loggingPrefs: {
+        browser: 'SEVERE',
+      },
     },
-
-
-
-
 
   beforeLaunch: function () {
     let logger = require('./lib/helpers/loggerHelper')
@@ -74,8 +93,6 @@ exports.config = {
   },
 
   onPrepare: async () => {
-    browser.manage().window().maximize();
-    browser.manage().timeouts().implicitlyWait(5000);
     browser.waitForAngularEnabled(false)
     global.EC = protractor.ExpectedConditions
     global.Logger = require('./lib/helpers/loggerHelper')
