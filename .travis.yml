@@ -14,17 +14,6 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
 
-env:
- - suite=suite1 browser="safari"
- - suite=suite2 browser="safari"
- - suite=pdf browser="safari"
- - suite=suite1 browser="firefox"
- - suite=suite2 browser="firefox"
- - suite=pdf browser="firefox"
- - suite=suite1 browser="chrome"
- - suite=suite2 browser="chrome"
- - suite=pdf browser="chrome"
-
 matrix:
   include:
     - os: osx
