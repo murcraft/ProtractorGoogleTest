@@ -64,7 +64,7 @@ protractorArgs.push(suiteArg)
 
 if(process.env.suite !== 'pdf') {
   if (process.env.browser === 'firefox') {
-    protractorArgs.push('--capabilities.moz:firefoxOptions.args=-private')
+    protractorArgs.push('--capabilities.moz:firefoxOptions.args=--private')
     protractorArgs.push('--capabilities.moz:firefoxOptions.args=--width=1920')
     protractorArgs.push('--capabilities.moz:firefoxOptions.args=--height=1080')
     protractorArgs.push('--capabilities.moz:firefoxOptions.args=--headless')
