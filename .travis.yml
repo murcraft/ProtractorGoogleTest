@@ -43,9 +43,9 @@ stages:
   - Safari-tests
 
 env:
-  - suite=suite1 browser="chrome"
-  - suite=suite2 browser="chrome"
-  - suite=pdf browser="chrome"
+  - suite=suite1
+  - suite=suite2
+  - suite=pdf
 
 
 script:
