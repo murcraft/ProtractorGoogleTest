@@ -179,9 +179,9 @@ let config = {
 config.capabilities = capabilitiesMap[browserName]
 if (browserName === 'firefox') {
   config.seleniumAddress = 'http://127.0.0.1:4444/wd/hub'
-  config.localSeleniumStandaloneOpts = {
-    jvmArgs: ['-Dwebdriver.gecko.driver=./lib/drivers/geckodriver-v0.24.0.exe']
-  }
+  // config.localSeleniumStandaloneOpts = {
+  //   jvmArgs: ['-Dwebdriver.gecko.driver=./lib/drivers/geckodriver-v0.24.0.exe']
+  // }
 
 }
 exports.config = config

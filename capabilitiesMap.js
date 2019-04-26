@@ -9,13 +9,13 @@ let capabilitiesMap = {
     shardTestFiles: process.env.maxinstances > 1,
     maxInstances: process.env.maxinstances,
     acceptSslCerts: true,
-    binary: './lib/drivers/geckodriver-v0.24.0.exe',
+    // binary: './lib/drivers/geckodriver-v0.24.0.exe',
 
     'moz:firefoxOptions': {
       args: [
         '--width=1920',
         '--height=1920',
-        '-private'
+        '--private'
       ],
       prefs: {
         'browser.download.folderList': 2,

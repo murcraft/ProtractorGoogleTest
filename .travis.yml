@@ -60,9 +60,9 @@ script:
 jobs:
  include:
  - stage: Firefox-tests
-   script: npm run test-gecko -- suite=suite1 browser=firefox
+   script: npm run test-gecko -- suite=suite1 browser=firefox || if [$? != 0]; then exit 0; fi
  - stage: Firefox-tests
-   script: npm run test-gecko -- suite=suite1 browser=firefox  || if [$? != 0]; then exit 0; fi
+   script: npm run test-gecko -- suite=suite2 browser=firefox || if [$? != 0]; then exit 0; fi
  - stage: Firefox-tests
    script: npm run test-gecko -- suite=pdf browser=firefox || if [$? != 0]; then exit 0; fi
  - stage: Safari-tests
@@ -74,7 +74,7 @@ jobs:
    os: osx
    script:
    - sudo safaridriver --enable
-   - npm run test-safari -- suite=suite2 browser=safari
+   - npm run test-safari -- suite=suite2 browser=safari || if [$? != 0]; then exit 0; fi
  - stage: Safari-tests
    os: osx
    script:
