@@ -47,25 +47,22 @@ process.env.browser = process.env.browser !== 'undefined' ? process.env.browser 
 console.log(`browser - ${process.env.browser}`)
 
 let protractorArgs = []
-// if (process.env.browser === 'firefox') {
-//   protractorArgs.push('firefox-conf.js')
-// }
-// if (process.env.browser === 'safari') {
-//   protractorArgs.push('safari.conf.js')
-//   process.env.maxinstances = 1
-// }
-// if (process.env.browser === 'chrome') {
-//   protractorArgs.push('conf1.js')
-// }
+if (process.env.browser === 'firefox') {
+  protractorArgs.push('firefox-conf.js')
+}
+if (process.env.browser === 'safari') {
+  protractorArgs.push('safari.conf.js')
+  process.env.maxinstances = 1
+}
+if (process.env.browser === 'chrome') {
+  protractorArgs.push('conf1.js')
+}
 
 protractorArgs.push('conf.js')
 
 process.env.maxAttempts = 2
 let suiteArg = `--suite=${process.env.suite}`
 protractorArgs.push(suiteArg)
-if (process.env.browser === 'safari') {
-  process.env.maxinstances = 1
-}
 
 if(process.env.suite !== 'pdf') {
   if (process.env.browser === 'firefox') {
