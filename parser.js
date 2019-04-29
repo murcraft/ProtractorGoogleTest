@@ -44,10 +44,11 @@ module.exports = {
     const specFileNames = failedSpecsLines.filter(Boolean).map(line => {
       if (process.env.browser = 'safari') {
         const startingPathPosition = line.indexOf('/Users/travis/')
+        return line.substr(startingPathPosition)
       } else {
         const startingPathPosition = line.indexOf('/home/travis/')
+        return line.substr(startingPathPosition)
       }
-      return line.substr(startingPathPosition)
     })
 
     previousSpecFileNames = specFileNames

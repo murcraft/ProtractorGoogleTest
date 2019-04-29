@@ -144,7 +144,7 @@ let config = {
     })
 
     jasmine.getEnv().afterEach(async function () {
-      if (browserName !== 'firefox') {
+      if (browserName === 'chrome') {
         await Logger.LogConsoleErrors()
       }
       try {
@@ -168,14 +168,16 @@ let config = {
 }
 
 config.capabilities = capabilitiesMap[browserName]
+
 if (browserName === 'firefox') {
-  console.log('BROWSER FIREFOX')
   console.log(config.capabilities)
   config.seleniumAddress = 'http://127.0.0.1:4444/wd/hub'
+  console.log(config.seleniumAddress)
   // config.localSeleniumStandaloneOpts = {
   //   jvmArgs: ['-Dwebdriver.gecko.driver=./lib/drivers/geckodriver-v0.24.0.exe']
   // }
   // config.exclude = ['lib/spec/pdf/savePdf*.js']
 }
+
 exports.config = config
 

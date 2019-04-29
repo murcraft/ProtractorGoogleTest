@@ -63,6 +63,9 @@ protractorArgs.push('conf.js')
 process.env.maxAttempts = 2
 let suiteArg = `--suite=${process.env.suite}`
 protractorArgs.push(suiteArg)
+if (process.env.browser === 'safari') {
+  process.env.maxinstances = 1
+}
 
 if(process.env.suite !== 'pdf') {
   if (process.env.browser === 'firefox') {
