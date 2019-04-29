@@ -89,9 +89,9 @@ script:
 #   - npm run test-safari -- suite=pdf browser=safari || if [$? != 0]; then exit 0; fi
 
 addons:
+  firefox: 66
   apt:
     chrome: stable
-    firefox: latest
     sources:
     - google-chrome
     packages:
