@@ -41,22 +41,24 @@ process.env.maxinstances = maxinstancesCmd !== undefined ? maxinstancesCmd : pro
 process.env.maxinstances = process.env.maxinstances !== 'undefined' ? process.env.maxinstances : 1
 console.log(`maxinstances - ${process.env.maxinstances}`)
 
-let browserParamCmd = getParamValue('browser')
-process.env.browser = browserParamCmd !== undefined ? browserParamCmd : process.env.browser
+let browserCmd = getParamValue('browser')
+process.env.browser = browserCmd !== undefined ? browserCmd : process.env.browser
 process.env.browser = process.env.browser !== 'undefined' ? process.env.browser : 'chrome'
 console.log(`browser - ${process.env.browser}`)
 
 let protractorArgs = []
-if (process.env.browser === 'firefox') {
-  protractorArgs.push('firefox-conf.js')
-}
-if (process.env.browser === 'safari') {
-  protractorArgs.push('safari.conf.js')
-  process.env.maxinstances = 1
-}
-if (process.env.browser === 'chrome') {
-  protractorArgs.push('conf1.js')
-}
+// if (process.env.browser === 'firefox') {
+//   protractorArgs.push('firefox-conf.js')
+// }
+// if (process.env.browser === 'safari') {
+//   protractorArgs.push('safari.conf.js')
+//   process.env.maxinstances = 1
+// }
+// if (process.env.browser === 'chrome') {
+//   protractorArgs.push('conf1.js')
+// }
+
+protractorArgs.push('conf.js')
 
 process.env.maxAttempts = 2
 let suiteArg = `--suite=${process.env.suite}`
