@@ -56,11 +56,12 @@ exports.config = {
       maxInstances: process.env.maxinstances,
       acceptSslCerts: true,
       // binary: './lib/drivers/geckodriver-v0.24.0.exe',
+      verboseMultiSession: true,
 
       'moz:firefoxOptions': {
         args: [
           '--width=1920',
-          '--height=1920',
+          '--height=1080',
           '-private'
         ],
         prefs: {
@@ -157,12 +158,7 @@ exports.config = {
       }
     })
 
-    if ((process.env.suite !== 'suite3') && (process.env.suite !== 'suite4') &&
-      (process.env.suite !== 'suite5') && (process.env.suite !== 'suite6') &&
-      (process.env.suite !== 'suite7') && (process.env.suite !== 'suite8') &&
-      (process.env.suite !== 'suite9') && (process.env.suite !== 'suite10') &&
-      (process.env.suite !== 'suite11') && (process.env.suite !== 'suite12') &&
-      (process.env.suite !== 'suite13') && (process.env.suite !== 'suite14')) {
+    if ((process.env.suite !== 'suite3')) {
       jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
     }
 

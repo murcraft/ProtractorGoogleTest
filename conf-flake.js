@@ -49,6 +49,7 @@ console.log(`browser - ${process.env.browser}`)
 let protractorArgs = []
 if (process.env.browser === 'firefox') {
   protractorArgs.push('firefox-conf.js')
+  process.env.maxinstances = 4
 }
 if (process.env.browser === 'safari') {
   protractorArgs.push('safari.conf.js')
