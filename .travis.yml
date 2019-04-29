@@ -21,13 +21,13 @@ matrix:
   include:
     - os: linux
       dist: trusty
-      env: suite=suite1 browser="chrome"
+      env: browser="chrome" suite=suite1
     - os: linux
       dist: trusty
-      env: suite=suite2 browser="chrome"
+      env: browser="chrome" suite=suite2
     - os: linux
       dist: trusty
-      env: suite=pdf browser="chrome"
+      env: browser="chrome" suite=pdf
     - os: linux
       dist: trusty
       env: suite=suite1 browser="firefox"

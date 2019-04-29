@@ -58,7 +58,7 @@ if (process.env.browser === 'chrome') {
   protractorArgs.push('conf1.js')
 }
 
-protractorArgs.push('conf.js')
+// protractorArgs.push('conf.js')
 
 process.env.maxAttempts = 2
 let suiteArg = `--suite=${process.env.suite}`
