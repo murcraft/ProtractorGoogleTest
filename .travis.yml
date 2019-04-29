@@ -30,19 +30,19 @@ matrix:
       env: browser="chrome" suite=pdf
     - os: linux
       dist: trusty
-      env: suite=suite1 browser="firefox"
+      env: browser="firefox" suite=suite1
     - os: linux
       dist: trusty
-      env: suite=suite2 browser="firefox"
+      env: browser="firefox" suite=suite2
     - os: linux
       dist: trusty
-      env: suite=pdf browser="firefox"
+      env: browser="firefox" suite=pdf
     - os: osx
-      env: suite=suite1 browser="safari"
+      env: browser="safari" suite=suite1
     - os: osx
-      env: suite=suite2 browser="safari"
+      env: browser="safari" suite=suite2
     - os: osx
-      env: suite=pdf browser="safari"
+      env: browser="safari" suite=pdf
 #stages:
 #  - test
 #  - Firefox-tests
@@ -58,7 +58,7 @@ script:
  - if [[ $browser == "firefox" ]]; then npm run test-gecko; fi
  - if [[ $browser == "chrome" ]]; then npm run test-chrome; fi
  - if [[ $browser == "safari" ]]; then sudo safaridriver --enable; fi
- - if [[ $browser == "safari" ]]; then osascript /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
+# - if [[ $browser == "safari" ]]; then osascript /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
  - if [[ $browser == "safari" ]]; then npm run test-safari; fi
  - npm test || if [$? != 0]; then exit 0; fi
 #- npm run test-chrome || if [$? != 0]; then exit 0; fi
@@ -89,7 +89,7 @@ script:
 #   - npm run test-safari -- suite=pdf browser=safari || if [$? != 0]; then exit 0; fi
 
 addons:
-  firefox: 66
+  firefox: latest
   apt:
     chrome: stable
     sources:
