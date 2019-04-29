@@ -40,7 +40,7 @@ exports.config = {
 
   suites: {
     all: 'lib/spec/**/*.js',
-    suite1: ['lib/spec/suite1/pageObjectSpec1.js', 'lib/spec/suite1/pageObjectSpec.js'],
+    suite1: ['lib/spec/suite1/*.js'],
     suite2: 'lib/spec/suite2/*.js',
     pdf: 'lib/spec/pdf/*.js',
   },
