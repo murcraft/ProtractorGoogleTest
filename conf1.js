@@ -96,6 +96,7 @@ exports.config = {
     browser.waitForAngularEnabled(false)
     global.EC = protractor.ExpectedConditions
     global.Logger = require('./lib/helpers/loggerHelper')
+    global.BrowserName = process.env.browser
 
     jasmine.getEnv().addReporter(new AllureReporter({
       resultDir: 'allure-results',
