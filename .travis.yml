@@ -65,7 +65,7 @@ script:
 # - if [[ $browser == "safari" ]]; then npm run test-safari; fi
 # - npm test || if [$? != 0]; then exit 0; fi
 #- npm run test-chrome || if [$? != 0]; then exit 0; fi
- - sudo ./run_tests.sh
+ - bash ./run_tests.sh
 
 jobs:
  include:
