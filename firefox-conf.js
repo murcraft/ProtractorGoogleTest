@@ -124,6 +124,14 @@ exports.config = {
         console.log(`Error executing the command\n${e}`)
       }
     }
+
+    if (browserName === 'firefox') {
+      try {
+        console.log(`Killing all ${browserName} driver processes:\n ${child_process.execSync(`killall geckodriver-v0.24.0`)}`)
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
+    }
   },
 
   onPrepare: async () => {
@@ -197,8 +205,9 @@ exports.config = {
   },
 
   afterLaunch: async function () {
-    let version = shell.exec('ps -A', {silent:true}).stdout
+    let version = shell.exec('ps -A | grep firefox', {silent:true}).stdout
     console.log(version)
+    let version1 = shell.exec('ps -A | grep geckodriver', {silent:true}).stdout
     await new Promise(resolve => setTimeout(resolve, 5000))
   },
 }
