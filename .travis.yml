@@ -69,13 +69,10 @@ jobs:
  include:
  - stage: Firefox-tests
    env: browser="firefox" suite=suite1
-   script: npm run test-gecko || if [$? != 0]; then exit 0; fi
  - stage: Firefox-tests
    env: browser="firefox" suite=suite2
-   script: npm run test-gecko || if [$? != 0]; then exit 0; fi
  - stage: Firefox-tests
    env: browser="firefox" suite=pdf
-   script: npm run test-gecko || if [$? != 0]; then exit 0; fi
  - stage: Safari-tests
    os: osx
    env: browser="firefox" suite=suite1

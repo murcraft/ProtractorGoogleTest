@@ -13,9 +13,9 @@ exports.config = {
 
   // seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
 
-  localSeleniumStandaloneOpts: {
-    jvmArgs: ['-Dwebdriver.gecko.driver=./lib/drivers/geckodriver-v0.24.0.exe']
-  },
+  // localSeleniumStandaloneOpts: {
+  //   jvmArgs: ['-Dwebdriver.gecko.driver=./lib/drivers/geckodriver-v0.24.0.exe']
+  // },
   seleniumServerJar: './lib/drivers/selenium-server-standalone-3.14.0.jar',
   seleniumServerStartTimeout: 60000,
   localSeleniumStandaloneOpts:
