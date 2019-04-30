@@ -78,19 +78,19 @@ jobs:
    script: npm run test-gecko || if [$? != 0]; then exit 0; fi
  - stage: Safari-tests
    os: osx
-   env: browser="firefox" suite=suite1
+   env: browser="safari" suite=suite1
    script:
    - sudo safaridriver --enable
    - npm run test-safari || if [$? != 0]; then exit 0; fi
  - stage: Safari-tests
    os: osx
-   env: browser="firefox" suite=suite2
+   env: browser="safari" suite=suite2
    script:
    - sudo safaridriver --enable
    - npm run test-safari || if [$? != 0]; then exit 0; fi
  - stage: Safari-tests
    os: osx
-   env: browser="firefox" suite=pdf
+   env: browser="safari" suite=pdf
    script:
    - sudo safaridriver --enable
    - npm run test-safari || if [$? != 0]; then exit 0; fi
