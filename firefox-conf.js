@@ -11,11 +11,18 @@ let downloads = keyVars.downloadPath
 
 exports.config = {
 
-  seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
+  // seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
 
-  // localSeleniumStandaloneOpts: {
-  //   jvmArgs: ['-Dwebdriver.gecko.driver=./lib/drivers/geckodriver-v0.24.0.exe']
-  // },
+  localSeleniumStandaloneOpts: {
+    jvmArgs: ['-Dwebdriver.gecko.driver=./lib/drivers/geckodriver-v0.24.0.exe']
+  },
+  seleniumServerJar: './lib/drivers/selenium-server-standalone-3.14.0.jar',
+  seleniumServerStartTimeout: 60000,
+  localSeleniumStandaloneOpts:
+    {
+      port: 4444,
+    },
+  geckoDriver: './lib/drivers/geckodriver-v0.24.0.exe',
 
   allScriptsTimeout: 110000000,
   SELENIUM_PROMISE_MANAGER: false,
@@ -47,16 +54,13 @@ exports.config = {
 
   baseUrl: process.env.env === 'DEV' ? 'https://dev.perchwell.com/' : 'https://staging.perchwell.com/',
 
-  // directConnect: true,
-
   capabilities:
     {
       browserName: 'firefox',
       shardTestFiles: process.env.maxinstances > 1,
       maxInstances: process.env.maxinstances,
       acceptSslCerts: true,
-      // binary: './lib/drivers/geckodriver-v0.24.0.exe',
-      verboseMultiSession: true,
+      // verboseMultiSession: true,
 
       'moz:firefoxOptions': {
         args: [
