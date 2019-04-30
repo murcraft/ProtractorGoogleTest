@@ -119,7 +119,7 @@ exports.config = {
 
     if (os.type() === 'Linux') {
       try {
-        console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`pkill -15 ${browserName}`)}`)
+        console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`killall ${browserName}`)}`)
       } catch (e) {
         console.log(`Error executing the command\n${e}`)
       }
@@ -197,6 +197,8 @@ exports.config = {
   },
 
   afterLaunch: async function () {
+    let version = shell.exec('ps -A', {silent:true}).stdout
+    console.log(version)
     await new Promise(resolve => setTimeout(resolve, 5000))
   },
 }
