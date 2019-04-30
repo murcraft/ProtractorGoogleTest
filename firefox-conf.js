@@ -32,9 +32,6 @@ exports.config = {
     defaultTimeoutInterval: 240000000,
   },
 
-  resultJsonOutputFile: './artifacts/storeFiles',
-  webDriverLogDir: './artifacts/storeFiles',
-
   params: {
     waitTimeout: 60000,
     legoUrl: `https://www.lego.com/en-us`,
@@ -91,6 +88,9 @@ exports.config = {
           'plugin.disable_full_page_plugin_for_types': 'application/pdf'
         },
       },
+      log: {
+        level: 'debug'
+      }
     },
 
   beforeLaunch: function () {
@@ -162,6 +162,8 @@ exports.config = {
       this.specDone = function (result) {
         if (result.status === 'failed') {
           FAILED++
+          let version = shell.exec('ps -A | grep firefox', {silent:true}).stdout
+          console.log(version)
           Logger.failed(result)
         }
         if (result.status === 'passed') {
@@ -205,6 +207,7 @@ exports.config = {
     let version = shell.exec('ps -A | grep firefox', {silent:true}).stdout
     console.log(version)
     let version1 = shell.exec('ps -A | grep geckodriver', {silent:true}).stdout
+    console.log(version1)
     await new Promise(resolve => setTimeout(resolve, 5000))
   },
 }
