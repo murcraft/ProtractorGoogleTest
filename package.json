@@ -7,7 +7,7 @@
     "update-webdriver": "webdriver-manager update --gecko=false --chrome=false --versions.standalone=3.14.0",
     "update-chrome": "webdriver-manager update --gecko=false --versions.chrome=2.46 --versions.standalone=3.4.0",
     "update-gecko": "webdriver-manager update --chrome=false --versions.standalone=3.14.0",
-    "start-webdriver": "webdriver-manager start --versions.standalone=3.14.0 --chrome=false",
+    "start-webdriver": "webdriver-manager start --versions.standalone=3.14.0 --chrome=false --detach",
     "test-chrome": "npm run update-chrome",
     "test-gecko": "npm run update-gecko && npm run start-webdriver && node conf-flake.js",
     "test-safari": "npm run update-webdriver && node conf-flake.js",
