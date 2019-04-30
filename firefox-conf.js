@@ -1,12 +1,13 @@
 let path = require('path')
 let fs = require('fs')
+const shell = require('shelljs')
 
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
 const keyVars = require('./keyVariables.js')
 
 let downloads = keyVars.downloadPath
-
+let browserName = process.env.browser
 
 
 exports.config = {
@@ -110,6 +111,17 @@ exports.config = {
         logger.debug(`Deleted file: ${curPath}`)
       })
     }
+
+    let version = shell.exec('ps -A', {silent:true}).stdout
+    console.log(version)
+
+    if (os.type() === 'Linux') {
+      try {
+        console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`pkill -15 ${browserName}`)}`)
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
+    }
   },
 
   onPrepare: async () => {
@@ -117,7 +129,7 @@ exports.config = {
     browser.waitForAngularEnabled(false)
     global.EC = protractor.ExpectedConditions
     global.Logger = require('./lib/helpers/loggerHelper')
-    global.BrowserName = 'firefox'
+    global.BrowserName = browserName
 
     jasmine.getEnv().addReporter(new AllureReporter({
       resultDir: 'allure-results',
