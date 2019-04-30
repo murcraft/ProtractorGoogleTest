@@ -124,6 +124,14 @@ exports.config = {
         console.log(`Error executing the command\n${e}`)
       }
     }
+
+    if (browserName === 'firefox') {
+      try {
+        console.log(`Killing all ${browserName} driver processes:\n ${child_process.execSync(`killall geckodriver-v0.24.0`)}`)
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
+    }
   },
 
   onPrepare: async () => {
