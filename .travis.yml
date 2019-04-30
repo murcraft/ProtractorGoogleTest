@@ -58,42 +58,31 @@ env:
 
 script:
 # - if [[ $browser == "firefox" ]]; then npm run test-gecko; fi
- - if [[ $browser == "chrome" ]]; then npm run test-chrome; fi
+#- if [[ $browser == "chrome" ]]; then npm run test-chrome; fi
 # - if [[ $browser == "safari" ]]; then sudo safaridriver --enable; fi
 # - if [[ $browser == "safari" ]]; then osascript /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
 # - if [[ $browser == "safari" ]]; then npm run test-safari; fi
- - npm test || if [$? != 0]; then exit 0; fi
+# - npm test || if [$? != 0]; then exit 0; fi
 #- npm run test-chrome || if [$? != 0]; then exit 0; fi
+ - install.sh
 
 jobs:
  include:
  - stage: Firefox-tests
    env: browser="firefox" suite=suite1
-   script: npm run test-gecko || if [$? != 0]; then exit 0; fi
  - stage: Firefox-tests
    env: browser="firefox" suite=suite2
-   script: npm run test-gecko || if [$? != 0]; then exit 0; fi
  - stage: Firefox-tests
    env: browser="firefox" suite=pdf
-   script: npm run test-gecko || if [$? != 0]; then exit 0; fi
  - stage: Safari-tests
    os: osx
    env: browser="safari" suite=suite1
-   script:
-   - sudo safaridriver --enable
-   - npm run test-safari || if [$? != 0]; then exit 0; fi
  - stage: Safari-tests
    os: osx
    env: browser="safari" suite=suite2
-   script:
-   - sudo safaridriver --enable
-   - npm run test-safari || if [$? != 0]; then exit 0; fi
  - stage: Safari-tests
    os: osx
    env: browser="safari" suite=pdf
-   script:
-   - sudo safaridriver --enable
-   - npm run test-safari || if [$? != 0]; then exit 0; fi
 
 addons:
   firefox: latest
