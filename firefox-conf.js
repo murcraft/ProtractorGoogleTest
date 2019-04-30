@@ -63,7 +63,7 @@ exports.config = {
       shardTestFiles: process.env.maxinstances > 1,
       maxInstances: process.env.maxinstances,
       acceptSslCerts: true,
-      // verboseMultiSession: true,
+      verboseMultiSession: true,
 
       'moz:firefoxOptions': {
         args: [
