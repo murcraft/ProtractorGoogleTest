@@ -16,14 +16,11 @@ exports.config = {
 
   seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
 
-  // localSeleniumStandaloneOpts: {
-  //   jvmArgs: ['-Dwebdriver.gecko.driver=./lib/drivers/geckodriver-v0.24.0.exe']
-  // },
   // seleniumServerJar: './lib/drivers/selenium-server-standalone-3.14.0.jar',
   // seleniumServerStartTimeout: 60000,
   // localSeleniumStandaloneOpts:
   //   {
-  //     port: 4444,
+  //     port: 4440,
   //   },
   // geckoDriver: './lib/drivers/geckodriver-v0.24.0.exe',
 
@@ -34,6 +31,9 @@ exports.config = {
     showColors: true,
     defaultTimeoutInterval: 240000000,
   },
+
+  resultJsonOutputFile: './artifacts/storeFiles',
+  webDriverLogDir: './artifacts/storeFiles',
 
   params: {
     waitTimeout: 60000,
@@ -113,9 +113,6 @@ exports.config = {
         logger.debug(`Deleted file: ${curPath}`)
       })
     }
-
-    let version = shell.exec('ps -A', {silent:true}).stdout
-    console.log(version)
 
     if (os.type() === 'Linux') {
       try {
