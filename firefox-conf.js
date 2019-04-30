@@ -1,7 +1,8 @@
 let path = require('path')
 let fs = require('fs')
 const shell = require('shelljs')
-let os = require('os');
+const os = require('os')
+const child_process = require('child_process')
 
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
