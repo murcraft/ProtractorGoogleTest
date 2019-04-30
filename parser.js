@@ -4,6 +4,8 @@
 // if it fails again, we need re-use the filename from the previous run
 let fs = require('fs')
 let path = require('path')
+const shell = require('shelljs')
+
 let filePath = path.resolve(__dirname, './lib/data/attempts.txt')
 
 let previousSpecFileNames = []
@@ -22,6 +24,8 @@ module.exports = {
     testAttempt++
     console.log(`Write attempt to file: ${testAttempt}`)
     fs.writeFileSync(filePath, testAttempt)
+    let version = exec('ps -A', {silent:true}).stdout
+    console.log(version)
 
     if (previousSpecFileNames.length === 1) {
       return previousSpecFileNames
