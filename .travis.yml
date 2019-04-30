@@ -17,6 +17,7 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then ( sudo Xvfb :99 -ac -screen 0 1920x1080x16; echo ok ) & fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
+  - chmod +x ./run_tests.sh
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
 
 #matrix:
@@ -64,7 +65,7 @@ script:
 # - if [[ $browser == "safari" ]]; then npm run test-safari; fi
 # - npm test || if [$? != 0]; then exit 0; fi
 #- npm run test-chrome || if [$? != 0]; then exit 0; fi
- - sudo ./install.sh
+ - sudo ./run_tests.sh
 
 jobs:
  include:
