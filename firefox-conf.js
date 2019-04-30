@@ -162,9 +162,12 @@ exports.config = {
       this.specDone = function (result) {
         if (result.status === 'failed') {
           FAILED++
-          let version = shell.exec('ps -A | grep firefox', {silent:true}).stdout
-          console.log(version)
-          Logger.failed(result)
+          try {
+            console.log(`Get all ${browserName} processes:\n ${child_process.execSync(`ps -A | grep firefox`)}`)
+          } catch (e) {
+            console.log(`Error executing the command\n${e}`)
+          }
+              Logger.failed(result)
         }
         if (result.status === 'passed') {
           PASSED++
