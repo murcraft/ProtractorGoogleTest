@@ -85,11 +85,12 @@ exports.config = {
           'browser.download.useToolkitUI': false,
           'browser.helperApps.neverAsk.saveToDisk': 'application/pdf',
           'pdfjs.disabled': true,
-          'plugin.disable_full_page_plugin_for_types': 'application/pdf'
+          'plugin.disable_full_page_plugin_for_types': 'application/pdf',
+          'app.update.enabled': false
         },
       },
       log: {
-        level: 'debug'
+        level: 'trace'
       }
     },
 
