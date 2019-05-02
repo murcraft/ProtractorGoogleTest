@@ -66,7 +66,7 @@ exports.config = {
         args: [
           '--width=1920',
           '--height=1080',
-          '-private'
+          '--private'
         ],
         prefs: {
           'browser.download.folderList': 2,
@@ -86,12 +86,13 @@ exports.config = {
           'browser.helperApps.neverAsk.saveToDisk': 'application/pdf',
           'pdfjs.disabled': true,
           'plugin.disable_full_page_plugin_for_types': 'application/pdf',
+
           'app.update.enabled': false,
           'app.update.auto': false,
           'app.update.silent': false,
           'extensions.update.enabled': false,
-          'security.sandbox.content.level': 4,
-          'extensions.logging.enabled': true,
+          'security.sandbox.content.level': 5,
+          // 'extensions.logging.enabled': true,
           'browser.tabs.remote.autostart': false,
         },
       },
@@ -169,12 +170,14 @@ exports.config = {
       this.specDone = function (result) {
         if (result.status === 'failed') {
           FAILED++
-          try {
-            console.log(`Get all ${browserName} processes:\n ${child_process.execSync(`ps -A | grep firefox`)}`)
-          } catch (e) {
-            console.log(`Error executing the command\n${e}`)
+          if (os.type() === 'Linux') {
+            try {
+              console.log(`Get all ${browserName} processes:\n ${child_process.execSync(`ps -A | grep firefox`)}`)
+            } catch (e) {
+              console.log(`Error executing the command\n${e}`)
+            }
           }
-              Logger.failed(result)
+          Logger.failed(result)
         }
         if (result.status === 'passed') {
           PASSED++
@@ -214,10 +217,12 @@ exports.config = {
   },
 
   afterLaunch: async function () {
-    let version = shell.exec('ps -A | grep firefox', {silent:true}).stdout
-    console.log(version)
-    let version1 = shell.exec('ps -A | grep geckodriver', {silent:true}).stdout
-    console.log(version1)
+    if (os.type() === 'Linux') {
+      let version = shell.exec('ps -A | grep firefox', {silent: true}).stdout
+      console.log(version)
+      let version1 = shell.exec('ps -A | grep geckodriver', {silent: true}).stdout
+      console.log(version1)
+    }
     await new Promise(resolve => setTimeout(resolve, 5000))
   },
 }
