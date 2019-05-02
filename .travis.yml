@@ -57,6 +57,10 @@ env:
   - browser="chrome" suite=pdf
 
 script:
+ - which firefox
+ - firefox --version
+ - which firefox-bin
+ - firefox-bin --version
  - bash ./run_tests.sh || if [$? != 0]; then exit 0; fi
 
 jobs:
@@ -78,7 +82,7 @@ jobs:
    env: browser="safari" suite=pdf
 
 addons:
-  firefox: latest
+  firefox: "65.0"
   apt:
     chrome: stable
     sources:
