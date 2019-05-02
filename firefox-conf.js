@@ -90,9 +90,9 @@ exports.config = {
           'app.update.auto': false,
           'app.update.silent': false,
           'extensions.update.enabled': false,
-          'security.sandbox.content.level': 1,
+          'security.sandbox.content.level': 4,
           'extensions.logging.enabled': true,
-          'browser.tabs.remote.autostart': false
+          'browser.tabs.remote.autostart': false,
         },
       },
       log: {
