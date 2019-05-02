@@ -86,7 +86,11 @@ exports.config = {
           'browser.helperApps.neverAsk.saveToDisk': 'application/pdf',
           'pdfjs.disabled': true,
           'plugin.disable_full_page_plugin_for_types': 'application/pdf',
-          'app.update.enabled': false
+          'app.update.enabled': false,
+          'app.update.auto': false,
+          'app.update.silent': false,
+          'extensions.update.enabled': false,
+          'security.sandbox.content.level': 1
         },
       },
       log: {
