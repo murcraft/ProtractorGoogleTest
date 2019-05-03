@@ -1,5 +1,8 @@
 let path = require('path')
 let fs = require('fs')
+const shell = require('shelljs')
+const os = require('os')
+const child_process = require('child_process')
 
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
@@ -43,35 +46,6 @@ let config = {
 
   // baseUrl: process.env.env = 'http://www.google.by',
 
-  // capabilities:
-  //   {
-  //     browserName: 'chrome',
-  //     shardTestFiles: process.env.maxinstances > 1,
-  //     maxInstances: process.env.maxinstances,
-  //
-  //     chromeOptions: {
-  //       args: [
-  //         'incognito',
-  //         'window-size=1920,1080',
-  //         '--disable-infobars',
-  //         '--disable-extensions',
-  //         // '--ignore-ssl-errors=true',
-  //         // 'verbose',
-  //         // '--disable-web-security'
-  //       ],
-  //     },
-  //     prefs: {
-  //       download: {
-  //         prompt_for_download: false,
-  //         directory_upgrade: true,
-  //         default_directory: downloads,
-  //       },
-  //     },
-  //     loggingPrefs: {
-  //       browser: 'SEVERE',
-  //     },
-  //   },
-
   beforeLaunch: function () {
     let logger = require('./lib/helpers/loggerHelper')
 
@@ -92,13 +66,26 @@ let config = {
         logger.debug(`Deleted file: ${curPath}`)
       })
     }
+
+    if (browserName === 'firefox' && os.type() === 'Linux') {
+      try {
+        console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`killall ${browserName}`)}`)
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
+      try {
+        console.log(`Killing all ${browserName} driver processes:\n ${child_process.execSync(`killall geckodriver-v0.24.0`)}`)
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
+    }
   },
 
   onPrepare: async () => {
     browser.waitForAngularEnabled(false)
     global.EC = protractor.ExpectedConditions
     global.Logger = require('./lib/helpers/loggerHelper')
-    global.BrowserName = process.env.browser
+    global.BrowserName = browserName
 
     jasmine.getEnv().addReporter(new AllureReporter({
       resultDir: 'allure-results',
@@ -125,6 +112,18 @@ let config = {
         if (result.status === 'failed') {
           FAILED++
           Logger.failed(result)
+          if (browserName === 'firefox' && os.type() === 'Linux') {
+            try {
+              console.log(`Get all ${browserName} processes:\n ${child_process.execSync(`ps -A | grep firefox`)}`)
+            } catch (e) {
+              console.log(`Error executing the command\n${e}`)
+            }
+            try {
+              console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`killall ${browserName}`)}`)
+            } catch (e) {
+              console.log(`Error executing the command\n${e}`)
+            }
+          }
         }
         if (result.status === 'passed') {
           PASSED++
@@ -164,6 +163,13 @@ let config = {
   },
 
   afterLaunch: async function () {
+    if (browserName === 'firefox' && os.type() === 'Linux') {
+      let version = shell.exec('ps -A | grep firefox', {silent: true}).stdout
+      console.log(version)
+      let version1 = shell.exec('ps -A | grep geckodriver', {silent: true}).stdout
+      console.log(version1)
+    }
+
     await new Promise(resolve => setTimeout(resolve, 5000))
   },
 }
@@ -171,13 +177,8 @@ let config = {
 config.capabilities = capabilitiesMap[browserName]
 
 if (browserName === 'firefox') {
-  console.log(config.capabilities)
   config.seleniumAddress = 'http://127.0.0.1:4444/wd/hub'
-  console.log(config.seleniumAddress)
-  // config.localSeleniumStandaloneOpts = {
-  //   jvmArgs: ['-Dwebdriver.gecko.driver=./lib/drivers/geckodriver-v0.24.0.exe']
-  // }
-  // config.exclude = ['lib/spec/pdf/savePdf*.js']
+  config.exclude = ['lib/spec/pdf/savePdf*.js']
 }
 
 exports.config = config

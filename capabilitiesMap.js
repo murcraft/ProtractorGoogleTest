@@ -9,7 +9,7 @@ let capabilitiesMap = {
     shardTestFiles: process.env.maxinstances > 1,
     maxInstances: process.env.maxinstances,
     acceptSslCerts: true,
-    // binary: './lib/drivers/geckodriver-v0.24.0.exe',
+    verboseMultiSession: true,
 
     'moz:firefoxOptions': {
       args: [
@@ -34,9 +34,20 @@ let capabilitiesMap = {
         'browser.download.useToolkitUI': false,
         'browser.helperApps.neverAsk.saveToDisk': 'application/pdf',
         'pdfjs.disabled': true,
-        'plugin.disable_full_page_plugin_for_types': 'application/pdf'
+        'plugin.disable_full_page_plugin_for_types': 'application/pdf',
+
+        'app.update.enabled': false,
+        'app.update.auto': false,
+        'app.update.silent': false,
+        'extensions.update.enabled': false,
+        'security.sandbox.content.level': 5,
+        // 'extensions.logging.enabled': true,
+        'browser.tabs.remote.autostart': false,
       },
     },
+    log: {
+      level: 'trace'
+    }
   },
 
   'chrome': {
