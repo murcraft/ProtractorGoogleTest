@@ -35,11 +35,11 @@ script:
 jobs:
  include:
  - stage: chrome
-    env: browser="chrome" suite=suite1
+   env: browser="chrome" suite=suite1
  - stage: chrome
-    env: browser="chrome" suite=suite2
+   env: browser="chrome" suite=suite2
  - stage: chrome
-    env: browser="chrome" suite=pdf
+   env: browser="chrome" suite=pdf
  - stage: firefox
    env: browser="firefox" suite=suite1
  - stage: firefox
