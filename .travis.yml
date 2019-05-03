@@ -20,41 +20,10 @@ before_script:
   - chmod +x ./run_tests.sh
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
 
-#matrix:
-#  include:
-#    - os: linux
-#      dist: trusty
-#      env: browser="chrome" suite=suite1
-#    - os: linux
-#      dist: trusty
-#      env: browser="chrome" suite=suite2
-#    - os: linux
-#      dist: trusty
-#      env: browser="chrome" suite=pdf
-#    - os: linux
-#      dist: trusty
-#      env: browser="firefox" suite=suite1
-#    - os: linux
-#      dist: trusty
-#      env: browser="firefox" suite=suite2
-#    - os: linux
-#      dist: trusty
-#      env: browser="firefox" suite=pdf
-#    - os: osx
-#      env: browser="safari" suite=suite1
-#    - os: osx
-#      env: browser="safari" suite=suite2
-#    - os: osx
-#      env: browser="safari" suite=pdf
 stages:
-  - test
-  - Firefox-tests
-  - Safari-tests
-
-env:
-  - browser="chrome" suite=suite1
-  - browser="chrome" suite=suite2
-  - browser="chrome" suite=pdf
+  - chrome
+  - firefox
+  - safari
 
 script:
  - which firefox
@@ -65,19 +34,25 @@ script:
 
 jobs:
  include:
- - stage: Firefox-tests
+ - stage: chrome
+    env: browser="chrome" suite=suite1
+ - stage: chrome
+    env: browser="chrome" suite=suite2
+ - stage: chrome
+    env: browser="chrome" suite=pdf
+ - stage: firefox
    env: browser="firefox" suite=suite1
- - stage: Firefox-tests
+ - stage: firefox
    env: browser="firefox" suite=suite2
- - stage: Firefox-tests
+ - stage: firefox
    env: browser="firefox" suite=pdf
- - stage: Safari-tests
+ - stage: safari
    os: osx
    env: browser="safari" suite=suite1
- - stage: Safari-tests
+ - stage: safari
    os: osx
    env: browser="safari" suite=suite2
- - stage: Safari-tests
+ - stage: safari
    os: osx
    env: browser="safari" suite=pdf
 
