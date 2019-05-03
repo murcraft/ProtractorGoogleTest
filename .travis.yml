@@ -57,9 +57,9 @@ jobs:
    env: browser="safari" suite=pdf
 
 addons:
-  firefox: "65.0"
   apt:
-    chrome: stable
+  - firefox: "65.0"
+  - chrome: stable
     sources:
     - google-chrome
     packages:
