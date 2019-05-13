@@ -22,6 +22,7 @@ before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Firefox" ]]; then export browser=firefox; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
   - chmod +x ./run_tests.sh
+  - ls
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
 
 stages:
@@ -34,18 +35,18 @@ script:
 
 jobs:
  include:
- - stage: Chrome
-   env: suite=suite1
- - stage: Chrome
-   env: suite=suite2
- - stage: Chrome
-   env: suite=pdf
- - stage: Firefox
-   env: suite=suite1
- - stage: Firefox
-   env: suite=suite2
- - stage: Firefox
-   env: suite=pdf
+# - stage: Chrome
+#   env: suite=suite1
+# - stage: Chrome
+#   env: suite=suite2
+# - stage: Chrome
+#   env: suite=pdf
+# - stage: Firefox
+#   env: suite=suite1
+# - stage: Firefox
+#   env: suite=suite2
+# - stage: Firefox
+#   env: suite=pdf
  - stage: Safari
    os: osx
    env: suite=suite1
