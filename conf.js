@@ -124,6 +124,12 @@ let config = {
               console.log(`Error executing the command\n${e}`)
             }
           }
+
+          if (browserName === 'safari') {
+            console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps aux | grep ${browserName}`)}`)
+            let version1 = shell.exec('ps aux | grep', {silent: true}).stdout
+            console.log(version1)
+          }
         }
         if (result.status === 'passed') {
           PASSED++
