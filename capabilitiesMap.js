@@ -81,7 +81,10 @@ let capabilitiesMap = {
     maxInstances: process.env.maxinstances,
     'safari.options': {
       technologyPreview: false, // set to true if Safari Technology Preview to be used
-      cleanSession: true,
+      // cleanSession: true,
+      javascriptEnabled: true,
+      acceptSslCerts: true,
+      nativeEvents: true
     }
   },
 
