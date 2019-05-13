@@ -15,8 +15,12 @@ before_install:
 before_script:
   - "export DISPLAY=:99.0"
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then ( sudo Xvfb :99 -ac -screen 0 1920x1080x16; echo ok ) & fi
+  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then sudo safaridriver --enable; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "chrome" ]]; then export browser=chrome; fi
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "firefox" ]]; then export browser=firefox; fi
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "safari" ]]; then export browser=safari; fi
   - chmod +x ./run_tests.sh
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
 
@@ -26,35 +30,33 @@ stages:
   - safari
 
 script:
- - which firefox
- - firefox --version
- - which firefox-bin
- - firefox-bin --version
+ - which safari
+ - safari --version
  - bash ./run_tests.sh || if [$? != 0]; then exit 0; fi
 
 jobs:
  include:
  - stage: chrome
-   env: browser="chrome" suite=suite1
+   env: suite=suite1
  - stage: chrome
-   env: browser="chrome" suite=suite2
+   env: suite=suite2
  - stage: chrome
-   env: browser="chrome" suite=pdf
+   env: suite=pdf
  - stage: firefox
-   env: browser="firefox" suite=suite1
+   env: suite=suite1
  - stage: firefox
-   env: browser="firefox" suite=suite2
+   env: suite=suite2
  - stage: firefox
-   env: browser="firefox" suite=pdf
+   env: suite=pdf
  - stage: safari
    os: osx
-   env: browser="safari" suite=suite1
+   env: suite=suite1
  - stage: safari
    os: osx
-   env: browser="safari" suite=suite2
+   env: suite=suite2
  - stage: safari
    os: osx
-   env: browser="safari" suite=pdf
+   env: suite=pdf
 
 addons:
   firefox: "65.0"
