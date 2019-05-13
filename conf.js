@@ -79,6 +79,14 @@ let config = {
         console.log(`Error executing the command\n${e}`)
       }
     }
+
+    if (browserName === 'safari') {
+      try {
+        console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`killall safaridriver`)}`)
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
+    }
   },
 
   onPrepare: async () => {
