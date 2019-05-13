@@ -170,6 +170,13 @@ let config = {
       console.log(version1)
     }
 
+    if (browserName === 'safari') {
+      let version = shell.exec('ps aux | grep safari', {silent: true}).stdout
+      console.log(version)
+      let version1 = shell.exec('ps aux | grep safaridriver', {silent: true}).stdout
+      console.log(version1)
+    }
+
     await new Promise(resolve => setTimeout(resolve, 5000))
   },
 }
