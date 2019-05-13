@@ -135,8 +135,8 @@ let config = {
 
           if (browserName === 'safari') {
             console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps aux | grep ${browserName}`)}`)
-            let version1 = shell.exec('ps aux | grep', {silent: true}).stdout
-            console.log(version1)
+            console.log(`Top ${browserName} processes:\n ${child_process.execSync('top -o cpu')}`)
+            console.log(`All ${browserName} processes:\n ${child_process.execSync('ps aux|more')}`)
           }
         }
         if (result.status === 'passed') {
@@ -156,6 +156,8 @@ let config = {
         Logger.info(`**************************************************`)
       }
     })
+
+    jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
 
     jasmine.getEnv().afterEach(async function () {
       if (browserName === 'chrome') {
