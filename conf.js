@@ -134,9 +134,8 @@ let config = {
           }
 
           if (browserName === 'safari') {
-            console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps aux | grep ${browserName}`)}`)
-            console.log(`Top ${browserName} processes:\n ${child_process.execSync('top -o cpu')}`)
-            console.log(`All ${browserName} processes:\n ${child_process.execSync('ps aux|more')}`)
+            console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps | grep ${browserName}`)}`)
+            console.log(`All ${browserName} processes:\n ${child_process.execSync('ps -all')}`)
           }
         }
         if (result.status === 'passed') {
@@ -187,9 +186,9 @@ let config = {
     }
 
     if (browserName === 'safari') {
-      let version = shell.exec('ps aux | grep safari', {silent: true}).stdout
+      let version = shell.exec('ps | grep safari', {silent: true}).stdout
       console.log(version)
-      let version1 = shell.exec('ps aux | grep safaridriver', {silent: true}).stdout
+      let version1 = shell.exec('ps | grep safaridriver', {silent: true}).stdout
       console.log(version1)
     }
 
