@@ -52,15 +52,15 @@ jobs:
 #   env: suite=pdf
  - stage: Safari
    os: osx
-   osx_image: xcode9.3
+   osx_image: xcode10
    env: suite=suite1
  - stage: Safari
    os: osx
-   osx_image: xcode9.3
+   osx_image: xcode10
    env: suite=suite2
  - stage: Safari
    os: osx
-   osx_image: xcode9.3
+   osx_image: xcode10
    env: suite=pdf
 
 addons:

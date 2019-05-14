@@ -94,6 +94,9 @@ let config = {
     global.EC = protractor.ExpectedConditions
     global.Logger = require('./lib/helpers/loggerHelper')
     global.BrowserName = browserName
+    if (browserName === 'safari') {
+      await browser.driver.manage().window().maximize()
+    }
 
     jasmine.getEnv().addReporter(new AllureReporter({
       resultDir: 'allure-results',
