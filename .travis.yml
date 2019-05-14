@@ -15,13 +15,14 @@ before_install:
 before_script:
   - export DISPLAY=:99.0
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then ( sudo Xvfb :99 -ac -screen 0 1920x1080x16; echo ok ) & fi
-  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then sudo safaridriver --enable; fi
+#  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then sudo safaridriver --enable; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Firefox" ]]; then export browser=firefox; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
-  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash Users/travis/build/murcraft/ProtractorGoogleTest/install-safari.sh; fi
+  - chmod +x ./install-safari.sh
+  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
   - chmod +x ./run_tests.sh
   - ls ~/Library/Safari
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
