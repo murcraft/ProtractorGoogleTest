@@ -24,8 +24,8 @@ fi
 #  SAFARI_NAME="Safari Technology Preview"
 #  SAFARI_SHORT_NAME="SafariTechnologyPreview"
 #else
-  SAFARI_NAME="Safari"
-  SAFARI_SHORT_NAME="Safari"
+SAFARI_NAME="Safari"
+SAFARI_SHORT_NAME="Safari"
 #fi
 
 # Launch and kill Safari so that we can start to override the settings

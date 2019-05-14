@@ -23,7 +23,7 @@ before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
 #  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash build/murcraft/ProtractorGoogleTest/install-safari.sh; fi
   - chmod +x ./run_tests.sh
-  - ls ~/Library
+  - ls ~/Library/Safari
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
 
 stages:
@@ -32,6 +32,7 @@ stages:
   - Safari
 
 script:
+ - ls
  - bash ./run_tests.sh || if [$? != 0]; then exit 0; fi
 
 jobs:
