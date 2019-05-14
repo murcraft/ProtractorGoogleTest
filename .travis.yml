@@ -23,7 +23,7 @@ before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Firefox" ]]; then export browser=firefox; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
-  - ls ~/Library/Safari
+  - ls
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then system_profiler SPApplicationsDataType; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
 
