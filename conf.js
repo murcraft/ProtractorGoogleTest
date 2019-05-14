@@ -135,7 +135,6 @@ let config = {
 
           if (browserName === 'safari') {
             console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps | grep ${browserName}`)}`)
-            console.log(`All ${browserName} processes:\n ${child_process.execSync('ps -all')}`)
           }
         }
         if (result.status === 'passed') {
@@ -186,10 +185,7 @@ let config = {
     }
 
     if (browserName === 'safari') {
-      let version = shell.exec('ps | grep safari', {silent: true}).stdout
-      console.log(version)
-      let version1 = shell.exec('ps | grep safaridriver', {silent: true}).stdout
-      console.log(version1)
+      console.log(`All ${browserName} processes:\n ${child_process.execSync('ps -all')}`)
     }
 
     await new Promise(resolve => setTimeout(resolve, 5000))
