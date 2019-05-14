@@ -179,7 +179,14 @@ let config = {
       }
     })
 
-    await browser.get('')
+    try {
+      await browser.get('')
+    } catch (e) {
+      if (browserName === 'safari') {
+        console.log(`All ${browserName} processes:\n ${child_process.execSync('ps -all')}`)
+        Logger.error(`Not browser get\n${e}`)
+      }
+    }
 
   },
 

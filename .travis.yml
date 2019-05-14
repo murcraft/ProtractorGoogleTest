@@ -23,8 +23,9 @@ before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Firefox" ]]; then export browser=firefox; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
-  - ls
+  - ls ~
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then system_profiler SPApplicationsDataType; fi
+  - sleep 3
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
 
 stages:
@@ -52,15 +53,15 @@ jobs:
 #   env: suite=pdf
  - stage: Safari
    os: osx
-   osx_image: xcode10.2
+   osx_image: xcode10.1
    env: suite=suite1
  - stage: Safari
    os: osx
-   osx_image: xcode10.2
+   osx_image: xcode10.1
    env: suite=suite2
  - stage: Safari
    os: osx
-   osx_image: xcode10.2
+   osx_image: xcode10.1
    env: suite=pdf
 
 addons:
