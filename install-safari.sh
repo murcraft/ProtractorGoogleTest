@@ -25,4 +25,4 @@ defaults write com.apple.$SAFARI_SHORT_NAME WebKitJavaScriptCanOpenWindowsAutoma
 defaults write com.apple.$SAFARI_SHORT_NAME com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool true
 
 # Turn on Allow Remote Automation. This only works in Mac OS 10.12.6+
-sudo safaridriver --enable
+sudo safaridriver --enable --legasy
