@@ -67,6 +67,10 @@ let config = {
       })
     }
 
+    function ping () {
+      logger.debug('Waiting logs...')
+    }
+
     if (browserName === 'firefox' && os.type() === 'Linux') {
       try {
         console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`killall ${browserName}`)}`)
