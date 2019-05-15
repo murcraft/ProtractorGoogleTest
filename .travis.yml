@@ -23,25 +23,8 @@ before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Firefox" ]]; then export browser=firefox; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
   - ls ~/Library/Containers
-  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then system_profiler SPApplicationsDataType; fi
-  - sleep 3
-  - open -a Safari
-  - sleep 2
-  - killall Safari
-  - defaults write com.apple.$SAFARI_SHORT_NAME ApplePersistenceIgnoreState YES
-  - defaults write com.apple.Safari IncludeDevelopMenu -bool true
-  - defaults write com.apple.Safari AllowRemoteAutomation -bool true
-  - defaults write com.apple.Safari DisableLocalFileRestrictions -bool true
-  - defaults write com.apple.Safari WebKitAllowFileAccessFromFileURLs -bool true
-  - defaults write com.apple.Safari WebKitAllowUniversalAccessFromFileURLs -bool true
-  - defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowFileAccessFromFileURLs" -bool true
-  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowUniversalAccessFromFileURLs" -bool true
-  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
-  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles" -bool true
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
-#  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
-#  - safaridriver --enable --diagnose
+  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
 
 stages:
   - Chrome
@@ -68,16 +51,16 @@ jobs:
 #   env: suite=pdf
  - stage: Safari
    os: osx
-   osx_image: xcode10.2
-   env: suite=suite1
+   osx_image: xcode9
+   env: suite=suite1 BVER=stable
  - stage: Safari
    os: osx
-   osx_image: xcode10.1
-   env: suite=suite2
+   osx_image: xcode9
+   env: suite=suite2 BVER=stable
  - stage: Safari
    os: osx
-   osx_image: xcode10.0
-   env: suite=pdf
+   osx_image: xcode9
+   env: suite=pdf BVER=unstable
 
 addons:
   firefox: "65.0"
