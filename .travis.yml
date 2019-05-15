@@ -30,6 +30,7 @@ before_script:
   - killall Safari
   - defaults write com.apple.$SAFARI_SHORT_NAME ApplePersistenceIgnoreState YES
   - defaults write com.apple.Safari IncludeDevelopMenu -bool true
+  - defaults write com.apple.Safari Allow Remote Automation -bool true
   - defaults write com.apple.Safari DisableLocalFileRestrictions -bool true
   - defaults write com.apple.Safari WebKitAllowFileAccessFromFileURLs -bool true
   - defaults write com.apple.Safari WebKitAllowUniversalAccessFromFileURLs -bool true
