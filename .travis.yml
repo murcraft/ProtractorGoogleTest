@@ -29,10 +29,10 @@ before_script:
   - defaults write com.apple.Safari WebKitAllowFileAccessFromFileURLs YES
   - defaults write com.apple.Safari WebKitAllowUniversalAccessFromFileURLs YES
   - defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey YES
-  - defaults write com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowFileAccessFromFileURLs YES
-  - defaults write com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowUniversalAccessFromFileURLs YES
-  - defaults write com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled YES
-  - defaults write com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles YES
+  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowFileAccessFromFileURLs" YES
+  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowUniversalAccessFromFileURLs" YES
+  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" YES
+  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles" YES
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
 
