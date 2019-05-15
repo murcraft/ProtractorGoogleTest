@@ -52,15 +52,15 @@ jobs:
  - stage: Safari
    os: osx
    osx_image: xcode9
-   env: suite=suite1 BVER=stable
+   env: suite=suite1
  - stage: Safari
    os: osx
    osx_image: xcode9
-   env: suite=suite2 BVER=stable
+   env: suite=suite2
  - stage: Safari
    os: osx
    osx_image: xcode9
-   env: suite=pdf BVER=unstable
+   env: suite=pdf
 
 addons:
   firefox: "65.0"
