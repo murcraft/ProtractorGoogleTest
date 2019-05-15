@@ -21,7 +21,6 @@ let config = {
     showColors: true,
     defaultTimeoutInterval: 240000000,
   },
-  logLevel: 'DEBUG',
 
   params: {
     waitTimeout: 60000,
@@ -212,6 +211,9 @@ config.capabilities = capabilitiesMap[browserName]
 if (browserName === 'firefox') {
   config.seleniumAddress = 'http://127.0.0.1:4444/wd/hub'
   config.exclude = ['lib/spec/pdf/savePdf*.js']
+}
+if (browserName === 'safari') {
+  config.logLevel = 'DEBUG'
 }
 
 exports.config = config
