@@ -21,6 +21,7 @@ let config = {
     showColors: true,
     defaultTimeoutInterval: 240000000,
   },
+  logLevel: 'DEBUG',
 
   params: {
     waitTimeout: 60000,

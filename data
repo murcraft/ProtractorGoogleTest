@@ -1,0 +1,972 @@
+[
+  {
+    "description": "Filters1 - 161 Filter By Bathrooms:  listing view: filter by 1 bathroom",
+    "assertions": [
+      {
+        "passed": false,
+        "errorMsg": "Failed: Page is not loaded within 60 sec",
+        "stackTrace": "Error: Page is not loaded within 60 sec\n    at wrappedReject (D:\\Project\\ProtractorGoogleTest\\node_modules\\jasminewd2\\index.js:100:24)\n    at process._tickCallback (internal/process/next_tick.js:68:7)\nFrom asynchronous test: \nError\n    at Suite.fdescribe (D:\\Project\\ProtractorGoogleTest\\lib\\spec\\suite1\\filterByBathrooms.js:31:3)\n    at addSpecsToSuite (D:\\Project\\ProtractorGoogleTest\\node_modules\\jasmine-core\\lib\\jasmine-core\\jasmine.js:1107:25)\n    at Env.fdescribe (D:\\Project\\ProtractorGoogleTest\\node_modules\\jasmine-core\\lib\\jasmine-core\\jasmine.js:1095:7)\n    at fdescribe (D:\\Project\\ProtractorGoogleTest\\node_modules\\jasmine-core\\lib\\jasmine-core\\jasmine.js:4428:18)\n    at Object.<anonymous> (D:\\Project\\ProtractorGoogleTest\\lib\\spec\\suite1\\filterByBathrooms.js:13:1)\n    at Module._compile (internal/modules/cjs/loader.js:689:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)\n    at Module.load (D:\\Project\\ProtractorGoogleTest\\node_modules\\coffeescript\\lib\\coffee-script\\register.js:45:36)\n    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)\n    at Function.Module._load (internal/modules/cjs/loader.js:530:3)\n    at Module.require (internal/modules/cjs/loader.js:637:17)\n    at require (internal/modules/cjs/helpers.js:22:18)\n    at D:\\Project\\ProtractorGoogleTest\\node_modules\\jasmine\\lib\\jasmine.js:93:5\n    at Array.forEach (<anonymous>)\n    at Jasmine.loadSpecs (D:\\Project\\ProtractorGoogleTest\\node_modules\\jasmine\\lib\\jasmine.js:92:18)\n    at Jasmine.execute (D:\\Project\\ProtractorGoogleTest\\node_modules\\jasmine\\lib\\jasmine.js:197:8)\n    at D:\\Project\\ProtractorGoogleTest\\node_modules\\protractor\\built\\frameworks\\jasmine.js:132:15\n    at Function.promise (D:\\Project\\ProtractorGoogleTest\\node_modules\\q\\q.js:682:9)\n    at D:\\Project\\ProtractorGoogleTest\\node_modules\\protractor\\built\\frameworks\\jasmine.js:104:14\n    at _fulfilled (D:\\Project\\ProtractorGoogleTest\\node_modules\\q\\q.js:834:54)\n    at D:\\Project\\ProtractorGoogleTest\\node_modules\\q\\q.js:863:30\n    at Promise.promise.promiseDispatch (D:\\Project\\ProtractorGoogleTest\\node_modules\\q\\q.js:796:13)\n    at D:\\Project\\ProtractorGoogleTest\\node_modules\\q\\q.js:604:44\n    at runSingle (D:\\Project\\ProtractorGoogleTest\\node_modules\\q\\q.js:137:13)\n    at flush (D:\\Project\\ProtractorGoogleTest\\node_modules\\q\\q.js:125:13)\n    at process._tickCallback (internal/process/next_tick.js:61:11)"
+      },
+      {
+        "passed": false,
+        "errorMsg": "Failed: java.net.BindException: Address already in use: connect",
+        "stackTrace": "WebDriverError: java.net.BindException: Address already in use: connect\n    at Object.checkLegacyResponse (D:\\Project\\ProtractorGoogleTest\\node_modules\\selenium-webdriver\\lib\\error.js:546:15)\n    at parseHttpResponse (D:\\Project\\ProtractorGoogleTest\\node_modules\\selenium-webdriver\\lib\\http.js:509:13)\n    at doSend.then.response (D:\\Project\\ProtractorGoogleTest\\node_modules\\selenium-webdriver\\lib\\http.js:441:30)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"
+      }
+    ],
+    "duration": 62544
+  },
+  {
+    "description": "Filters1 - 161 Filter By Bathrooms:  analytics view: verify value with 1 bathroom",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Filters1 - 161 Filter By Bathrooms:  listing view: reset filter and compare results",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Filters1 - 161 Filter By Bathrooms:  analytics view: check results after resetting",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Filters1 - 161 Filter By Bathrooms:  listing view: delete bathrooms column and check",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "PDFs - 276 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "PDFs - 276 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Filters1 - 162 Filter By Bathrooms:  listing view: filter by 1 bathroom",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Filters1 - 162 Filter By Bathrooms:  analytics view: verify value with 1 bathroom",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Filters1 - 162 Filter By Bathrooms:  listing view: reset filter and compare results",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Filters1 - 162 Filter By Bathrooms:  analytics view: check results after resetting",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Filters1 - 162 Filter By Bathrooms:  listing view: delete bathrooms column and check",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Filters1 - 163 Filter By Bathrooms:  listing view: filter by 1 bathroom",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Filters1 - 163 Filter By Bathrooms:  analytics view: verify value with 1 bathroom",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Filters1 - 163 Filter By Bathrooms:  listing view: reset filter and compare results",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Filters1 - 163 Filter By Bathrooms:  analytics view: check results after resetting",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "Filters1 - 163 Filter By Bathrooms:  listing view: delete bathrooms column and check",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "273 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "273 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "273 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "273 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "273 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "273 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "273 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "273 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 3
+  },
+  {
+    "description": "273 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "273 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "273 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "273 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "274 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "274 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "274 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "274 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "274 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 2
+  },
+  {
+    "description": "274 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "274 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "274 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "274 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "274 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "274 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "274 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "275 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "275 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 2
+  },
+  {
+    "description": "275 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "275 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "275 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "275 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "275 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "275 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "275 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "275 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 2
+  },
+  {
+    "description": "275 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "275 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 3
+  },
+  {
+    "description": "280 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "280 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "280 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "280 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "280 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "280 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "280 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "280 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "280 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 3
+  },
+  {
+    "description": "280 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "280 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "280 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "281 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "281 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "281 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "281 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "281 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "281 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 2
+  },
+  {
+    "description": "281 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "281 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "281 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "281 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "281 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "281 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "282 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "282 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "282 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 2
+  },
+  {
+    "description": "282 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "282 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "282 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "282 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "282 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "282 - Test searching on Google Open main page and verify title",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "282 - Test searching on Google Search for keyword and verify title of results page",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "282 - Test searching on Google Check the page headers for matching the requested word",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 3
+  },
+  {
+    "description": "282 - Test searching on Google Search for total results and check that this number is more than min",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Filters1 - 161 Filter By Bathrooms:  listing view: filter by 1 bathroom",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Filters1 - 161 Filter By Bathrooms:  analytics view: verify value with 1 bathroom",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Filters1 - 161 Filter By Bathrooms:  listing view: reset filter and compare results",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "Filters1 - 161 Filter By Bathrooms:  analytics view: check results after resetting",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 2
+  },
+  {
+    "description": "Filters1 - 161 Filter By Bathrooms:  listing view: delete bathrooms column and check",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "PDFs - 276 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "PDFs - 276 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "PDFs - 276 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "PDFs - 276 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 2
+  },
+  {
+    "description": "PDFs - 277 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "PDFs - 277 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "PDFs - 277 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "PDFs - 277 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "PDFs - 278 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "PDFs - 278 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  },
+  {
+    "description": "PDFs - 278 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1
+  },
+  {
+    "description": "PDFs - 278 Sothebys Share Tag CMA Rentals:  download listing",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 3
+  },
+  {
+    "description": "Test searching on Google open main page and download file",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  }
+]

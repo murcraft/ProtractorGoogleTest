@@ -80,6 +80,9 @@ let capabilitiesMap = {
     shardTestFiles: process.env.maxinstances > 1,
     maxInstances: process.env.maxinstances,
     platform: 'MAC',
+    unexpectedAlertBehaviour: 'accept',
+    acceptSslCerts: true,
+
     'safari.options': {
       technologyPreview: false, // set to true if Safari Technology Preview to be used
       cleanSession: true,
