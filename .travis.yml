@@ -22,19 +22,22 @@ before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Firefox" ]]; then export browser=firefox; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
-  - ls ~/Library
+  - ls ~/Library/Containers
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then system_profiler SPApplicationsDataType; fi
   - sleep 3
-  - defaults write com.apple.Safari DisableLocalFileRestrictions YES
-  - defaults write com.apple.Safari WebKitAllowFileAccessFromFileURLs YES
-  - defaults write com.apple.Safari WebKitAllowUniversalAccessFromFileURLs YES
-  - defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey YES
-  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowFileAccessFromFileURLs" YES
-  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowUniversalAccessFromFileURLs" YES
-  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" YES
-  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles" YES
+  - defaults write com.apple.$SAFARI_SHORT_NAME ApplePersistenceIgnoreState YES
+  - defaults write com.apple.Safari IncludeDevelopMenu -bool true
+  - defaults write com.apple.Safari DisableLocalFileRestrictions -bool true
+  - defaults write com.apple.Safari WebKitAllowFileAccessFromFileURLs -bool true
+  - defaults write com.apple.Safari WebKitAllowUniversalAccessFromFileURLs -bool true
+  - defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowFileAccessFromFileURLs" -bool true
+  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowUniversalAccessFromFileURLs" -bool true
+  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
+  - defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles" -bool true
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
-  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
+#  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
+  - safaridriver --enable --diagnose
 
 stages:
   - Chrome

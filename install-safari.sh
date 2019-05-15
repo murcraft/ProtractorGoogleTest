@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-SAFARI_NAME="Safari"
-SAFARI_SHORT_NAME="Safari"
+#SAFARI_NAME="Safari"
+#SAFARI_SHORT_NAME="Safari"
 #fi
 
 # Launch and kill Safari so that we can start to override the settings
-open -a "$SAFARI_NAME"
-sleep 2
-killall "$SAFARI_NAME"
+#open -a "$SAFARI_NAME"
+#sleep 2
+#killall "$SAFARI_NAME"
 
 # Tell Safari not to restore the browser windows when it is relaunched
-defaults write com.apple.$SAFARI_SHORT_NAME ApplePersistenceIgnoreState YES
-defaults write com.apple.Safari IncludeDevelopMenu YES
+#defaults write com.apple.$SAFARI_SHORT_NAME ApplePersistenceIgnoreState YES
+#defaults write com.apple.Safari IncludeDevelopMenu YES
 #defaults write com.apple.Safari DisableLocalFileRestrictions YES
 #defaults write com.apple.Safari WebKitAllowFileAccessFromFileURLs YES
 #defaults write com.apple.Safari WebKitAllowUniversalAccessFromFileURLs YES
