@@ -2,6 +2,19 @@
 set -x
 set -e
 
+elif [ $BROWSER == "safari" ] && [ $BVER == "unstable" ]; then
+  # This is quite dangerous, it is scraping the safari download website for the URL. If the format
+  # of the website changes then it won't work anymore. We should add safari to
+  # browsers.contralis.info instead
+  TARGET_URL=`curl https://developer.apple.com/safari/download/ | sed -nE 's/.*href="(.*\.dmg)">.*macOS 10.12.*/\1/p'`
+  #TARGET_URL=`curl https://secure-appldnld.apple.com/STP/041-58764-20190501-d28417f0-1e4c-4abb-9cdf-b469cf8c1b48/SafariTechnologyPreview.dmg`
+  TARGET_VERSION=`curl https://developer.apple.com/safari/download/ | sed -nE 's/.*>([0-9]+)<\/p>.*$/\1/p'`
+else
+  TARGET_BROWSER=`curl -H 'Accept: text/csv' https://browser-version-api.herokuapp.com/$PLATFORM/$BROWSER/$BVER`
+  TARGET_URL=`echo $TARGET_BROWSER | cut -d',' -f7`
+  TARGET_VERSION=`echo $TARGET_BROWSER | cut -d',' -f5`
+fi
+
 # Install Safari or Safari Technology Preview
 # Arguments: $1=target URL
 
