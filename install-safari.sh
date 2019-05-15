@@ -35,4 +35,4 @@ defaults write com.apple.$SAFARI_SHORT_NAME com.apple.Safari.ContentPageGroupIde
 
 # Turn on Allow Remote Automation. This only works in Mac OS 10.12.6+
 safaridriver --help
-sudo safaridriver --enable --diagnose
+safaridriver --enable --diagnose
