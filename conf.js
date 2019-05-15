@@ -14,12 +14,12 @@ let downloads = keyVars.downloadPath
 
 let config = {
 
-  allScriptsTimeout: 110000000,
+  allScriptsTimeout: 110000,
   SELENIUM_PROMISE_MANAGER: false,
   framework: 'jasmine2',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 240000000,
+    defaultTimeoutInterval: 240000,
   },
 
   params: {
@@ -68,8 +68,9 @@ let config = {
     }
 
     function ping () {
-      logger.debug('Waiting logs...')
+      logger.debug(`Waiting test's logs...`)
     }
+    setInterval(ping, 300000)
 
     if (browserName === 'firefox' && os.type() === 'Linux') {
       try {
