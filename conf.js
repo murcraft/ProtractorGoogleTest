@@ -127,6 +127,15 @@ let config = {
       this.specDone = function (result) {
         if (result.status === 'failed') {
           FAILED++
+          try {
+            browser.takeScreenshot().then(function (png) {
+              allure.createAttachment('Screenshot', function () {
+                return Buffer.from(png, 'base64')
+              }, 'image/png')()
+            })
+          } catch (e) {
+            Logger.error(`Screen shot was not taken\n${e}`)
+          }
           Logger.failed(result)
           if (browserName === 'firefox' && os.type() === 'Linux') {
             try {
@@ -180,15 +189,7 @@ let config = {
       }
     })
 
-    try {
-      await browser.get('')
-    } catch (e) {
-      if (browserName === 'safari') {
-        console.log(`All ${browserName} processes:\n ${child_process.execSync('ps -all')}`)
-        Logger.error(`Not browser get\n${e}`)
-      }
-    }
-
+    await browser.get('')
   },
 
   afterLaunch: async function () {
