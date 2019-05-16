@@ -120,8 +120,8 @@ let config = {
         Logger.info(`Suite started: ${result.fullName}`)
         Logger.info(`**************************************************`)
         global.SuiteDescribe = result.fullName
-        let tm = Math.floor((Math.random() * 10000) + 100)
-        child_process.execSync(`screencapture -t jpg ~/Desktop/screen + ${tm}.jpg`)
+        let tm = Math.floor((Math.random() * 10000) + 10000)
+        child_process.execSync(`screencapture -t jpg ./artifacts/screen${tm + 1}.jpg`)
       }
       this.specStarted = function (result) {
         Logger.info(`Spec started: ${result.description}`)
@@ -153,11 +153,15 @@ let config = {
           }
 
           if (browserName === 'safari') {
+            console.log(`Processes all ${browserName} processes:\n ${child_process.execSync(`ps -all`)}`)
             console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps | grep ${browserName}`)}`)
           }
         }
         if (result.status === 'passed') {
           PASSED++
+          if (browserName === 'safari') {
+            console.log(`Processes all ${browserName} processes:\n ${child_process.execSync(`ps -all`)}`)
+          }
         }
         if (result.status === 'disabled' || result.status === 'pending') {
           SKIPPED++
