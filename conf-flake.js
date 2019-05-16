@@ -2,7 +2,7 @@
 'use strict'
 
 let protractorFlake = require('protractor-flake')
-let customParser = require('./parser')
+let parser = require('./parser')
 
 let getParamValue = function (param) {
   let value = undefined
@@ -51,6 +51,7 @@ protractorArgs.push('conf.js')
 
 if (process.env.browser === 'safari') {
   process.env.maxinstances = 1
+  parser = 'standard'
 }
 
 // protractorArgs.push('conf.js')
@@ -80,7 +81,7 @@ console.log(protractorArgs)
 
 protractorFlake({
   maxAttempts: process.env.maxAttempts,
-  parser: customParser,
+  parser: parser,
   nodeBin: 'node',
   color: 'magenta',
   protractorArgs: protractorArgs
