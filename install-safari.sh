@@ -11,13 +11,13 @@
 # Safari stable is already installed, no need to do anything
 
 # If we're running on Travis
-if [ ! -z $TRAVIS ]; then
+#if [ ! -z $TRAVIS ]; then
   # Download and install Soundflower to get audio output devices otherwise we get crashes
   # https://bugs.webkit.org/show_bug.cgi?id=172794
-  curl -L https://github.com/mattingalls/Soundflower/releases/download/2.0b2/Soundflower-2.0b2.dmg > Soundflower.dmg
-  hdiutil attach Soundflower.dmg
-  sudo installer -pkg /Volumes/Soundflower-2.0b2/Soundflower.pkg -target /
-fi
+#  curl -L https://github.com/mattingalls/Soundflower/releases/download/2.0b2/Soundflower-2.0b2.dmg > Soundflower.dmg
+#  hdiutil attach Soundflower.dmg
+#  sudo installer -pkg /Volumes/Soundflower-2.0b2/Soundflower.pkg -target /
+#fi
 
 #if [ $BVER == "unstable" ]; then
 #  SAFARI_NAME="Safari Technology Preview"
@@ -49,12 +49,13 @@ defaults write com.apple.$SAFARI_SHORT_NAME com.apple.Safari.ContentPageGroupIde
 
 # Turn on Allow Remote Automation. This only works in Mac OS 10.12.6+
 sudo safaridriver --enable
+safaridriver --help
 
 # determine the script path
 # ref: http://stackoverflow.com/questions/4774054/reliable-way-for-a-bash-script-to-get-the-full-path-to-itself
-pushd `dirname $0` > /dev/null
-SCRIPTPATH=`pwd -P`
-popd > /dev/null
+#pushd `dirname $0` > /dev/null
+#SCRIPTPATH=`pwd -P`
+#popd > /dev/null
 
 # Allow device access
 # This UserMediaPermissions.plist file allows 127.0.0.1 and localhost. To add other domains
@@ -63,4 +64,4 @@ popd > /dev/null
 # then click on the red camera in the URL bar and choose "Always Allow".
 # Finally copy the `~/Library/SafariTechnologyPreview/UserMediaPermissions.plist` file into the
 # same directory on Travis.
-cp $SCRIPTPATH/UserMediaPermissions.plist ~/Library/$SAFARI_SHORT_NAME/
+#cp $SCRIPTPATH/UserMediaPermissions.plist ~/Library/$SAFARI_SHORT_NAME/
