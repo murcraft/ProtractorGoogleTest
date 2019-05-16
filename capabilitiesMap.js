@@ -84,7 +84,8 @@ let capabilitiesMap = {
       cleanSession: true,
       javascriptEnabled: true,
       acceptSslCerts: true,
-      nativeEvents: true
+      nativeEvents: true,
+      diagnose: true
     }
   },
 

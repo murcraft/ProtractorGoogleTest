@@ -120,6 +120,8 @@ let config = {
         Logger.info(`Suite started: ${result.fullName}`)
         Logger.info(`**************************************************`)
         global.SuiteDescribe = result.fullName
+        let tm = Math.floor((Math.random() * 10000) + 100)
+        child_process.execSync(`screencapture -t jpg ~/Desktop/screen + ${tm}.jpg`)
       }
       this.specStarted = function (result) {
         Logger.info(`Spec started: ${result.description}`)
