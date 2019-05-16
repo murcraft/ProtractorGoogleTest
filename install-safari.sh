@@ -48,8 +48,7 @@ defaults write com.apple.$SAFARI_SHORT_NAME WebKitJavaScriptCanOpenWindowsAutoma
 defaults write com.apple.$SAFARI_SHORT_NAME com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool true
 
 # Turn on Allow Remote Automation. This only works in Mac OS 10.12.6+
-sudo safaridriver --enable
-safaridriver --help
+sudo safaridriver --enable --diagnose
 
 # determine the script path
 # ref: http://stackoverflow.com/questions/4774054/reliable-way-for-a-bash-script-to-get-the-full-path-to-itself
