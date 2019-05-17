@@ -137,7 +137,7 @@ let config = {
               }, 'image/png')()
             })
           } catch (e) {
-            Logger.error(`Screen shot was not taken\n${e}`)
+            Logger.warn(`Screen shot was not taken\n${e}`)
           }
           Logger.failed(result)
           if (browserName === 'firefox' && os.type() === 'Linux') {
