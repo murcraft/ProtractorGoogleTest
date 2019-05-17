@@ -120,8 +120,8 @@ let config = {
         Logger.info(`Suite started: ${result.fullName}`)
         Logger.info(`**************************************************`)
         global.SuiteDescribe = result.fullName
-        let tm = Math.floor((Math.random() * 10000) + 10000)
-        child_process.execSync(`screencapture -t jpg ./artifacts/screen${tm + 1}.jpg`)
+        // let tm = Math.floor((Math.random() * 10000) + 10000)
+        // child_process.execSync(`screencapture -t jpg ./artifacts/screen${tm + 1}.jpg`)
       }
       this.specStarted = function (result) {
         Logger.info(`Spec started: ${result.description}`)
@@ -207,7 +207,12 @@ let config = {
     }
 
     if (browserName === 'safari') {
-      console.log(`All ${browserName} processes:\n ${child_process.execSync('ps -all')}`)
+      try {
+        console.log(`Get all ${browserName} crashes:\n ${child_process.execSync(`ls ~/Users/travis/build/murcraft/ProtractorGoogleTest/artifacts`)}`)
+        console.log(`Get all crashes:\n ${child_process.execSync(`cp -av ~/Library/Logs/DiagnosticReports/* ~/Users/travis/build/murcraft/ProtractorGoogleTest/artifacts`)}`)
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
     }
 
     await new Promise(resolve => setTimeout(resolve, 5000))

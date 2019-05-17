@@ -51,7 +51,7 @@ protractorArgs.push('conf.js')
 
 if (process.env.browser === 'safari') {
   process.env.maxinstances = 1
-  parser = 'standard'
+  process.env.logLevel = 'debug'
 }
 
 // protractorArgs.push('conf.js')
