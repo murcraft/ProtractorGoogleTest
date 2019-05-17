@@ -14,6 +14,7 @@ before_install:
 
 before_script:
   - export DISPLAY=:99.0
+  - defaults write com.apple.desktop Background '{default = {ImageFilePath = "/Library/Desktop Pictures/Black & White/Lightning.jpg"; };}'
   - chmod +x ./install-safari.sh ./run_tests.sh
 #  - bash ./install.sh
 #  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then ( sudo Xvfb :99 -ac -screen 0 1920x1080x16; echo ok ) & fi
@@ -22,8 +23,9 @@ before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Firefox" ]]; then export browser=firefox; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
-  - ls ~/Library/Assistant
+  - ls ~/Library
   - ls ~/Library/Logs
+  - ls ~/Library/Preferences/com.apple.desktop
   - ls ~/build/murcraft
   - ls ~/build
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
