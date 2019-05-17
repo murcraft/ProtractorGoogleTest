@@ -208,6 +208,7 @@ let config = {
 
     if (browserName === 'safari') {
       try {
+        console.log(`Get all ${browserName} crashes:\n ${child_process.execSync(`ls`)}`)
         console.log(`Get all ${browserName} crashes:\n ${child_process.execSync(`ls ~/Users/travis/build/murcraft/ProtractorGoogleTest/artifacts`)}`)
         console.log(`Get all crashes:\n ${child_process.execSync(`cp -av ~/Library/Logs/DiagnosticReports/* ~/Users/travis/build/murcraft/ProtractorGoogleTest/artifacts`)}`)
       } catch (e) {
