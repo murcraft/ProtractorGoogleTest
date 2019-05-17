@@ -108,14 +108,14 @@ let config = {
     }))
 
     jasmine.getEnv().addReporter(new function () {
-      this.jasmineStarted = function (summary) {
+      this.jasmineStarted = (summary) => {
         global.TOTAL = summary.totalSpecsDefined
         global.PASSED = 0
         global.FAILED = 0
         global.SKIPPED = 0
         Logger.info(`>>>>>>>>>>Tests started. Total tests: ${TOTAL}<<<<<<<<<<`)
       }
-      this.suiteStarted = function (result) {
+      this.suiteStarted = (result) => {
         Logger.info(`**************************************************`)
         Logger.info(`Suite started: ${result.fullName}`)
         Logger.info(`**************************************************`)
@@ -123,15 +123,16 @@ let config = {
         // let tm = Math.floor((Math.random() * 10000) + 10000)
         // child_process.execSync(`screencapture -t jpg ./artifacts/screen${tm + 1}.jpg`)
       }
-      this.specStarted = function (result) {
+      this.specStarted = (result) => {
         Logger.info(`Spec started: ${result.description}`)
       }
-      this.specDone = function (result) {
+      this.specDone = (result) => {
         if (result.status === 'failed') {
           FAILED++
           try {
-            browser.takeScreenshot().then(function (png) {
-              allure.createAttachment('Screenshot', function () {
+            browser.takeScreenshot().then((png) => {
+              console.log('take screen')
+              allure.createAttachment('Screenshot', () => {
                 return Buffer.from(png, 'base64')
               }, 'image/png')()
             })
@@ -180,13 +181,13 @@ let config = {
 
     jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
 
-    jasmine.getEnv().afterEach(async function () {
+    jasmine.getEnv().afterEach(async () => {
       if (browserName === 'chrome') {
         await Logger.LogConsoleErrors()
       }
       try {
-        await browser.takeScreenshot().then(function (png) {
-          allure.createAttachment('Screenshot', function () {
+        await browser.takeScreenshot().then((png) => {
+          allure.createAttachment('Screenshot', () => {
             return Buffer.from(png, 'base64')
           }, 'image/png')()
         })
@@ -208,10 +209,10 @@ let config = {
 
     if (browserName === 'safari') {
       try {
-        console.log(`Get all ${browserName} crashes:\n ${child_process.execSync(`ls ~/Library/Logs/CoreSimulator`)}`)
+        console.log(`Get all processes:\n ${child_process.execSync(`ps -all`)}`)
         console.log(`Get all crashes:\n ${child_process.execSync(`cp -av ~/Library/Logs/DiagnosticReports/* ~/build/murcraft/ProtractorGoogleTest/artifacts/`)}`)
       } catch (e) {
-        console.log(`Error executing the command\n${e}`)
+        console.log(`Error executing the command`)
       }
     }
 

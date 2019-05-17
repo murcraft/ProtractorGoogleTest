@@ -79,12 +79,13 @@ let capabilitiesMap = {
     browserName: 'safari',
     shardTestFiles: process.env.maxinstances > 1,
     maxInstances: process.env.maxinstances,
+    platformName: 'macOS',
+    javascriptEnabled: true,
+    acceptSslCerts: true,
+    nativeEvents: true,
     'safari.options': {
       technologyPreview: false, // set to true if Safari Technology Preview to be used
       cleanSession: true,
-      javascriptEnabled: true,
-      acceptSslCerts: true,
-      nativeEvents: true,
       diagnose: true
     }
   },
