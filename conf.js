@@ -151,11 +151,11 @@ let config = {
               console.log(`Error executing the command\n${e}`)
             }
           }
-
-          if (browserName === 'safari') {
-            console.log(`Processes all ${browserName} processes:\n ${child_process.execSync(`ps -all`)}`)
-            console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps | grep ${browserName}`)}`)
-          }
+          //
+          // if (browserName === 'safari') {
+          //   console.log(`Processes all ${browserName} processes:\n ${child_process.execSync(`ps -all`)}`)
+          //   console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps | grep ${browserName}`)}`)
+          // }
         }
         if (result.status === 'passed') {
           PASSED++
@@ -208,7 +208,7 @@ let config = {
 
     if (browserName === 'safari') {
       try {
-        console.log(`Get all ${browserName} crashes:\n ${child_process.execSync(`ls ~`)}`)
+        console.log(`Get all ${browserName} crashes:\n ${child_process.execSync(`ls ~/Library/Logs/`)}`)
         console.log(`Get all crashes:\n ${child_process.execSync(`cp -av ~/Library/Logs/DiagnosticReports/* ~/build/murcraft/ProtractorGoogleTest/artifacts/`)}`)
       } catch (e) {
         console.log(`Error executing the command\n${e}`)
