@@ -129,16 +129,6 @@ let config = {
       this.specDone = (result) => {
         if (result.status === 'failed') {
           FAILED++
-          try {
-            browser.takeScreenshot().then((png) => {
-              console.log('take screen')
-              allure.createAttachment('Screenshot', () => {
-                return Buffer.from(png, 'base64')
-              }, 'image/png')()
-            })
-          } catch (e) {
-            Logger.warn(`Screen shot was not taken\n${e}`)
-          }
           Logger.failed(result)
           if (browserName === 'firefox' && os.type() === 'Linux') {
             try {
@@ -152,17 +142,13 @@ let config = {
               console.log(`Error executing the command\n${e}`)
             }
           }
-          //
-          // if (browserName === 'safari') {
-          //   console.log(`Processes all ${browserName} processes:\n ${child_process.execSync(`ps -all`)}`)
-          //   console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps | grep ${browserName}`)}`)
-          // }
+          if (browserName === 'safari') {
+            console.log(`Processes all ${browserName} processes:\n ${child_process.execSync(`ps -all`)}`)
+            console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps | grep ${browserName}`)}`)
+          }
         }
         if (result.status === 'passed') {
           PASSED++
-          if (browserName === 'safari') {
-            console.log(`Processes all ${browserName} processes:\n ${child_process.execSync(`ps -all`)}`)
-          }
         }
         if (result.status === 'disabled' || result.status === 'pending') {
           SKIPPED++
@@ -192,7 +178,7 @@ let config = {
           }, 'image/png')()
         })
       } catch (e) {
-        Logger.error(`Screen shot was not taken\n${e}`)
+        Logger.warn(`Screen shot was not taken\n${e}`)
       }
     })
 
@@ -210,7 +196,7 @@ let config = {
     if (browserName === 'safari') {
       try {
         console.log(`Get all processes:\n ${child_process.execSync(`ps -all`)}`)
-        console.log(`Get all crashes:\n ${child_process.execSync(`cp -av ~/Library/Logs/DiagnosticReports/* ~/build/murcraft/ProtractorGoogleTest/artifacts/`)}`)
+        console.log(`Get all crashes:\n ${child_process.execSync(`cp -av ~/Library/Logs/* ~/build/murcraft/ProtractorGoogleTest/artifacts/`)}`)
       } catch (e) {
         console.log(`Error executing the command`)
       }
