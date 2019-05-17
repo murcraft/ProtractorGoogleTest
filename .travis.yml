@@ -10,6 +10,7 @@ before_install:
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo installer -pkg AVbin10.pkg -target /; fi
+  - Xvfb  :99 -screen 0 1920x1080x24 -dpi 100
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16; fi
 
 before_script:
