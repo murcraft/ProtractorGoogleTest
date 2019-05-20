@@ -3,6 +3,7 @@ let fs = require('fs')
 const shell = require('shelljs')
 const os = require('os')
 const child_process = require('child_process')
+let browserstack = require('browserstack-local')
 
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
@@ -47,6 +48,19 @@ let config = {
   // baseUrl: process.env.env = 'http://www.google.by',
 
   beforeLaunch: function () {
+    // if (browserName === 'safari') {
+    //   console.log('Connecting local')
+    //   return new Promise((resolve, reject) => {
+    //     exports.bs_local = new browserstack.Local()
+    //     exports.bs_local.start({'key': keyVars.browserstackKey}, (error) => {
+    //       if (error) return reject(error)
+    //       console.log('Connected. Now testing...')
+    //
+    //       resolve()
+    //     })
+    //   })
+    // }
+
     let logger = require('./lib/helpers/loggerHelper')
 
     if (process.env.isCleanAllure === 'true') {
@@ -70,6 +84,7 @@ let config = {
     function ping () {
       logger.debug(`Waiting test's logs...`)
     }
+
     setInterval(ping, 300000)
 
     if (browserName === 'firefox' && os.type() === 'Linux') {
@@ -143,8 +158,12 @@ let config = {
             }
           }
           if (browserName === 'safari') {
-            console.log(`Processes all ${browserName} processes:\n ${child_process.execSync(`ps -all`)}`)
-            console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps | grep ${browserName}`)}`)
+            try {
+              console.log(`Processes all ${browserName} processes:\n ${child_process.execSync(`ps -all`)}`)
+              console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps | grep ${browserName}`)}`)
+            } catch (e) {
+              console.log(`Error executing the command\n${e}`)
+            }
           }
         }
         if (result.status === 'passed') {
@@ -202,7 +221,20 @@ let config = {
       }
     }
 
-    await new Promise(resolve => setTimeout(resolve, 5000))
+    // if (browserName !== 'safari') {
+    //   await new Promise(resolve => setTimeout(resolve, 5000))
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    // } else {
+      return new Promise((resolve, reject) => {
+        exports.bs_local.stop(resolve)
+          .catch(error => {
+            console.log(error)
+            reject(error)
+          })
+      })
+    // }
   },
 }
 
@@ -214,7 +246,10 @@ if (browserName === 'firefox') {
 }
 if (browserName === 'safari') {
   config.logLevel = 'DEBUG'
+  // config.seleniumAddress = 'http://hub-cloud.browserstack.com/wd/hub'
 }
+
+// console.log(config.capabilities)
 
 exports.config = config
 

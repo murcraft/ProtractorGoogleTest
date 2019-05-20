@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "aws-sdk": "^2.436.0",
+    "browserstack-local": "^1.4.0",
     "grunt": "^1.0.4",
     "grunt-protractor-runner": "^5.0.0",
     "gulp": "^4.0.0",

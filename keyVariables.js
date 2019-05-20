@@ -28,5 +28,8 @@ module.exports = {
   awsDownloadsPath: `${process.env.TRAVIS_BUILD_NUMBER}/${process.env.TRAVIS_JOB_NUMBER}/results/pdfs`,
 
   sothEmail: `soth_ag@perchwell.com`,
-  sothPass: `Password@123`
+  sothPass: `Password@123`,
+
+  browserstackUser: `elenaogulik1`,
+  browserstackKey: `MevbPAyrXzGPSMRPDz1d`
 }

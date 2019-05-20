@@ -76,7 +76,17 @@ let capabilitiesMap = {
   },
 
   'safari': {
-    browserName: 'safari',
+    // os : 'OS X',
+    // os_version : 'Mojave',
+    browserName : 'safari',
+    // browser_version : '12.0',
+    // resolution : '1920x1080',
+    // 'browserstack.local' : 'false',
+    // 'browserstack.selenium_version' : '3.14.0',
+    // 'browserstack.user': keyVars.browserstackUser,
+    // 'rowserstack.key': keyVars.browserstackKey,
+    // 'browserstack.local': true,
+    // name: 'Bstack-[Protractor] Local Test',
     shardTestFiles: process.env.maxinstances > 1,
     maxInstances: process.env.maxinstances,
     platformName: 'macOS',

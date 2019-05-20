@@ -7,16 +7,17 @@ dist: trusty
 
 # install AVbin
 before_install:
+  - ls
+  - chmod +x ./preinstall-safari.sh
+  - ./preinstall-safari.sh
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo installer -pkg AVbin10.pkg -target /; fi
-  - Xvfb  :99 -screen 0 1920x1080x24 -dpi 100
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16; fi
 
 before_script:
   - export DISPLAY=:99.0
-  - defaults write com.apple.desktop Background '{default = {ImageFilePath = "/Library/Desktop Pictures/Black & White/Lightning.jpg"; };}'
-  - chmod +x ./install-safari.sh ./run_tests.sh
+  - chmod +x ./install-safari.sh ./run_tests.sh ./install.sh
 #  - bash ./install.sh
 #  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then ( sudo Xvfb :99 -ac -screen 0 1920x1080x16; echo ok ) & fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
@@ -29,7 +30,6 @@ before_script:
   - ls ~/Library/Containers
   - ls ~/build/murcraft
   - ls ~/build
-#  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo /Users/travis/build/murcraft/ProtractorGoogleTest/setSafariPath.scpt; fi
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
 
 stages:
