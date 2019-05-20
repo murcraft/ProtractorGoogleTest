@@ -5,7 +5,7 @@ echo "Preinstall packages"
 if [ $TRAVIS_OS_NAME == "osx" ]; then
   brew update
   brew cask reinstall xquartz
-  brew install tcl-tk --with-tk
+  brew install tcl-tk
   brew link --overwrite --force tcl-tk
   brew unlink tcl-tk
 fi
