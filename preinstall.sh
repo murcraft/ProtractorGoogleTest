@@ -4,6 +4,7 @@ echo "Preinstall packages"
 
 if [ $TRAVIS_OS_NAME == "osx" ]; then
   brew update
+  brew cask reinstall xquartz
 fi
 
 if [ $TRAVIS_OS_NAME == "linux" ]; then

@@ -222,18 +222,18 @@ let config = {
     }
 
     // if (browserName !== 'safari') {
-    //   await new Promise(resolve => setTimeout(resolve, 5000))
-    //     .catch(error => {
-    //       console.log(error)
-    //     })
+      await new Promise(resolve => setTimeout(resolve, 5000))
+        .catch(error => {
+          console.log(error)
+        })
     // } else {
-      return new Promise((resolve, reject) => {
-        exports.bs_local.stop(resolve)
-          .catch(error => {
-            console.log(error)
-            reject(error)
-          })
-      })
+    //   return new Promise((resolve, reject) => {
+    //     exports.bs_local.stop(resolve)
+    //       .catch(error => {
+    //         console.log(error)
+    //         reject(error)
+    //       })
+    //   })
     // }
   },
 }
