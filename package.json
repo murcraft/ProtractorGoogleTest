@@ -11,7 +11,7 @@
     "test-chrome": "npm run update-chrome",
     "test-gecko": "npm run update-gecko && npm run start-webdriver",
     "test-safari": "npm run update-webdriver",
-    "test": "node conf-flake.js"
+    "test": "node conf-flake.js -- browser=firefox suite=suite2"
   },
   "devDependencies": {
     "aws-sdk": "^2.436.0",

@@ -241,8 +241,25 @@ let config = {
 config.capabilities = capabilitiesMap[browserName]
 
 if (browserName === 'firefox') {
-  config.seleniumAddress = 'http://127.0.0.1:4444/wd/hub'
+  // config.seleniumAddress = 'http://127.0.0.1:4444/wd/hub'
   config.exclude = ['lib/spec/pdf/savePdf*.js']
+
+  config.seleniumServerJar = `./node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.14.0.jar`
+  config.localSeleniumStandaloneOpts = {
+    // port: 4444,
+    args: [
+      '-timeout=60000',
+      // '-role=hub'
+    ],
+    jvmArgs: [
+    '-Dwebdriver.geckodriver.driver=./lib/drivers/geckodriver-v0.24.0.exe'
+  ]
+  }
+  config.geckoDriver = './lib/drivers/geckodriver-v0.24.0'
+
+  config.logLevel = 'DEBUG'
+
+
 }
 if (browserName === 'safari') {
   config.logLevel = 'DEBUG'
@@ -253,3 +270,4 @@ if (browserName === 'safari') {
 
 exports.config = config
 
+//node conf-flake.js -- browser=firefox
