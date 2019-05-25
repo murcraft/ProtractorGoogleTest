@@ -4,27 +4,31 @@
   "description": "",
   "scripts": {
     "preupdate-webdriver": "npm install",
-    "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=2.46 --versions.standalone=3.4.0",
-    "pretest": "npm run update-webdriver",
+    "update-webdriver": "webdriver-manager update --gecko=false --chrome=false --versions.standalone=3.14.0",
+    "update-chrome": "webdriver-manager update --gecko=false --versions.chrome=2.46 --versions.standalone=3.4.0",
+    "update-gecko": "webdriver-manager update --chrome=false --versions.standalone=3.14.0",
+    "start-webdriver": "webdriver-manager start --versions.standalone=3.14.0 --chrome=false --detach",
+    "test-chrome": "npm run update-chrome",
+    "test-gecko": "npm run update-gecko && npm run start-webdriver",
+    "test-safari": "npm run update-webdriver",
     "test": "node conf-flake.js"
   },
-  "dependencies": {
-    "aws-sdk": "^2.403.0",
-    "dockular": "0.0.1",
+  "devDependencies": {
+    "aws-sdk": "^2.436.0",
+    "browserstack-local": "^1.4.0",
+    "grunt": "^1.0.4",
+    "grunt-protractor-runner": "^5.0.0",
+    "gulp": "^4.0.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-protractor": "^4.1.1",
     "jasmine-allure-reporter": "^1.0.2",
     "jasmine-data-provider": "^2.2.0",
     "log4js": "^3.0.6",
     "protractor": "^5.4.2",
     "protractor-flake": "3.3.0",
     "protractor-stop-describe-on-failure": "^1.0.3",
-    "slack-node": "^0.1.8"
-  },
-  "devDependencies": {
-    "grunt": "^1.0.3",
-    "grunt-protractor-runner": "^5.0.0",
-    "gulp": "^4.0.0",
-    "gulp-notify": "^3.2.0",
-    "gulp-protractor": "^4.1.1",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "slack-node": "^0.1.8",
+    "shelljs": "^0.8.3"
   }
 }

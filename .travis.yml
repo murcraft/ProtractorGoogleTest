@@ -1,14 +1,120 @@
+language: node_js
+node_js:
+  - 10
+
+os: linux
+dist: trusty
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16; fi
+  - export DISPLAY=:99.0
+  - Xvfb :99 -screen 0 1920x1080x16 > /dev/null 2>&1 &
+
+before_script:
+  - chmod +x ./install-safari.sh ./run_tests.sh ./install.sh
+  - sh -e /etc/init.d/xvfb start &
+  - sleep 3
+#  - bash ./install.sh
+#  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then ( sudo Xvfb :99 -ac -screen 0 1920x1080x16; echo ok ) & fi
+#  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Firefox" ]]; then export browser=firefox; fi
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
+  - ls ~/Library
+  - ls ~/Library/Logs
+  - ls ~/Library/Containers
+  - ls ~/build/murcraft
+  - ls ~/build
+  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
+
+stages:
+  - Chrome
+  - Firefox
+  - Safari
+
+script:
+ - ls
+ - system_profiler SPDisplaysDataType | grep Resolution
+ - bash ./run_tests.sh || if [$? != 0]; then exit 0; fi
+
+jobs:
+ include:
+# - stage: Chrome
+#   env: suite=suite1
+# - stage: Chrome
+#   env: suite=suite2
+# - stage: Chrome
+#   env: suite=pdf
+# - stage: Firefox
+#   env: suite=suite1
+# - stage: Firefox
+#   env: suite=suite2
+# - stage: Firefox
+#   env: suite=pdf
+ - stage: Safari
+   os: osx
+   osx_image: xcode10.2
+   env: suite=suite1
+ - stage: Safari
+   os: osx
+   osx_image: xcode10.2
+   env: suite=suite2
+ - stage: Safari
+   os: osx
+   osx_image: xcode10.2
+   env: suite=pdf
+
+addons:
+  firefox: "65.0"
+  apt:
+    chrome: stable
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
+    - graphicsmagick
+    - ghostscript
+  homebrew:
+    packages:
+    - graphicsmagick
+    - ghostscript
+    - xvfb
+
+  artifacts:
+    s3_region: "us-west-2"
+    paths:
+    - ./allure-results
+    - ./artifacts
+    target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
+
+cache:
+  directories:
+    - node_modules
+
+notifications:
+  slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
+  email:
+    recipients:
+    - ogulikpurse@gmail.com
+    on_success: always
+    on_failure: always
+
+
+
+
+
 dist: trusty
 #language: node_js
 #node_js:
 #  - "10.14.2"
 stages:
-  - test
-  - docker-test
+- test
+- docker-test
 
 env:
-  - suite=suite1
-  - suite=suite2
+- suite=suite1
+- suite=suite2
 
 jobs:
   include:
@@ -22,17 +128,25 @@ jobs:
     - docker push $DOCKER_USERNAME/e2e-chrome
   - stage: docker-test
     script:
-      - mkdir allure-results
-      - ls
-      - chmod -R a=rwx $(pwd)
-      - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-      - docker run -i -d --rm --net=host --privileged -v /dev/shm:/dev/shm -v $(pwd)/allure-results:/tests/allure-results -v $(pwd)/e2e/artifacts:/tests/e2e/artifacts -e suite=$suite -e maxinstances=$maxinstances -e logLevel=$logLevel --name e2e $DOCKER_USERNAME/e2e-chrome:latest
-      - docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js || if [$? != 0]; then exit 0; fi'
-#addons:
-#  artifacts:
-#      paths:
-#        - ./allure-results
- #     target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
+    - mkdir allure-results
+    - ls
+    - chmod -R a=rwx $(pwd)
+    - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+    - docker run -i -d --rm --net=host --privileged -v /dev/shm:/dev/shm -v $(pwd)/allure-results:/tests/allure-results -v $(pwd)/e2e/artifacts:/tests/e2e/artifacts -e suite=suite1 -e maxinstances=$maxinstances -e logLevel=$logLevel --name e2e $DOCKER_USERNAME/e2e-chrome:latest
+    - docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js || if [$? != 0]; then exit 0; fi'
+  - stage: docker-test
+    script:
+    - mkdir allure-results
+    - ls
+    - chmod -R a=rwx $(pwd)
+    - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+    - docker run -i -d --rm --net=host --privileged -v /dev/shm:/dev/shm -v $(pwd)/allure-results:/tests/allure-results -v $(pwd)/e2e/artifacts:/tests/e2e/artifacts -e suite=suite2 -e maxinstances=$maxinstances -e logLevel=$logLevel --name e2e $DOCKER_USERNAME/e2e-chrome:latest
+    - docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js || if [$? != 0]; then exit 0; fi'
+  #addons:
+  #  artifacts:
+  #      paths:
+  #        - ./allure-results
+  #     target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
 #notifications:
 #  slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
 #  email:

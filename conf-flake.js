@@ -2,7 +2,7 @@
 'use strict'
 
 let protractorFlake = require('protractor-flake')
-let customParser = require('./parser')
+let parser = require('./parser')
 
 let getParamValue = function (param) {
   let value = undefined
@@ -41,26 +41,52 @@ process.env.maxinstances = maxinstancesCmd !== undefined ? maxinstancesCmd : pro
 process.env.maxinstances = process.env.maxinstances !== 'undefined' ? process.env.maxinstances : 1
 console.log(`maxinstances - ${process.env.maxinstances}`)
 
+let browserCmd = getParamValue('browser')
+process.env.browser = browserCmd !== undefined ? browserCmd : process.env.browser
+process.env.browser = process.env.browser !== 'undefined' ? process.env.browser : 'chrome'
+console.log(`browser - ${process.env.browser}`)
+
 let protractorArgs = []
+protractorArgs.push('conf.js')
+
+if (process.env.browser === 'safari') {
+  process.env.maxinstances = 1
+  process.env.logLevel = 'info'
+  parser = 'standard'
+}
+
+// protractorArgs.push('conf.js')
+
 process.env.maxAttempts = 2
 
-protractorArgs.push('conf.js')
 let suiteArg = `--suite=${process.env.suite}`
-
 protractorArgs.push(suiteArg)
-protractorArgs.push('--capabilities.chromeOptions.args=incognito')
-protractorArgs.push('--capabilities.chromeOptions.args=window-size=1920,1080')
-protractorArgs.push('--capabilities.chromeOptions.args=headless')
-protractorArgs.push('--capabilities.chromeOptions.args=disable-gpu')
+
+if(process.env.suite !== 'pdf') {
+  if (process.env.browser === 'firefox') {
+    protractorArgs.push('--capabilities.moz:firefoxOptions.args=--private')
+    protractorArgs.push('--capabilities.moz:firefoxOptions.args=--width=1920')
+    protractorArgs.push('--capabilities.moz:firefoxOptions.args=--height=1080')
+    protractorArgs.push('--capabilities.moz:firefoxOptions.args=--headless')
+  }
+  if (process.env.browser === 'safari') {
+  }
+  if (process.env.browser === 'chrome') {
+    protractorArgs.push('--capabilities.chromeOptions.args=incognito')
+    protractorArgs.push('--capabilities.chromeOptions.args=window-size=1920,1080')
+    protractorArgs.push('--capabilities.chromeOptions.args=headless')
+    protractorArgs.push('--capabilities.chromeOptions.args=disable-gpu')
+  }
+}
 
 console.log(protractorArgs)
 
 protractorFlake({
   maxAttempts: process.env.maxAttempts,
-  parser: customParser,
+  parser: parser,
   nodeBin: 'node',
   color: 'magenta',
   protractorArgs: protractorArgs
 }, function (status) {
-  process.exit(0)
+  process.exit(status)
 })

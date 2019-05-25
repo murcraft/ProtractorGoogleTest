@@ -1,26 +1,35 @@
 let path = require('path')
 let fs = require('fs')
+const shell = require('shelljs')
+const os = require('os')
+const child_process = require('child_process')
+let browserstack = require('browserstack-local')
 
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
 const keyVars = require('./keyVariables.js')
 
+const capabilitiesMap = require('./capabilitiesMap.js')
+const browserName = process.env.browser
 let downloads = keyVars.downloadPath
 
-exports.config = {
+let config = {
 
-  allScriptsTimeout: 110000000,
+  allScriptsTimeout: 110000,
   SELENIUM_PROMISE_MANAGER: false,
   framework: 'jasmine2',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 240000000,
+    defaultTimeoutInterval: 240000,
   },
 
   params: {
     waitTimeout: 60000,
-    legoUrl: `https://www.lego.com/en-us`,
     downloadPath: downloads,
+    userCreds: {
+      email: `a.prakapovich@itechart-group.com`,
+      pass: `l234kl23n4klnsklrnslr@`,
+    },//{email: keyVars.useEmail, pass: keyVars.userPass},
 
     page: {
       startPage: `https://google.com/`,
@@ -31,42 +40,30 @@ exports.config = {
     'lib/spec/**/*.js',
   ],
 
+  baseUrl: process.env.env === 'DEV' ? 'https://dev.perchwell.com/' : 'https://staging.perchwell.com/',
+
   suites: {
     all: 'lib/spec/**/*.js',
     suite1: 'lib/spec/suite1/*.js',
     suite2: 'lib/spec/suite2/*.js',
   },
 
-  baseUrl: process.env.env = 'http://www.google.by',
-
-  capabilities: {
-    browserName: 'chrome',
-    shardTestFiles: process.env.maxinstances > 1,
-    maxInstances: process.env.maxinstances,
-    chromeOptions: {
-      args: [
-        'incognito',
-        'window-size=1920,1080',
-        // '--disable-infobars',
-        // '--disable-extensions',
-        // '--ignore-ssl-errors=true',
-        // 'verbose',
-        // '--disable-web-security'
-      ],
-    },
-    prefs: {
-      download: {
-        prompt_for_download: false,
-        directory_upgrade: true,
-        default_directory: downloads,
-      },
-    },
-    loggingPrefs: {
-      'browser': 'SEVERE',
-    },
-  },
+  // baseUrl: process.env.env = 'http://www.google.by',
 
   beforeLaunch: function () {
+    // if (browserName === 'safari') {
+    //   console.log('Connecting local')
+    //   return new Promise((resolve, reject) => {
+    //     exports.bs_local = new browserstack.Local()
+    //     exports.bs_local.start({'key': keyVars.browserstackKey}, (error) => {
+    //       if (error) return reject(error)
+    //       console.log('Connected. Now testing...')
+    //
+    //       resolve()
+    //     })
+    //   })
+    // }
+
     let logger = require('./lib/helpers/loggerHelper')
 
     if (process.env.isCleanAllure === 'true') {
@@ -86,38 +83,91 @@ exports.config = {
         logger.debug(`Deleted file: ${curPath}`)
       })
     }
+
+    function ping () {
+      logger.debug(`Waiting test's logs...`)
+    }
+
+    setInterval(ping, 300000)
+
+    if (browserName === 'firefox' && os.type() === 'Linux') {
+      try {
+        console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`killall ${browserName}`)}`)
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
+      try {
+        console.log(`Killing all ${browserName} driver processes:\n ${child_process.execSync(`killall geckodriver-v0.24.0`)}`)
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
+    }
+
+    if (browserName === 'safari') {
+      try {
+        console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`killall safaridriver`)}`)
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
+    }
   },
 
   onPrepare: async () => {
     browser.waitForAngularEnabled(false)
     global.EC = protractor.ExpectedConditions
     global.Logger = require('./lib/helpers/loggerHelper')
+    global.BrowserName = browserName
+    if (browserName === 'safari') {
+      await browser.driver.manage().window().maximize()
+    }
 
     jasmine.getEnv().addReporter(new AllureReporter({
       resultDir: 'allure-results',
     }))
 
     jasmine.getEnv().addReporter(new function () {
-      this.jasmineStarted = function (summary) {
+      this.jasmineStarted = (summary) => {
         global.TOTAL = summary.totalSpecsDefined
         global.PASSED = 0
         global.FAILED = 0
         global.SKIPPED = 0
         Logger.info(`>>>>>>>>>>Tests started. Total tests: ${TOTAL}<<<<<<<<<<`)
       }
-      this.suiteStarted = function (result) {
+      this.suiteStarted = (result) => {
         Logger.info(`**************************************************`)
         Logger.info(`Suite started: ${result.fullName}`)
         Logger.info(`**************************************************`)
         global.SuiteDescribe = result.fullName
+        // let tm = Math.floor((Math.random() * 10000) + 10000)
+        // child_process.execSync(`screencapture -t jpg ./artifacts/screen${tm + 1}.jpg`)
       }
-      this.specStarted = function (result) {
+      this.specStarted = (result) => {
         Logger.info(`Spec started: ${result.description}`)
       }
-      this.specDone = function (result) {
+      this.specDone = (result) => {
         if (result.status === 'failed') {
           FAILED++
           Logger.failed(result)
+          if (browserName === 'firefox' && os.type() === 'Linux') {
+            try {
+              console.log(`Get all ${browserName} processes:\n ${child_process.execSync(`ps -A | grep firefox`)}`)
+            } catch (e) {
+              console.log(`Error executing the command\n${e}`)
+            }
+            try {
+              console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`killall ${browserName}`)}`)
+            } catch (e) {
+              console.log(`Error executing the command\n${e}`)
+            }
+          }
+          if (browserName === 'safari') {
+            try {
+              console.log(`Processes all ${browserName} processes:\n ${child_process.execSync(`ps -all`)}`)
+              console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`ps | grep ${browserName}`)}`)
+            } catch (e) {
+              console.log(`Error executing the command\n${e}`)
+            }
+          }
         }
         if (result.status === 'passed') {
           PASSED++
@@ -125,6 +175,7 @@ exports.config = {
         if (result.status === 'disabled' || result.status === 'pending') {
           SKIPPED++
         }
+
       }
       this.jasmineDone = function () {
         Logger.info(`**************************************************`)
@@ -140,25 +191,58 @@ exports.config = {
       jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
     }
 
-    jasmine.getEnv().afterEach(async function () {
-      await Logger.LogConsoleErrors()
+    jasmine.getEnv().afterEach(async () => {
+      if (browserName === 'chrome') {
+        await Logger.LogConsoleErrors()
+      }
       try {
-        await browser.takeScreenshot().then(function (png) {
-          allure.createAttachment('Screenshot', function () {
+        await browser.takeScreenshot().then((png) => {
+          allure.createAttachment('Screenshot', () => {
             return Buffer.from(png, 'base64')
           }, 'image/png')()
         })
       } catch (e) {
-        Logger.error(`Screen shot was not taken\n${e}`)
+        Logger.warn(`Screen shot was not taken\n${e}`)
       }
     })
 
     await browser.get('')
-
   },
 
   afterLaunch: async function () {
-    await new Promise(resolve => setTimeout(resolve, 5000))
+    if (browserName === 'firefox' && os.type() === 'Linux') {
+      let version = shell.exec('ps -A | grep firefox', {silent: true}).stdout
+      console.log(version)
+      let version1 = shell.exec('ps -A | grep geckodriver', {silent: true}).stdout
+      console.log(version1)
+    }
+
+    if (browserName === 'safari') {
+      try {
+        console.log(`Get all processes:\n ${child_process.execSync(`ps -all`)}`)
+        console.log(`Get all crashes:\n ${child_process.execSync(`cp -av ~/Library/Logs/* ~/build/murcraft/ProtractorGoogleTest/artifacts/`)}`)
+      } catch (e) {
+        console.log(`Error executing the command`)
+      }
+    }
+
+    // if (browserName !== 'safari') {
+      await new Promise(resolve => setTimeout(resolve, 5000))
+        .catch(error => {
+          console.log(error)
+        })
   },
 }
+
+config.capabilities = capabilitiesMap[browserName]
+
+if (browserName === 'firefox') {
+  config.seleniumAddress = 'http://127.0.0.1:4444/wd/hub'
+  config.exclude = ['lib/spec/pdf/savePdf*.js']
+}
+if (browserName === 'safari') {
+  config.logLevel = 'DEBUG'
+}
+
+exports.config = config
 

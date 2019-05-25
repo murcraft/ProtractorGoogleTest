@@ -2,20 +2,27 @@
 
 // If only one spec file fails, on the next re-run, we don't get the filename on the output. So
 // if it fails again, we need re-use the filename from the previous run
+let fs = require('fs')
+let path = require('path')
+
+let filePath = path.resolve(__dirname, './lib/data/attempts.txt')
+
 let previousSpecFileNames = []
 let testAttempt = 1
 
 module.exports = {
 
   getTestAttempt: function () {
-    let attempt = 2
-    console.log(`Got attempt from file: ${attempt}`)
-    return attempt
+    let str = fs.readFileSync(filePath)
+    console.log(`Got attempt from file: ${str}`)
+    let attempt = parseInt(str)
+    return isNaN(attempt) ? 1 : attempt
   },
 
   parse: function (protractorTestOutput) {
     testAttempt++
     console.log(`Write attempt to file: ${testAttempt}`)
+    fs.writeFileSync(filePath, testAttempt)
 
     if (previousSpecFileNames.length === 1) {
       return previousSpecFileNames
@@ -42,8 +49,13 @@ module.exports = {
     }, [])
 
     const specFileNames = failedSpecsLines.filter(Boolean).map(line => {
-      const startingPathPosition = line.indexOf('/home/travis/')
-      return line.substr(startingPathPosition)
+      if (process.env.browser === 'safari') {
+        const startingPathPosition = line.indexOf('/Users/travis/')
+        return line.substr(startingPathPosition)
+      } else {
+        const startingPathPosition = line.indexOf('/home/travis/')
+        return line.substr(startingPathPosition)
+      }
     })
 
     previousSpecFileNames = specFileNames

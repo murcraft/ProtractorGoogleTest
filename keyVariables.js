@@ -1,6 +1,7 @@
 let path = require('path')
 
 module.exports = {
+  browserParam: process.env.browser,
 
   downloadPath: path.resolve(__dirname, './artifacts/temporary'),
   storePath: path.resolve(__dirname, './artifacts/storeFiles'),
@@ -23,7 +24,12 @@ module.exports = {
   useEmail: process.env.userEmail,
   userPass: process.env.userPass,
 
-  awsPath: `https://s3-us-west-2.amazonaws.com/helen.kuz-bucket/`,
-  awsDownloadsPath: `${process.env.TRAVIS_BUILD_NUMBER}/${process.env.TRAVIS_JOB_NUMBER}/results/pdfs`
+  awsPath: `https://us-east-2.amazonaws.com/helen-bucket-test1991/`,
+  awsDownloadsPath: `${process.env.TRAVIS_BUILD_NUMBER}/${process.env.TRAVIS_JOB_NUMBER}/results/pdfs`,
 
+  sothEmail: `soth_ag@perchwell.com`,
+  sothPass: `Password@123`,
+
+  browserstackUser: `elenaogulik1`,
+  browserstackKey: `MevbPAyrXzGPSMRPDz1d`
 }
