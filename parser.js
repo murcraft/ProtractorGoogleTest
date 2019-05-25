@@ -53,7 +53,7 @@ module.exports = {
         const startingPathPosition = line.indexOf('/Users/travis/')
         return line.substr(startingPathPosition)
       } else {
-        const startingPathPosition = line.indexOf('/home/travis/')
+        const startingPathPosition = line.indexOf('./')//('./home/travis/')
         return line.substr(startingPathPosition)
       }
     })
