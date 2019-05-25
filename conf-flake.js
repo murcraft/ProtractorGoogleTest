@@ -72,7 +72,8 @@ if(process.env.suite !== 'pdf') {
   }
   if (process.env.browser === 'chrome') {
     protractorArgs.push('--capabilities.chromeOptions.args=incognito')
-    protractorArgs.push('--capabilities.chromeOptions.args=window-size=1920,1080')
+    protractorArgs.push('--capabilities.chromeOptions.args=width=1920')
+      protractorArgs.push('--capabilities.chromeOptions.args=height=1920')
     protractorArgs.push('--capabilities.chromeOptions.args=headless')
     protractorArgs.push('--capabilities.chromeOptions.args=disable-gpu')
   }

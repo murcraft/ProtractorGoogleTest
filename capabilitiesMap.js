@@ -10,12 +10,12 @@ let capabilitiesMap = {
     maxInstances: process.env.maxinstances,
     acceptSslCerts: true,
 
-
     'moz:firefoxOptions': {
       args: [
         '--width=1920',
         '--height=1080',
-        '--private'
+        '--private',
+        '--safe-mode'
       ],
       prefs: {
         'browser.download.folderList': 2,
@@ -46,7 +46,7 @@ let capabilitiesMap = {
       },
     },
     log: {
-      level: 'trace'
+      level: 'debug'
     }
   },
 

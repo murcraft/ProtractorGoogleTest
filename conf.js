@@ -222,7 +222,7 @@ let config = {
     }
 
     // if (browserName !== 'safari') {
-      await new Promise(resolve => setTimeout(resolve, 5000))
+      return new Promise(resolve => setTimeout(resolve, 5000))
         .catch(error => {
           console.log(error)
         })
@@ -244,29 +244,28 @@ if (browserName === 'firefox') {
   // config.seleniumAddress = 'http://127.0.0.1:4444/wd/hub'
   config.exclude = ['lib/spec/pdf/savePdf*.js']
 
-  config.seleniumServerJar = `./node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.14.0.jar`
+  config.seleniumServerJar = './lib/drivers/selenium-server-standalone-3.14.0.jar'//'node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.14.0.jar'
   config.localSeleniumStandaloneOpts = {
-    // port: 4444,
+    port: 4444,
+    seleniumArgs: ['-browserTimeout=60'],
     args: [
-      '-timeout=60000',
-      // '-role=hub'
+      '-role', 'node',
+      '-log', 'selenium_server_logs.log',
+      '-debug',
+      '-timeout=20000',
+      '-browserTimeout=60',
     ],
     jvmArgs: [
-    '-Dwebdriver.geckodriver.driver=./lib/drivers/geckodriver-v0.24.0.exe'
-  ]
+      '-Dwebdriver.geckodriver.driver=geckodriver-v0.24.0.exe',
+    ]
   }
-  config.geckoDriver = './lib/drivers/geckodriver-v0.24.0'
-
+  config.geckoDriver = './lib/drivers/geckodriver-v0.24.0.exe'
   config.logLevel = 'DEBUG'
-
 
 }
 if (browserName === 'safari') {
   config.logLevel = 'DEBUG'
-  // config.seleniumAddress = 'http://hub-cloud.browserstack.com/wd/hub'
 }
-
-// console.log(config.capabilities)
 
 exports.config = config
 
