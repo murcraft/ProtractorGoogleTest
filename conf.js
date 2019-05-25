@@ -3,14 +3,13 @@ let fs = require('fs')
 const shell = require('shelljs')
 const os = require('os')
 const child_process = require('child_process')
-let browserstack = require('browserstack-local')
 
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
 const keyVars = require('./keyVariables.js')
 
 const capabilitiesMap = require('./capabilitiesMap.js')
-const browserName = process.env.browser
+const browserName = process.env.browser === undefined ? 'chrome' : process.env.browser
 let downloads = keyVars.downloadPath
 
 let config = {
@@ -51,19 +50,6 @@ let config = {
   // baseUrl: process.env.env = 'http://www.google.by',
 
   beforeLaunch: function () {
-    // if (browserName === 'safari') {
-    //   console.log('Connecting local')
-    //   return new Promise((resolve, reject) => {
-    //     exports.bs_local = new browserstack.Local()
-    //     exports.bs_local.start({'key': keyVars.browserstackKey}, (error) => {
-    //       if (error) return reject(error)
-    //       console.log('Connected. Now testing...')
-    //
-    //       resolve()
-    //     })
-    //   })
-    // }
-
     let logger = require('./lib/helpers/loggerHelper')
 
     if (process.env.isCleanAllure === 'true') {
@@ -138,8 +124,6 @@ let config = {
         Logger.info(`Suite started: ${result.fullName}`)
         Logger.info(`**************************************************`)
         global.SuiteDescribe = result.fullName
-        // let tm = Math.floor((Math.random() * 10000) + 10000)
-        // child_process.execSync(`screencapture -t jpg ./artifacts/screen${tm + 1}.jpg`)
       }
       this.specStarted = (result) => {
         Logger.info(`Spec started: ${result.description}`)
@@ -187,9 +171,9 @@ let config = {
       }
     })
 
-    if (process.env.suite !== 'suite3') {
-      jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
-    }
+    // if (process.env.suite !== 'suite1') {
+    //   jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
+    // }
 
     jasmine.getEnv().afterEach(async () => {
       if (browserName === 'chrome') {
