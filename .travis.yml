@@ -53,6 +53,10 @@
 #   env: suite=pdf
 
 dist: trusty
+
+services:
+- docker
+
 stages:
 - Docker-build
 - Chrome
