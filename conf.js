@@ -3,7 +3,7 @@ let fs = require('fs')
 const shell = require('shelljs')
 const os = require('os')
 const child_process = require('child_process')
-let browserstack = require('browserstack-local')
+const VideoReporter = require('protractor-video-reporter')
 
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
@@ -183,6 +183,28 @@ let config = {
         Logger.info(`**************************************************`)
       }
     })
+
+    jasmine.getEnv().addReporter(new VideoReporter({
+      baseDirectory: path.join('./allure-results'),
+      createSubtitles: false,
+      singleVideo: true,
+
+      ffmpegCmd: '../node_modules/ffmpeg-binaries/bin/ffmpeg.exe',
+      ffmpegArgs: [
+        // '-r', '30',
+        // '-f', 'x11grab',
+        // '-s', '1024x768',
+        // '-i', 'desktop',
+        // '-g', '300',
+        // '-vcodec', 'qtrle',
+        '-f', 'x11grab',
+        '-framerate', '24',
+        '-video_size', 'wsxga',
+        '-g', '300',
+        '-i', 'desktop',
+        '-q:v','10',
+      ],
+    }))
 
     jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
 
