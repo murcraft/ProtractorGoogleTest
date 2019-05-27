@@ -189,7 +189,7 @@ let config = {
       createSubtitles: false,
       singleVideo: true,
 
-      ffmpegCmd: '../node_modules/ffmpeg-binaries/bin/ffmpeg.exe',
+      ffmpegCmd: './node_modules/ffmpeg-binaries/bin/ffmpeg.exe',
       ffmpegArgs: [
         // '-r', '30',
         // '-f', 'x11grab',
