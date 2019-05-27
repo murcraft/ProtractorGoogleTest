@@ -28,6 +28,7 @@
     "protractor": "^5.4.2",
     "protractor-flake": "3.3.0",
     "protractor-stop-describe-on-failure": "^1.0.3",
+    "protractor-video-reporter": "^0.3.0",
     "request-promise": "^4.2.2",
     "slack-node": "^0.1.8",
     "shelljs": "^0.8.3"
