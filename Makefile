@@ -1,9 +1,6 @@
 all: build run
-
-build:
-    docker build -t hortonworks/docker-e2e-protractor .
-run-chrome:
-    mkdir allure-results
+build:  docker build -t hortonworks/docker-e2e-protractor .
+run-chrome: mkdir allure-results
     ls
     chmod -R a=rwx $(pwd)
     echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
