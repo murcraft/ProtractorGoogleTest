@@ -61,13 +61,6 @@ stages:
 - Docker-build
 - Chrome
 
-script:
-  - mkdir allure-results
-  - ls
-  - chmod -R a=rwx $(pwd)
-  - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker run -i -d --rm --net=host --privileged -v /dev/shm:/dev/shm -v $(pwd)/allure-results:/tests/allure-results -v $(pwd)/e2e/artifacts:/tests/e2e/artifacts -e suite=$suite -e maxinstances=$maxinstances -e logLevel=$logLevel --name e2e $DOCKER_USERNAME/e2e-chrome:latest
-  - docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js || if [$? != 0]; then exit 0; fi'
 
 jobs:
   include:
@@ -82,12 +75,7 @@ jobs:
   - stage: Chrome
     env: suite=suite1 browser="chrome"
     script:
-    - mkdir allure-results
-    - ls
-    - chmod -R a=rwx $(pwd)
-    - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-    - docker run -i -d --rm --net=host --privileged -v /dev/shm:/dev/shm -v $(pwd)/allure-results:/tests/allure-results -v $(pwd)/artifacts:/tests/artifacts -e suite=suite1 -e maxinstances=$maxinstances -e logLevel=$logLevel --name e2e $DOCKER_USERNAME/e2e-chrome:latest
-    - docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js || if [$? != 0]; then exit 0; fi'
+    - make run-chrome || if [$? != 0]; then exit 0; fi
   - stage: Chrome
     env: suite=suite2 browser="chrome"
     script:
@@ -95,7 +83,7 @@ jobs:
     - ls
     - chmod -R a=rwx $(pwd)
     - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-    - docker run -i -d --rm --net=host --privileged -v /dev/shm:/dev/shm -v $(pwd)/allure-results:/tests/allure-results -v $(pwd)/e2e/artifacts:/tests/e2e/artifacts -e suite=suite2 -e maxinstances=$maxinstances -e logLevel=$logLevel --name e2e $DOCKER_USERNAME/e2e-chrome:latest
+    - docker run -i -d --rm --net=host --privileged -v /dev/shm:/dev/shm -v $(pwd)/allure-results:/tests/allure-results -v $(pwd)/artifacts:/tests/artifacts -e suite=suite2 -e maxinstances=$maxinstances -e logLevel=$logLevel --name e2e $DOCKER_USERNAME/e2e-chrome:latest
     - docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js || if [$? != 0]; then exit 0; fi'
 
 addons:
