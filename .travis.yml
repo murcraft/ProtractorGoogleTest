@@ -69,7 +69,7 @@ jobs:
     - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
     - docker build -t e2e-chrome .
     - docker images
-    - docker tag e2e-chrome $DOCKER_USERNAME/e2e-chrome
+    - docker tag perch1234/e2e-chrome
     - docker push $DOCKER_USERNAME/e2e-chrome
   - stage: Chrome1
     env: suite=suite1 browser="chrome"
