@@ -54,12 +54,10 @@
 
 dist: trusty
 
-services:
-- docker
-
 stages:
-- Docker-build
-- Chrome
+  - Docker-build
+  - Chrome1
+  - Chrome2
 
 
 jobs:
@@ -67,16 +65,17 @@ jobs:
   - stage: Docker-build
     env: suite=null
     script:
+    - ls
     - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
     - docker build -t e2e-chrome .
     - docker images
     - docker tag e2e-chrome $DOCKER_USERNAME/e2e-chrome
     - docker push $DOCKER_USERNAME/e2e-chrome
-  - stage: Chrome
+  - stage: Chrome1
     env: suite=suite1 browser="chrome"
     script:
     - make run-chrome || if [$? != 0]; then exit 0; fi
-  - stage: Chrome
+  - stage: Chrome2
     env: suite=suite2 browser="chrome"
     script:
     - mkdir allure-results
