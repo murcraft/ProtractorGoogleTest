@@ -10,10 +10,14 @@ killall "$SAFARI_NAME"
 
 # Tell Safari not to restore the browser windows when it is relaunched
 defaults write com.apple.$SAFARI_SHORT_NAME ApplePersistenceIgnoreState YES
+defaults write com.apple.safari DownloadsPath = \"~/Downloads\"
 
 # Turn on fake devices
 defaults write com.apple.$SAFARI_SHORT_NAME WebKitMockCaptureDevicesEnabled 1
 defaults write com.apple.$SAFARI_SHORT_NAME com.apple.Safari.ContentPageGroupIdentifier.WebKit2MockCaptureDevicesEnabled 1
+defaults write com.apple.$SAFARI_SHORT_NAME ExtensionsEnabled 0
+defaults write com.apple.$SAFARI_SHORT_NAME AutoOpenSafeDownloads -bool false
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
 
 # Allow insecure domains
 defaults write com.apple.$SAFARI_SHORT_NAME WebKitMediaCaptureRequiresSecureConnection 0

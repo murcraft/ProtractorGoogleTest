@@ -14,12 +14,12 @@
     "test": "node conf-flake.js"
   },
   "devDependencies": {
-    "aws-sdk": "^2.436.0",
+    "aws-sdk": "^2.488.0",
     "browserstack-local": "^1.4.0",
     "ffmpeg-binaries": "^4.0.0",
     "grunt": "^1.0.4",
     "grunt-protractor-runner": "^5.0.0",
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "gulp-notify": "^3.2.0",
     "gulp-protractor": "^4.1.1",
     "jasmine-allure-reporter": "^1.0.2",
@@ -30,7 +30,7 @@
     "protractor-stop-describe-on-failure": "^1.0.3",
     "protractor-video-reporter": "^0.3.0",
     "request-promise": "^4.2.2",
-    "slack-node": "^0.1.8",
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.3",
+    "slack-node": "^0.1.8"
   }
 }
