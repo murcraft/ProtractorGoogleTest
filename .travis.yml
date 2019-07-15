@@ -26,12 +26,14 @@ before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Firefox" ]]; then export browser=firefox; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Prod" ]]; then export browser=chrome; fi
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
 
 stages:
   - Chrome
   - Firefox
   - Safari
+  - Prod
 
 script:
  - ls
@@ -42,6 +44,9 @@ jobs:
  include:
  - stage: Chrome
    env: suite=suite1
+ - stage: Prod
+   if: branch = "mac"
+   env: suite=suite2
 # - stage: Chrome
 #   env: suite=suite2
 # - stage: Chrome
