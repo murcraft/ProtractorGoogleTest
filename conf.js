@@ -270,6 +270,11 @@ if (browserName === 'safari') {
   config.logLevel = 'DEBUG'
   // config.seleniumAddress = 'http://hub-cloud.browserstack.com/wd/hub'
 }
+if (process.env.env.toLowerCase() === 'prod') {
+  config.baseUrl = 'https://staging.perchwell.com/'
+  console.log('Ste browser env PROD')
+}
+
 
 // console.log(config.capabilities)
 
