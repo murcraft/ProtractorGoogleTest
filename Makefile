@@ -1,5 +1,17 @@
-all: build run
-build:  docker build -t hortonworks/docker-e2e-protractor .
+.PHONY: build run-chrome
+
+build:
+  docker build -t e2e-chrome .
+
+tag:
+  docker tag e2e-chrome perch1234/e2e-chrome
+
+login:
+  echo "$DOCKER_USERNAME" |docker login -u "$(DOCKER_USERNAME)" -p "$(DOCKER_PASSWORD)"
+
+push:
+  docker push $(DOCKER_USERNAME)/e2e-chrome
+
 run-chrome: mkdir allure-results
     ls
     chmod -R a=rwx $(pwd)
