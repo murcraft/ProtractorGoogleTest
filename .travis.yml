@@ -60,17 +60,15 @@ stages:
   - test
 
 env:
-  - browser="chrome" suite=suite1
-  - browser="chrome" suite=suite2
-  - browser="chrome" suite=pdf
+  - suite=suite1
+  - suite=suite2
+  - suite=pdf
 
+before_script:
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
 
 script:
-  - mkdir allure-results
-  - chmod -R a=rwx $(pwd)
-  - echo "$DOCKER_USERNAME" |docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker run -i -d --rm --net=host --privileged -v /dev/shm:/dev/shm -v $(pwd)/allure-results:/tests/allure-results -v $(pwd)/artifacts:/tests/artifacts -e suite=$suite -e browser=$browser -e maxinstances=$maxinstances -e logLevel=$logLevel --name e2e $DOCKER_USERNAME/e2e-chrome:latest
-  - docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js || if [$? != 0]; then exit 0; fi'
+  - make run-image run-job
 
 jobs:
   include:
@@ -78,10 +76,6 @@ jobs:
     env: suite=null
     script:
     - make login build tag push
-#  - stage: Chrome1
-#    env: suite=suite1 browser="chrome"
-#    script:
-#    - make run-chrome || if [$? != 0]; then exit 0; fi
 
 addons:
   artifacts:
