@@ -11,3 +11,5 @@ login:
 
 push:
     docker push $(DOCKER_USERNAME)/$(IMAGE_NAME)
+
+.PHONY: build tag login push
