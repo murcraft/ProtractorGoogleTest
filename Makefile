@@ -3,6 +3,7 @@
 ##################
 
 DOCKER_IMAGE=e2e-chrome
+cwd  := $(shell pwd)
 
 .PHONY: build tag login push
 
@@ -20,7 +21,8 @@ push:
 
 run-image:
 	mkdir -m 777 allure-result
-	echo pwd
+	@echo "          cwd: $(cwd)"
+	chmod -R a=rwx $(cwd)
 	echo "$(DOCKER_USERNAME)" |docker login -u "$(DOCKER_USERNAME)" -p "$(DOCKER_PASSWORD)"
 	docker run -i -d --rm --net=host --privileged \
 	-v /dev/shm:/dev/shm \
