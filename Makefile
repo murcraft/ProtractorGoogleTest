@@ -15,8 +15,7 @@ login:
 push:
 	docker push $(DOCKER_USERNAME)/$(DOCKER_IMAGE)
 run-image:
-	mkdir allure-results
-	chmod -R a=rwx $(pwd)
+	mkdir allure-result
 	echo "$(DOCKER_USERNAME)" |docker login -u "$(DOCKER_USERNAME)" -p "$(DOCKER_PASSWORD)"
 	docker run -i -d --rm --net=host --privileged \
 	  -v /dev/shm:/dev/shm
