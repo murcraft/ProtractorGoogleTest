@@ -45,6 +45,7 @@ let config = {
     all: 'lib/spec/**/*.js',
     suite1: 'lib/spec/suite1/*.js',
     suite2: 'lib/spec/suite2/*.js',
+    pdf: 'lib/spec/pdf/*.js',
   },
 
   // baseUrl: process.env.env = 'http://www.google.by',
