@@ -18,13 +18,13 @@ run-image:
 	mkdir allure-result
 	echo "$(DOCKER_USERNAME)" |docker login -u "$(DOCKER_USERNAME)" -p "$(DOCKER_PASSWORD)"
 	docker run -i -d --rm --net=host --privileged \
-	  -v /dev/shm:/dev/shm
-	  -v $(pwd)/allure-results:/tests/allure-results \
-	  -v $(pwd)/artifacts:/tests/artifacts \
-	  -e suite=$(suite) \
-	  -e browser=$(browser) \
-	  -e maxinstances=$(maxinstances) \
-	  -e logLevel=$(logLevel) \
-	  --name e2e $(DOCKER_USERNAME)/$(DOCKER_IMAGE):latest
+	-v /dev/shm:/dev/shm \
+	-v $(pwd)/allure-results:/tests/allure-results \
+	-v $(pwd)/artifacts:/tests/artifacts \
+	-e suite=$(suite) \
+	-e browser=$(browser) \
+	-e maxinstances=$(maxinstances) \
+	-e logLevel=$(logLevel) \
+	--name e2e $(DOCKER_USERNAME)/$(DOCKER_IMAGE):latest
 run-job:
 	docker exec -it e2e bash -c 'xvfb-run -a node conf-flake.js || if [$? != 0]; then exit 0; fi'
