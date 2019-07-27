@@ -22,6 +22,7 @@ run-image:
 	mkdir allure-result
 	@echo "          Pwd: $(PWD)"
 	chmod -R a=rwx $(PWD)
+	chmod -Rf 777 .
 	ls
 	echo "$(DOCKER_USERNAME)" |docker login -u "$(DOCKER_USERNAME)" -p "$(DOCKER_PASSWORD)"
 	docker run -i -d --rm --net=host --privileged \

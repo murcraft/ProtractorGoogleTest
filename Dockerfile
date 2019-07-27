@@ -8,6 +8,7 @@ COPY . ${WORKDIR}
 WORKDIR ${WORKDIR}
 RUN mkdir allure-results
 RUN chmod -R a=rwx ${WORKDIR}
+RUN chmod -Rf 777 .
 
 USER node
 
