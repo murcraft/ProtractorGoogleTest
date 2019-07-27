@@ -66,9 +66,9 @@ env:
 
 before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
+  - chmod -R a=rwx .
 
 script:
-  - chmod -R a=rwx $(pwd)
   - make run-image run-job
 
 jobs:
