@@ -3,7 +3,6 @@
 ##################
 
 DOCKER_IMAGE=e2e-chrome
-cwd  := $(shell pwd)
 
 .PHONY: build tag login push
 
@@ -21,13 +20,13 @@ push:
 
 run-image:
 	mkdir -m 777 allure-result
-	@echo "          cwd: $(cwd)"
-	chmod -R a=rwx $(cwd)
+	@echo "          Pwd: $(PWD)"
+	chmod -R a=rwx $(PWD)
 	echo "$(DOCKER_USERNAME)" |docker login -u "$(DOCKER_USERNAME)" -p "$(DOCKER_PASSWORD)"
 	docker run -i -d --rm --net=host --privileged \
 	-v /dev/shm:/dev/shm \
-	-v $(pwd)/allure-results:/tests/allure-results \
-	-v $(pwd)/artifacts:/tests/artifacts \
+	-v $(PWD)/allure-results:/tests/allure-results \
+	-v $(PWD)/artifacts:/tests/artifacts \
 	-e suite=$(suite) \
 	-e browser=$(browser) \
 	-e maxinstances=$(maxinstances) \
