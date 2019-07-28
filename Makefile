@@ -33,6 +33,7 @@ run-image:
 	-e browser=$(browser) \
 	-e maxinstances=$(maxinstances) \
 	-e logLevel=$(logLevel) \
+	-e isPostToSlack=$(isPostToSlack) \
 	--name e2e $(DOCKER_USERNAME)/$(DOCKER_IMAGE):latest
 
 run-job:

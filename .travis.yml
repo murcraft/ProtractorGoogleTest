@@ -62,24 +62,19 @@ stages:
 before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
 
+script:
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then make run-image run-job; fi
+
 jobs:
   include:
   - stage: Docker-build
     env: suite=null
-    script:
-    - make login build tag push
   - stage: Chrome
-    env: suite=suite1 browser=chrome
-    script:
-    - make run-image run-job
+    env: suite=suite1
   - stage: Chrome
     env: suite=suite2
-    script:
-    - make run-image run-job
   - stage: Chrome
     env: suite=pdf
-    script:
-    - make run-image run-job
 
 addons:
   artifacts:
