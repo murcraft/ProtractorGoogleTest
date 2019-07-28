@@ -64,6 +64,7 @@ before_script:
 
 script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then make run-image run-job; fi
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Docker-build" ]]; then make login build tag push; fi
 
 jobs:
   include:
