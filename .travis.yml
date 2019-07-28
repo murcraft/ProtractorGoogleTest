@@ -57,19 +57,10 @@ services: docker
 
 stages:
   - Docker-build
-  - test
-
-env:
-  - suite=suite1
-  - suite=suite2
-  - suite=pdf
+  - Chrome
 
 before_script:
-  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "test" ]]; then export browser=chrome; fi
-  - chmod -R a=rwx .
-
-script:
-  - make run-image run-job
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
 
 jobs:
   include:
@@ -77,6 +68,18 @@ jobs:
     env: suite=null
     script:
     - make login build tag push
+  - stage: Chrome
+    env: suite=suite1 browser=chrome
+    script:
+    - make run-image run-job
+  - stage: Chrome
+    env: suite=suite2
+    script:
+    - make run-image run-job
+  - stage: Chrome
+    env: suite=pdf
+    script:
+    - make run-image run-job
 
 addons:
   artifacts:
