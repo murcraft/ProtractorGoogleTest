@@ -19,7 +19,7 @@ push:
 	docker push $(DOCKER_USERNAME)/$(DOCKER_IMAGE)
 
 run-image:
-	mkdir allure-results
+#	mkdir allure-results
 	@echo "          Pwd: $(PWD)"
 	chmod -R a=rwx $(PWD)
 	chmod -Rf 777 .

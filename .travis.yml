@@ -65,7 +65,7 @@ env:
   - suite=pdf
 
 before_script:
-  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "test" ]]; then export browser=chrome; fi
   - chmod -R a=rwx .
 
 script:
