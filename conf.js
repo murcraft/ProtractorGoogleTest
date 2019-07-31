@@ -45,6 +45,7 @@ exports.config = {
     maxInstances: process.env.maxinstances,
     chromeOptions: {
       args: [
+        `binary=${process.env.CHROME_BIN}`,
         'incognito',
         'window-size=1920,1080',
         // '--disable-infobars',
