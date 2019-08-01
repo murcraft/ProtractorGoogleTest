@@ -37,7 +37,7 @@ exports.config = {
     suite2: 'lib/spec/suite2/*.js',
   },
 
-  baseUrl: process.env.env = 'http://www.google.by',
+  baseUrl: process.env.env === 'DEV' ? 'http://www.google.by' : 'http://www.google.com',
 
   capabilities: {
     browserName: 'chrome',
@@ -45,7 +45,7 @@ exports.config = {
     maxInstances: process.env.maxinstances,
     chromeOptions: {
       args: [
-        `binary=${process.env.CHROME_BIN}`,
+        // `binary=${process.env.CHROME_BIN}`,
         'incognito',
         'window-size=1920,1080',
         // '--disable-infobars',
@@ -137,12 +137,7 @@ exports.config = {
       }
     })
 
-    if ((process.env.suite !== 'suite3') && (process.env.suite !== 'suite4') &&
-      (process.env.suite !== 'suite5') && (process.env.suite !== 'suite6') &&
-      (process.env.suite !== 'suite7') && (process.env.suite !== 'suite8') &&
-      (process.env.suite !== 'suite9') && (process.env.suite !== 'suite10') &&
-      (process.env.suite !== 'suite11') && (process.env.suite !== 'suite12') &&
-      (process.env.suite !== 'suite13') && (process.env.suite !== 'suite14')) {
+    if ((process.env.suite !== 'suite3') && (process.env.suite !== 'suite4')) {
       jasmine.getEnv().addReporter(DescribeFailureReporter(jasmine.getEnv()))
     }
 

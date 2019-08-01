@@ -16,6 +16,11 @@ let getParamValue = function (param) {
   return value
 }
 
+let envCmd = getParamValue('env')
+process.env.env = envCmd !== undefined ? envCmd : process.env.env
+process.env.env = process.env.env !== 'undefined' ? process.env.env : 'STAGING'
+console.log(`suite - ${process.env.env}`)
+
 let suiteCmd = getParamValue('suite')
 process.env.suite = suiteCmd !== undefined ? suiteCmd : process.env.suite
 process.env.suite = process.env.suite !== 'undefined' ? process.env.suite : 'all'
