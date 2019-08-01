@@ -58,7 +58,6 @@ if ((process.env.suite !== 'suite3') || (process.env.suite !== 'suite4') &&
     process.env.maxAttempts = 1
 }
 
-
 protractorArgs.push('conf.js')
 let suiteArg = `--suite=${process.env.suite}`
 
