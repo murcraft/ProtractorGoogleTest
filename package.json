@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "preupdate-webdriver": "npm install",
-    "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=2.46 --versions.standalone=3.4.0",
+    "update-webdriver": "webdriver-manager update --gecko=false --versions.chrome=76.0.3809.126 --versions.standalone=3.14.0",
     "pretest": "npm run update-webdriver",
     "test": "node conf-flake.js"
   },
