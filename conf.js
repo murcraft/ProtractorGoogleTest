@@ -288,15 +288,15 @@ if (browserName === 'ie') {
   config.seleniumAddress = 'http://127.0.0.1:4444/wd/hub'
   // config.seleniumServerJar = './lib/drivers/selenium-server-standalone-3.14.0.jar'//'node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.14.0.jar'
   config.localSeleniumStandaloneOpts = {
-    port: 4444,
-    seleniumArgs: ['-browserTimeout=60'],
-    args: [
-      '-role', 'node',
-      '-log', 'selenium_server_logs.log',
-      '-debug',
-      '-timeout=20000',
-      '-browserTimeout=60',
-    ],
+    // port: 4444,
+    // seleniumArgs: ['-browserTimeout=60'],
+    // args: [
+    //   '-role', 'node',
+    //   '-log', 'selenium_server_logs.log',
+    //   '-debug',
+    //   '-timeout=20000',
+    //   '-browserTimeout=60',
+    // ],
     jvmArgs: [
       '-Dwebdriver.ie.driver=node_modules/protractor/node_modules/webdriver-manager/selenium/IEDriverServer3.14.0.exe'
     ]

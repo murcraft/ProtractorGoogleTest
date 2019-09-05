@@ -7,10 +7,9 @@ os: windows
 
 # install AVbin
 before_install:
-  - ls ~
-  - ls
-  - choco install jdk8
-  - export JAVA_HOME="C:\jdk8"
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; ls ~
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; choco install jdk8
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; export JAVA_HOME="C:\jdk8"
   - export PATH=${JAVA_HOME}/bin:${PATH}
   - export PATH=$PATH:"/c/Program Files/Java/jdk1.8.0_221/bin"
   - java -version
@@ -29,7 +28,7 @@ before_script:
 #  - sh -e /etc/init.d/xvfb start &
 #  - sleep 3
 #  - bash ./install.sh
-#  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then ( sudo Xvfb :99 -ac -screen 0 1920x1080x16; echo ok ) & fi
+  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then ( sudo Xvfb :99 -ac -screen 0 1920x1080x16; echo ok ) & fi
 #  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
 #  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
@@ -46,16 +45,17 @@ stages:
   - IE
 
 script:
- - ls
 # - system_profiler SPDisplaysDataType | grep Resolution
 # - bash ./run_tests.sh || if [$? != 0]; then exit 0; fi
- - if [[ $browser == "ie" ]]; then npm run test-ie; fi
+ - npm run test-ie || if [$? != 0]; then exit 0; fi
 
 jobs:
  include:
-# - stage: Chrome
-#   env: suite=suite1
-# - stage: Chrome
+ - stage: IE
+   env: suite=suite1
+   script:
+   - npm run test-ie || if [$? != 0]; then exit 0; fi
+ # - stage: Chrome
 #   env: suite=suite2
 # - stage: Chrome
 #   env: suite=pdf
@@ -95,16 +95,12 @@ addons:
     - ghostscript
     - xvfb
 
-  artifacts:
-    s3_region: "us-west-2"
-    paths:
-    - ./allure-results
-    - ./artifacts
-    target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
-
-cache:
-  directories:
-    - node_modules
+#  artifacts:
+#    s3_region: "us-west-2"
+#    paths:
+#    - ./allure-results
+#    - ./artifacts
+#    target_paths: $TRAVIS_BUILD_NUMBER/$TRAVIS_JOB_NUMBER/results
 
 notifications:
   slack: murcraft:4KfWGJMBr6kv3gR1iND1pVaO
