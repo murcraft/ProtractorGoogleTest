@@ -61,17 +61,21 @@ jobs:
 #   env: suite=suite2
 # - stage: Firefox
 #   env: suite=pdf
- - stage: Safari
-   os: osx
-   osx_image: xcode10.2
-   env: suite=suite1
- - stage: Safari
-   os: osx
-   osx_image: xcode10.2
+# - stage: Safari
+#   os: osx
+#   osx_image: xcode10.2
+#   env: suite=suite1
+# - stage: Safari
+#   os: osx
+#   osx_image: xcode10.2
+#   env: suite=suite2
+# - stage: Safari
+#   os: osx
+#   osx_image: xcode10.2
+#   env: suite=pdf
+ - stage: IE
    env: suite=suite2
- - stage: Safari
-   os: osx
-   osx_image: xcode10.2
+ - stage: IE
    env: suite=pdf
 
 addons:
