@@ -8,10 +8,13 @@
     "update-webdriver": "webdriver-manager update --gecko=false --chrome=false --versions.standalone=3.14.0",
     "update-chrome": "webdriver-manager update --gecko=false --versions.chrome=2.46 --versions.standalone=3.4.0",
     "update-gecko": "webdriver-manager update --chrome=false --versions.standalone=3.14.0",
+    "update-ie": "webdriver-manager update --gecko=false --chrome=false --versions.ie=3.14.0 --versions.standalone=3.14.0",
     "start-webdriver": "webdriver-manager start --versions.standalone=3.14.0 --chrome=false --detach",
+    "start-ie-webdriver": "webdriver-manager start --versions.standalone=3.14.0 --chrome=false --gecko=false --versions.ie=3.14.0 --detach",
     "test-chrome": "npm run update-chrome",
     "test-gecko": "npm run update-gecko && npm run start-webdriver",
     "test-safari": "npm run update-webdriver",
+    "test-ie": "npm run update-ie && npm run start-ie-webdriver",
     "test-clean": "npm run webdriver-manager-clean",
     "test": "node conf-flake.js -- browser=firefox suite=suite1 logLevel=debug maxinstances=1"
   },

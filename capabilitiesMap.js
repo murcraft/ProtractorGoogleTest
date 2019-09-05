@@ -90,6 +90,53 @@ let capabilitiesMap = {
     }
   },
 
+  'ie': {
+    browserName: 'internet explorer',
+    shardTestFiles: process.env.maxinstances > 1,
+    maxInstances: process.env.maxinstances,
+    verboseMultiSession: true,
+    ignoreProtectedModeSettings: true,
+    platform: 'ANY',
+    version: '11',
+    'disable-popup-blocking': true,
+
+
+    'se:ieOptions': {
+      browserAttachTimeout: 0,
+      elementScrollBehavior: 0,
+      enablePersistentHover: true,
+      'ie.browserCommandLineSwitches': '',
+      'ie.edgechromium': false,
+      'ie.edgepath': '',
+      'ie.ensureCleanSession': false,
+      'ie.fileUploadDialogTimeout': 3000,
+      'ie.forceCreateProcessApi': false,
+      ignoreProtectedModeSettings: true,
+      ignoreZoomSetting: true,
+      initialBrowserUrl: 'http://localhost:45261/',
+      nativeEvents: true,
+      requireWindowFocus: false
+    },
+
+    args: [
+      '--private',
+      '--silent',
+      '--no-sandbox',
+      '--test-type=browser',
+      '--lang=US',
+      '--start-maximized',
+    ],
+
+    prefs: {
+      'download': {
+        'prompt_for_download': false,
+        'directory_upgrade': true,
+        'extensions_to_open': '',
+        'default_directory': downloads,
+      },
+    },
+  },
+
 }
 
 module.exports = capabilitiesMap

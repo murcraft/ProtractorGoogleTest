@@ -2,8 +2,8 @@ language: node_js
 node_js:
   - 10
 
-os: linux
-dist: trusty
+os: windows
+#dist: trusty
 
 # install AVbin
 before_install:
@@ -13,7 +13,7 @@ before_install:
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl -L https://github.com/downloads/AVbin/AVbin/AVbin10.pkg -o AVbin10.pkg; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo installer -pkg AVbin10.pkg -target /; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16; fi
+  - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16; fi
   - export DISPLAY=:99.0
   - Xvfb :99 -screen 0 1920x1080x16 > /dev/null 2>&1 &
 
@@ -28,6 +28,7 @@ before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Chrome" ]]; then export browser=chrome; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Firefox" ]]; then export browser=firefox; fi
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then export browser=ie; fi
   - ls ~/Library
   - ls ~/Library/Logs
   - ls ~/Library/Containers
@@ -36,13 +37,14 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
 
 stages:
-  - Chrome
-  - Firefox
-  - Safari
+#  - Chrome
+#  - Firefox
+#  - Safari
+  - IE
 
 script:
  - ls
- - system_profiler SPDisplaysDataType | grep Resolution
+# - system_profiler SPDisplaysDataType | grep Resolution
  - bash ./run_tests.sh || if [$? != 0]; then exit 0; fi
 
 jobs:

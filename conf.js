@@ -3,7 +3,6 @@ let fs = require('fs')
 const shell = require('shelljs')
 const os = require('os')
 const child_process = require('child_process')
-let browserstack = require('browserstack-local')
 
 const AllureReporter = require('jasmine-allure-reporter')
 const DescribeFailureReporter = require('protractor-stop-describe-on-failure')
@@ -103,6 +102,24 @@ let config = {
     if (browserName === 'safari') {
       try {
         console.log(`Killing all ${browserName} processes:\n ${child_process.execSync(`killall safaridriver`)}`)
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
+    }
+
+    if (browserName === 'ie') {
+      console.log(downloads)
+      let cmdDownload = `REG ADD \"HKEY_CURRENT_USER\\Software\\Microsoft\\Internet Explorer\\Main\" /F /V \"Default Download Directory\" /T REG_SZ /D ${downloads}`
+      try {
+        console.log(`Set download path for ${browserName}:\n ${child_process.execSync(cmdDownload)}`)
+
+      } catch (e) {
+        console.log(`Error executing the command\n${e}`)
+      }
+      let cmdPopUp = `REG ADD \"HKEY_CURRENT_USER\\Software\\Microsoft\\Internet Explorer\\New Windows\" /F /V \"PopupMgr\" /T REG_SZ /D \"no\"`
+      try {
+        console.log(`Disable pop-up for ${browserName}:\n ${child_process.execSync(cmdPopUp)}`)
+
       } catch (e) {
         console.log(`Error executing the command\n${e}`)
       }
@@ -222,10 +239,10 @@ let config = {
     }
 
     // if (browserName !== 'safari') {
-      return new Promise(resolve => setTimeout(resolve, 5000))
-        .catch(error => {
-          console.log(error)
-        })
+    return new Promise(resolve => setTimeout(resolve, 5000))
+      .catch(error => {
+        console.log(error)
+      })
     // } else {
     //   return new Promise((resolve, reject) => {
     //     exports.bs_local.stop(resolve)
@@ -265,6 +282,27 @@ if (browserName === 'firefox') {
 }
 if (browserName === 'safari') {
   config.logLevel = 'DEBUG'
+}
+
+if (browserName === 'ie') {
+  config.seleniumAddress = 'http://127.0.0.1:4444/wd/hub'
+  // config.seleniumServerJar = './lib/drivers/selenium-server-standalone-3.14.0.jar'//'node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.14.0.jar'
+  config.localSeleniumStandaloneOpts = {
+    port: 4444,
+    seleniumArgs: ['-browserTimeout=60'],
+    args: [
+      '-role', 'node',
+      '-log', 'selenium_server_logs.log',
+      '-debug',
+      '-timeout=20000',
+      '-browserTimeout=60',
+    ],
+    jvmArgs: [
+      '-Dwebdriver.ie.driver=node_modules/protractor/node_modules/webdriver-manager/selenium/IEDriverServer3.14.0.exe'
+    ]
+  }
+  config.logLevel = 'DEBUG'
+
 }
 
 exports.config = config
