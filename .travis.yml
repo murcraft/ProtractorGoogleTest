@@ -8,8 +8,12 @@ os: windows
 # install AVbin
 before_install:
   - ls ~
-  - choco install jdk8
-  - export PATH=$PATH:"/c/Program Files/Java/jdk1.8.0_191/bin"
+  - ls
+#  - choco install jdk8
+#  - export JAVA_HOME="C:\jdk8"
+#  - export PATH=${JAVA_HOME}/bin:${PATH}
+#  - export PATH=$PATH:"/c/Program Files/Java/jdk1.8.0_221/bin"
+  - java -v
 #  - chmod +x ./preinstall.sh
 #  - ./preinstall.sh
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
@@ -79,7 +83,7 @@ jobs:
    env: suite=pdf
 
 addons:
-  firefox: "67.0"
+#  firefox: "67.0"
   apt:
     packages:
     - google-chrome-stable
