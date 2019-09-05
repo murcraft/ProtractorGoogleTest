@@ -7,10 +7,9 @@ os: windows
 
 # install AVbin
 before_install:
-  - ls
+  - ls ~
   - choco install jdk8
   - export PATH=$PATH:"/c/Program Files/Java/jdk1.8.0_191/bin"
-  - java -version
 #  - chmod +x ./preinstall.sh
 #  - ./preinstall.sh
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
