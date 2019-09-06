@@ -13,7 +13,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then export JAVA_HOME="C:\jdk8"; fi
   - export PATH=${JAVA_HOME}/bin:${PATH}
   - export PATH=$PATH:"/c/Program Files/Java/jdk1.8.0_221/bin"
-  - echo PATH
+  - echo $PATH
   - java -version
 #  - chmod +x ./preinstall.sh
 #  - ./preinstall.sh
