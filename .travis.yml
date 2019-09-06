@@ -9,9 +9,9 @@ os: windows
 before_install:
   - echo $TRAVIS_OS_NAME
   - ls ~
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; ls C:; fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; choco install jdk8; fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; export JAVA_HOME="C:\jdk8"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ls C:; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install jdk8; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then export JAVA_HOME="C:\jdk8"; fi
   - export PATH=${JAVA_HOME}/bin:${PATH}
   - export PATH=$PATH:"/c/Program Files/Java/jdk1.8.0_221/bin"
   - java -version
