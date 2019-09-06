@@ -298,7 +298,7 @@ if (browserName === 'ie') {
     //   '-browserTimeout=60',
     // ],
     jvmArgs: [
-      '-Dwebdriver.ie.driver=node_modules/protractor/node_modules/webdriver-manager/selenium/IEDriverServer3.14.0.exe'
+      '-Dwebdriver.ie.driver=node_modules/protractor/node_modules/webdriver-manager/selenium/IEDriverServer3.150.0.exe'
     ]
   }
   config.logLevel = 'DEBUG'
