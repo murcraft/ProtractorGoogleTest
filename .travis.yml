@@ -7,9 +7,10 @@ os: windows
 
 # install AVbin
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; ls ~
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; choco install jdk8
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; export JAVA_HOME="C:\jdk8"
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; ls ~; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; ls C:; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; choco install jdk8; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; export JAVA_HOME="C:\jdk8"; fi
   - export PATH=${JAVA_HOME}/bin:${PATH}
   - export PATH=$PATH:"/c/Program Files/Java/jdk1.8.0_221/bin"
   - java -version
