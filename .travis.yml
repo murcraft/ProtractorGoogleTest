@@ -9,11 +9,11 @@ os: windows
 before_install:
   - echo $TRAVIS_OS_NAME
   - ls ~
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ls C:; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install jdk8; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then export JAVA_HOME="C:\jdk8"; fi
   - export PATH=${JAVA_HOME}/bin:${PATH}
   - export PATH=$PATH:"/c/Program Files/Java/jdk1.8.0_221/bin"
+  - echo PATH
   - java -version
 #  - chmod +x ./preinstall.sh
 #  - ./preinstall.sh
@@ -37,7 +37,6 @@ before_script:
 #  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Firefox" ]]; then export browser=firefox; fi
 #  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Safari" ]]; then export browser=safari; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then export browser=ie; fi
-  - ls
 #  - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then bash ./install-safari.sh; fi
 
 stages:
@@ -49,14 +48,13 @@ stages:
 script:
 # - system_profiler SPDisplaysDataType | grep Resolution
 # - bash ./run_tests.sh || if [$? != 0]; then exit 0; fi
- - npm run test-ie || if [$? != 0]; then exit 0; fi
+ - npm run test-ie
+#|| if [$? != 0]; then exit 0; fi
 
 jobs:
  include:
  - stage: IE
    env: suite=suite1
-   script:
-   - npm run test-ie || if [$? != 0]; then exit 0; fi
  # - stage: Chrome
 #   env: suite=suite2
 # - stage: Chrome

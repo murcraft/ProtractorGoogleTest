@@ -16,7 +16,7 @@
     "test-safari": "npm run update-webdriver",
     "test-ie": "npm run update-ie && npm run start-ie-webdriver && npm run test",
     "test-clean": "npm run webdriver-manager-clean",
-    "test": "node conf-flake.js -- browser=ie suite=suite1 logLevel=debug maxinstances=1"
+    "test": "node conf-flake.js"
   },
   "devDependencies": {
     "aws-sdk": "^2.436.0",
