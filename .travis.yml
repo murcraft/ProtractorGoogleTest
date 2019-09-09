@@ -19,7 +19,6 @@ before_install:
   - export PATH=$PATH:"/c/Program Files/Java/jdk1.8.0_221/bin"
   - echo $PATH
   - java -version
-  - powershell reg query 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer' /v  version
 #  - chmod +x ./preinstall.sh
 #  - ./preinstall.sh
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi

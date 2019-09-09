@@ -113,7 +113,6 @@ let capabilitiesMap = {
       'ie.forceCreateProcessApi': false,
       ignoreProtectedModeSettings: true,
       ignoreZoomSetting: true,
-      initialBrowserUrl: 'http://localhost:45261/',
       nativeEvents: true,
       requireWindowFocus: false
     },
@@ -135,6 +134,13 @@ let capabilitiesMap = {
         'default_directory': downloads,
       },
     },
+  },
+
+  'android': {
+    browserName: 'chrome',
+    platformName: 'Android',
+    platformVersion: '7.0',
+    deviceName: 'Android Emulator',
   },
 
 }

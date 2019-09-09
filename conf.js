@@ -305,6 +305,11 @@ if (browserName === 'ie') {
 
 }
 
+if (browserName === 'android') {
+  config.seleniumAddress = 'http://localhost:4723/wd/hub'
+  config.logLevel = 'DEBUG'
+}
+
 exports.config = config
 
 //node conf-flake.js -- browser=firefox
