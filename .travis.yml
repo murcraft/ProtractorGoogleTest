@@ -19,7 +19,7 @@ before_install:
   - export PATH=$PATH:"/c/Program Files/Java/jdk1.8.0_221/bin"
   - echo $PATH
   - java -version
-  - dism /online /get-features
+  - powershell dism /online /get-features
 #  - chmod +x ./preinstall.sh
 #  - ./preinstall.sh
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
