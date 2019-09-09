@@ -55,6 +55,11 @@ if (process.env.browser === 'safari') {
   parser = 'standard'
 }
 
+if (process.env.browser === 'ie') {
+  process.env.maxinstances = 1
+  parser = 'standard'
+}
+
 // protractorArgs.push('conf.js')
 
 process.env.maxAttempts = 2
