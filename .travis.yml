@@ -10,6 +10,7 @@ before_install:
   - echo $TRAVIS_OS_NAME
   - ls ~
   - dir 'C:\Program Files'
+  - dir 'C:\Program Files\internet explorer'
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install jdk8; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then export JAVA_HOME="C:\jdk8"; fi
   - export PATH=${JAVA_HOME}/bin:${PATH}
