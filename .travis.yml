@@ -19,7 +19,6 @@ before_install:
   - export PATH=$PATH:"/c/Program Files/Java/jdk1.8.0_221/bin"
   - echo $PATH
   - java -version
-  - powershell dism /online /get-features
 #  - chmod +x ./preinstall.sh
 #  - ./preinstall.sh
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
@@ -35,6 +34,7 @@ before_script:
 #  - sh -e /etc/init.d/xvfb start &
 #  - sleep 3
 #  - bash ./install.sh
+  - start iexplore
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then REG ADD 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2500'; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then REG ADD 'HHKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BFCACHE'; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then REG ADD 'HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BFCACHE'; fi
