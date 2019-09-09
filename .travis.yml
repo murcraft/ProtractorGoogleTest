@@ -32,7 +32,7 @@ before_script:
 #  - sleep 3
 #  - bash ./install.sh
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then REG ADD 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2500'; fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then REG ADD 'HHKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BFCACHE'; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then REG ADD 'HHKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BFCACHE'; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then REG ADD 'HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BFCACHE'; fi
   - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then ( sudo Xvfb :99 -ac -screen 0 1920x1080x16; echo ok ) & fi
 #  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
