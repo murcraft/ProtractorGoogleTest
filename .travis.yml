@@ -1,8 +1,8 @@
 before_install:
 #  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y libappindicator1 fonts-liberation; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_76.0.3809.132-1_amd64.deb; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg -i google-chrome-stable_76.0.3809.132-1_amd64.deb; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_77.0.3865.120-1_amd64.deb; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg -i google-chrome-stable_77.0.3865.120-1_amd64.deb; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1080x16; fi
 
 before_script:
